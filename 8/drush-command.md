@@ -21,7 +21,26 @@ Pour cela il suffit de lancer la commande :
 php core/scripts/password-hash.sh <new_password>
 ```
 
+## Apparence
+
+Si on utilise un thème d'administration, il est possible de le changer assez facilement.
+```bash
+drush en adminimal_theme -y
+drush config-set system.theme admin adminimal_theme -y
+drush en adminimal_admin_toolbar -y
+```
+
 ## Configuration
+
+### Régionalisation et langue
+
+#### Paramètres régionaux
+
+On va changer les valeurs par défaut necessaire à notre pays.
+```bash
+drush cset system.date country.default FR -y
+drush cset system.date timezone.default Europe/Berlin -y
+```
 
 ### Développement
 
