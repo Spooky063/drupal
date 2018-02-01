@@ -26,7 +26,9 @@ function mytheme_preprocess_field(&$variables) {
             $variables['items'][$key]['content']['#title'] = $title;
     
             // Add title attribute
-            $variables['items'][$key]['content']['#options']['attributes'] = ['title' => $item['content']['#title']];
+            $variables['items'][$key]['content']['#options']['attributes'] = [
+                'title' => $item['content']['#title']
+            ];
         }
     }
 }
