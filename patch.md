@@ -11,7 +11,7 @@ Mais au préalable il faut récupérer le patch en question localement (Ici on r
 
 ```
 curl -so /tmp/patch-$(date +'%Y-%m%d').patch \ 
--X GET -G 'https://cgit.drupalcode.org/drupal/rawdiff/?h=7.x' -d id=`id_du_path`
+-X GET -G 'https://cgit.drupalcode.org/drupal/rawdiff/?h=7.x' -d id=id_du_path
 ```
 
 Une fois récupérer, il suffit de se rendre dans le répertoire du drupal et lancer la commande suivante
