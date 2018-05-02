@@ -22,6 +22,10 @@ patch -p1 < /tmp/patch-$(date +'%Y-%m%d').patch
 OU
 
 patch -d /racine-projet/ -p1 < /tmp/patch-$(date +'%Y-%m%d').patch
+
+OU
+
+git apply -v /tmp/patch-$(date +'%Y-%m%d').patch
 ```
 
 Vous avez réussi votre patch !
