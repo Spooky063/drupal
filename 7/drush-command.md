@@ -36,6 +36,26 @@ commande :
 drush cc all
 ```
 
+Pour désactiver le cache des pages pour les utilisateurs anonymes :
+```bash
+drush vset cache 0
+```
+
+Pour désactiver la compression des fichiers CSS :
+```bash
+drush vset preprocess_css 0
+```
+
+Pour désactiver la compression des fichiers JS :
+```bash
+drush vset preprocess_js 0
+```
+
+Bien pensé à vider le cache complétement ou juste la partie CSS-JS :
+```bash
+drush cc css-js
+```
+
 #### Journalisation et erreurs
 
 Il existe plusieurs niveaux pour la gestion des erreurs.
@@ -68,3 +88,21 @@ drush vset maintenance_mode 0
 # Activer le mode maintenance
 drush vset maintenance_mode 1
 ```
+
+### Média
+
+#### Système de fichier
+
+Pour modifier rapidement tous les chemins pour les fichiers, voici les commandes :
+```bash
+# Chemin du système public de fichier
+drush vset file_public_path PATH 
+
+# Chemin du système privé de fichier
+drush vset file_private_path PATH 
+
+# Dossier temporaire
+drush vset file_temporary_path PATH 
+```
+
+Bien pensé à vider les caches et vérifier les droits sur les dossiers préalablement renseignés.
