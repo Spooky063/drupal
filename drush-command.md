@@ -39,3 +39,13 @@ Il faut cependant que le module `language` soit activé au préalable.
 ```bash
 drush locale-update
 ```
+
+### Voir le dernier message d'erreur
+
+Quand on a pas accès au back-office ou la flemme d'aller dessus, 
+on peut quand même connaitre les erreurs grâce à cette commande toute simple.  
+Il faudra au préalable que le module `dblog` soit installé.
+
+```bash
+drush watchdog-show --severity=error --count=1
+```
