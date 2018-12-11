@@ -26,6 +26,10 @@
 
 ```twig
 {# Pour enlever le html du debug Twig #}
+{# La variable content donne le rendu de l'élément donc le debug Twig est pris en compte. 
+Pour éviter cela, soit on passe par la variable node (node.field_title), soit on utilise
+cette solution pas très propre.
+#}
 {{ content.field_title | render | striptags | trim }}
 ```
 
