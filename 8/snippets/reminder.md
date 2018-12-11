@@ -2,6 +2,11 @@
 
 ## Twig
 
+### Global
+```twig
+{{ content|without('body') }}
+```
+
 ### Texte
 ```twig
 {% if node.field_text.value %}
