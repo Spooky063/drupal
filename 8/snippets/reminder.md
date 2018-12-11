@@ -15,6 +15,11 @@
 {{ node.label }}
 ```
 
+```twig
+{% set image = '/' ~ directory ~ '/images/monimage.jpg' %}
+<div style="background-image:url({{ image }});" title=""></div>
+```
+
 ### Texte
 ```twig
 {% if node.field_text.value %}
