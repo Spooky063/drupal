@@ -5,6 +5,7 @@
 ### Global
 ```twig
 {{ page.region_name }}
+{{ page.region_name.block_name }}
 {{ content|without('body') }}
 ```
 
