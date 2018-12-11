@@ -4,7 +4,14 @@
 
 ### Global
 ```twig
+{{ page.region_name }}
 {{ content|without('body') }}
+```
+
+```twig
+{# For node #}
+{{ label }}
+{{ node.label }}
 ```
 
 ### Texte
@@ -90,6 +97,13 @@
 {{ node.field_date.value | date("d/m/Y") }}
 ```
 
+### Booléen
+```twig
+{% if node.field_bool.value %}
+  Field checked
+{% endif %}
+```
+
 ### Taxonomy
 ```twig
 {% set lists = node.field_related_taxonomy %}
@@ -97,6 +111,7 @@
   {% set term = list.entity.translation('fr') %}
   {{ term.field_name.value }}
   <a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': term.id}) }}">{{ term.title }}</a>
+  {% if not loop.last %},{% endif %}
 {% endfor %}
 ```
 
@@ -126,6 +141,10 @@
 {% endfor %}
 ```
 
+```twig
+{% set multiple = node.field_taxonomy_1|merge(node.field_taxonomy_2) %}
+```
+
 ### Container
 ```twig
 <div{{ create_attribute({'class': ['region', 'region--header']}) }}>
@@ -133,3 +152,36 @@
 </div>
 ```
 
+### Render multiple item
+```twig
+<div{{ create_attribute({'class': ['news']}) }}>
+  {% for item in news %}
+    {# item must be full node #}
+    {% include 'news-item.html.twig' with { 'item': item } %}
+  {% endfor %}
+</div>
+```
+
+```twig
+{# !! Extension twig_tweak must be installed #}
+<div{{ create_attribute({'class': ['news']}) }}>
+  {% for item in news %}
+    {# item must be nid #}
+    {{ drupal_entity('node', item, 'teaser') }}
+  {% endfor %}
+</div>
+```
+
+### Trans
+```twig
+{% trans %}Mon texte traductible{% endtrans %}
+```
+
+```twig
+{% set count = 2 %}
+{% trans %}
+  {{ count }} item
+{% plural count %}
+  {{ count }} items
+{% endtrans %}
+```
