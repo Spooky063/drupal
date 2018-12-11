@@ -20,6 +20,10 @@
 <div style="background-image:url({{ image }});" title=""></div>
 ```
 
+```twig
+<a href="{{ url('<front>') }}"
+```
+
 ### Texte
 ```twig
 {% if node.field_text.value %}
