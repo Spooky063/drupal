@@ -127,6 +127,12 @@
 ```
 
 ```twig
+{% if content.field_entity['#items']|length %}
+  {{ content.field_entity }}
+{% endif %}
+```
+
+```twig
 {% set length = content.field_paragraph['#items']|length -1 %}
 {% for i in 0..length %}
   {{ content.field_paragraph[i] }}
