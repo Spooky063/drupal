@@ -22,6 +22,7 @@
 
 ```twig
 {% if node.body.value %}
+  {{ node.body.value | raw }}
   {{ node.body.value | slice(0, 100) | striptags('<br><strong><b><i><u>') }}
   {{ node.body.summary }}
 {% endif %}
