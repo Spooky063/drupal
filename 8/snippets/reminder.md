@@ -61,6 +61,12 @@
 ```
 
 ```twig
+{# !! Extension imagecache_external must be installed #}
+{% set image = 'https://via.placeholder.com/150' %}
+<img src="{{ image | imagecache_external | image_style('homepage') }}">
+```
+
+```twig
 {% if node.field_img.uri %}
   <img{{ create_attribute()
     .setAttribute('src', node.field_img.entity.fileuri | image_style('homepage'))
