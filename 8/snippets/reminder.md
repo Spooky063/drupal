@@ -10,7 +10,7 @@
 ```
 
 ```twig
-{# For node #}
+{# Pour node.html.twig #}
 {{ label }}
 {{ node.label }}
 ```
@@ -22,6 +22,11 @@
 
 ```twig
 <a href="{{ url('<front>') }}"
+```
+
+```twig
+{# Pour enlever le html du debug Twig #}
+{{ content.field_title | render | striptags | trim }}
 ```
 
 ### Texte
