@@ -4,7 +4,7 @@
 
 ### Texte
 ```twig
-{% if node.field_text.uri %}
+{% if node.field_text.value %}
   {{ node.field_text.value }}
 {% endif %}
 ```
