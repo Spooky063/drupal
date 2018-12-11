@@ -95,7 +95,8 @@
 {% set lists = node.field_related_taxonomy %}
 {% for list in lists %}
   {% set term = list.entity.translation('fr') %}
-  {{ term.name.value }}
+  {{ term.field_name.value }}
+  <a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': term.id}) }}">{{ term.title }}</a>
 {% endfor %}
 ```
 
