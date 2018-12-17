@@ -145,6 +145,11 @@ cette solution pas très propre.
 ```
 
 ```twig
+{# If entity length is set to 1 item in BO #}
+{{ node.field_entity.entity.field_*.value }}
+```
+
+```twig
 {% for p, paragraph in node.field_paragraph %}
   {{ paragraph.entity.field_title.value }}
 {% endfor %}
