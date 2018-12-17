@@ -13,6 +13,11 @@
 {# Pour node.html.twig #}
 {{ label }}
 {{ node.label }}
+
+{{ url }}
+{{ path('entity.node.canonical', {'node': node.nid.value}) }}
+{# Path without "/" at begining #}
+{{ path('entity.node.canonical', {'node': node.nid.value})[1:] }} 
 ```
 
 ```twig
