@@ -220,3 +220,30 @@ cette solution pas très propre.
   {{ count }} items
 {% endtrans %}
 ```
+
+## PHP
+
+### Url
+
+```php
+//Current route in absolute
+var url = \Drupal\Core\Url::fromRoute('<current>', [], ['absolute' => 'true'])->toString();
+
+//Current route not absolute
+var url = \Drupal\Core\Url::fromRoute('<current>')->toString();
+var url = \Drupal::request()->getRequestUri();
+
+
+//Front page absolute
+var homepage = \Drupal\Core\Url::fromRoute('<front>', [], ['absolute' => 'true'])->toString();
+var homepage = \Drupal\Core\Url::fromUri('internal:/')->setAbsolute()->toString();
+
+//Front page
+var homepage = \Drupal\Core\Url::fromRoute('<front>')->toString();
+var homepage = \Drupal\Core\Url::fromUri('internal:/')->toString();
+var ishomepage = \Drupal::service('path.matcher')->isFrontPage();
+
+//Entities
+var node = \Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => 526], ['absolute' => 'true'])->toString();
+var taxonomy = \Drupal\Core\Url::fromRoute('entity.taxonomy_term.canonical', ['taxonomy_term' => 526], ['absolute' => 'true'])->toString();
+```
