@@ -94,3 +94,15 @@ cd web/
 ../vendor/drush/drush/drush entity-updates -y
 ../vendor/drush/drush/drush cr
 ```
+
+# Erreurs rencontrées
+
+Si vous rencontrez des erreurs lors de l'import des configurations :
+```bash
+# Erreur
+The import failed due to the following reasons:                                                                             
+  Des entités de type <em class="placeholder">Lien de raccourci</em> et <em class="placeholder">Ensemble de raccourcis</em> <em class="placeholder">Par défaut</em> existent. Celles-ci doivent être supprimées avant d'importer.
+  
+# Solution
+../vendor/drush/drush/drush edel shortcut
+```
