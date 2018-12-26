@@ -78,8 +78,8 @@ svn add --force .
 
 ```bash
 cd monprojet/
-composer install --ignore-platform-reqs --no-scripts --no-dev --prefer-dist --optimize-autoloader
-composer drupal-scaffold
+composer install --no-scripts --no-dev --prefer-dist --optimize-autoloader
+composer drupal-scaffold OR composer drupal:scaffold SELON LE COMPOSER.JSON
 
 cd web/
 ../vendor/drush/drush/drush cim -y
