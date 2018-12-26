@@ -47,6 +47,7 @@ mkdir -p web/sites/default/tmp
 drush cset system.date country.default FR -y
 drush cset system.date timezone.default Europe/Berlin -y
 drush pmu {big_pipe,history,page_cache,quickedit,tour} -y
+drush cex -y
 ```
 
 # Procédure
