@@ -84,6 +84,9 @@ composer install --no-scripts --no-dev --prefer-dist --optimize-autoloader
 composer drupal-scaffold OR composer drupal:scaffold SELON LE COMPOSER.JSON
 
 cd web/
+# Si nouvelle bdd, utiliser la commande suivante avant les autres
+../vendor/drush/drush/drush cset system.site <uuid> -y (ou uuid est celle de system.site.yml de l'installation du Drupal)
+
 ../vendor/drush/drush/drush cim -y
 ../vendor/drush/drush/drush updb -y
 ../vendor/drush/drush/drush locale:update -y
