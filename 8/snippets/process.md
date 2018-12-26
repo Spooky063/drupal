@@ -66,6 +66,8 @@ svn add --depth=empty web/themes
 svn propset svn:ignore "contrib" web/themes
 
 svn add --depth=empty web/sites
+svn propset svn:ignore "development.services.yml"$'\n'"example.*" web/sites
+
 svn add --depth=empty web/sites/default
 svn propset svn:ignore "files"$'\n'"private"$'\n'"tmp"$'\n'"translations"$'\n'"default.*" web/sites/default
 
