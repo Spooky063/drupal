@@ -50,6 +50,24 @@ drush pmu {big_pipe,history,page_cache,quickedit,tour} -y
 drush cex -y
 ```
 
+Si utilisation de svn
+```bash
+svn propset svn:global-ignores "vendor" .
+
+svn propset svn:ignore ".env"$'\n'".editorconfig"$'\n'".gitattributes"$'\n'".phpintel"$'\n'"*.sublime-project"$'\n'"*.sublime-workspace"$'\n'".buildpath"$'\n'".DS_Store"$'\n'".idea"$'\n'".project"$'\n'"nbproject" .
+
+svn add --depth=empty web
+svn propset svn:ignore "core"$'\n'"autoload.php"$'\n'"update.php"$'\n'"index.php"$'\n'"web.config"$'\n'".*" web
+
+svn add --depth=empty web/modules
+svn propset svn:ignore "contrib" web/modules
+
+svn add --depth=empty web/sites
+svn propset svn:ignore "files"$'\n'"private"$'\n'"tmp"$'\n'"translations" web/sites
+
+svn add --force .
+```
+
 # Procédure
 
 ## A chaque modification
