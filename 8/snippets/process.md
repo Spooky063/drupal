@@ -86,6 +86,8 @@ composer drupal-scaffold OR composer drupal:scaffold SELON LE COMPOSER.JSON
 cd web/
 # Si import d'une nouvelle bdd, utiliser la commande suivante avant les autres
 ../vendor/drush/drush/drush cset system.site uuid <uuid> -y (ou uuid est celle de system.site.yml de l'installation du Drupal)
+../vendor/drush/drush/drush config-get language.entity.LANGUAGE_CODE uuid <uuid> -y  (ou uuid est celle de language.entity.LANGUAGE_CODE.yml de l'installation du Drupal)
+
 
 ../vendor/drush/drush/drush cim -y
 ../vendor/drush/drush/drush updb -y
