@@ -67,7 +67,7 @@ svn propset svn:ignore "contrib" web/themes
 
 svn add --depth=empty web/sites
 svn add --depth=empty web/sites/default
-svn propset svn:ignore "files"$'\n'"private"$'\n'"tmp"$'\n'"translations" web/sites/default
+svn propset svn:ignore "files"$'\n'"private"$'\n'"tmp"$'\n'"translations"$'\n'"default.*" web/sites/default
 
 svn add --force .
 ```
