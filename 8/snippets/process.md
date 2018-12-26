@@ -62,8 +62,8 @@ svn propset svn:ignore "core"$'\n'"autoload.php"$'\n'"update.php"$'\n'"index.php
 svn add --depth=empty web/modules
 svn propset svn:ignore "contrib" web/modules
 
-svn add --depth=empty web/sites
-svn propset svn:ignore "files"$'\n'"private"$'\n'"tmp"$'\n'"translations" web/sites
+svn add --depth=empty web/sites/default
+svn propset svn:ignore "files"$'\n'"private"$'\n'"tmp"$'\n'"translations" web/sites/default
 
 svn add --force .
 ```
