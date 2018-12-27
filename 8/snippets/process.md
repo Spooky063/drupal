@@ -18,7 +18,7 @@
 
  - Récupération du projet GIT `drupal-composer/drupal-project`
  
-```bash
+```json
 {
     "name": "drupal-composer/drupal-project",
     "description": "Project template for Drupal 8 projects with composer",
