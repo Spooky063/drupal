@@ -17,6 +17,114 @@
 # Mise en place
 
  - Récupération du projet GIT `drupal-composer/drupal-project`
+ 
+```bash
+{
+    "name": "drupal-composer/drupal-project",
+    "description": "Project template for Drupal 8 projects with composer",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "composer/installers": "^1.2",
+        "cweagans/composer-patches": "^1.6.5",
+        "drupal-composer/drupal-scaffold": "^2.5",
+        "drupal/console": "^1.0.2",
+        "drupal/core": "^8.6.0",
+        "drush/drush": "^9.0.0",
+        "vlucas/phpdotenv": "^2.4",
+        "webflo/drupal-finder": "^1.0.0",
+        "webmozart/path-util": "^2.3"
+    },
+    "require-dev": {
+        "webflo/drupal-core-require-dev": "^8.6.0"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ],
+        "files": ["load.environment.php"]
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "@composer drupal:scaffold",
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "@composer drupal:scaffold",
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "run-phpcs": [
+            "@run-phpcs:modules",
+            "@run-phpcs:theme"
+        ],
+        "run-phpcs:modules": [
+            "vendor/bin/phpcs --standard=PSR2 --extensions=php -p -n -s --colors ./web/modules/custom/"
+        ],
+        "run-phpcs:theme": [
+            "vendor/bin/phpcs --standard=PSR2 --extensions=php -p -n -s --colors ./web/themes/custom/"
+        ],
+        "fix-phpcs": [
+            "@fix-phpcs:modules",
+            "@fix-phpcs:theme"
+        ],
+        "fix-phpcs:modules": [
+            "vendor/bin/phpcbf --standard=PSR2 --extensions=php -n ./web/modules/custom/"
+        ],
+        "fix-phpcs:theme": [
+            "vendor/bin/phpcbf --standard=PSR2 --extensions=php -n ./web/themes/custom/"
+        ]
+    },
+    "extra": {
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "installer-paths": {
+            "web/core": ["type:drupal-core"],
+            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/modules/contrib/{$name}": ["type:drupal-module"],
+            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "web/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/Commands/{$name}": ["type:drupal-drush"]
+        },
+        "drupal-scaffold": {
+            "source": "http://cgit.drupalcode.org/drupal/plain/{path}?h={version}", 
+            "excludes": [
+                "sites/default/default.settings.php",
+                "sites/default/default.services.yml",
+                "sites/development.services.yml",
+                "sites/example.settings.local.php",
+                "sites/example.sites.php"
+            ],
+            "initial": {
+                ".editorconfig": "../.editorconfig",
+                ".gitattributes": "../.gitattributes"
+            }
+        }
+    }
+}
+
+```
+ 
  - Installation des dépendances
  
 ```bash
