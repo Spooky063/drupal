@@ -247,3 +247,11 @@ var ishomepage = \Drupal::service('path.matcher')->isFrontPage();
 var node = \Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => 526], ['absolute' => 'true'])->toString();
 var taxonomy = \Drupal\Core\Url::fromRoute('entity.taxonomy_term.canonical', ['taxonomy_term' => 526], ['absolute' => 'true'])->toString();
 ```
+
+### Public
+
+```php
+// Public directory path
+$public_path = Drupal\Core\StreamWrapper\PublicStream::basePath();
+$public_path = \Drupal::service('file_system')->realpath("public://");
+```
