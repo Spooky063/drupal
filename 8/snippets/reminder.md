@@ -78,6 +78,19 @@ cette solution pas très propre.
 {% endif %}
 ```
 
+```twig
+{% if node.field_link.uri %}
+  {# !! Extension link_attributes must be installed #}
+   <a{{ create_attribute({
+    'id': node.field_link.options.attributes.id, 
+    'name': node.field_link.options.attributes.name,
+    'target': node.field_link.options.attributes.target, 
+    'rel': node.field_link.options.attributes.rel,
+    'class': [node.field_link.options.attributes.class, 'c-button--main']
+    }) }} href="{{ node.field_link.0.url }}" title="{{ node.field_link.title }}">{{ node.field_link.title }}</a>
+{% endif %}
+```
+
 ### Image
 ```twig
 {% if node.field_img.uri %}
