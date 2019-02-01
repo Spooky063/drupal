@@ -248,6 +248,50 @@ cette solution pas très propre.
 {% endtrans %}
 ```
 
+### Menu
+```twig
+{# !! Extension link_attributes must be installed #}
+{% import _self as menus %}
+
+{{ menus.menu_links(items, attributes, 0, parent) }}
+
+{% macro menu_links(items, attributes, menu_level, parent) %}
+  {% import _self as menus %}
+
+  {% if items %}
+    <ul{{ attributes.addClass("c-nav__level"~menu_level) }}>
+    {% if menu_level > 0 %}
+      <li class="nav__hide"><span class="icon--arrowLeft"></span><span>{{ parent }}</span></li>
+    {% endif %}
+
+    {% for item in items %}
+      {%
+        set itemClasses = [
+          'menu-item',
+          item.is_expanded ? 'menu-item--expanded',
+          item.is_collapsed ? 'menu-item--collapsed',
+          item.in_active_trail ? 'menu-item--active-trail',
+        ]
+      %}
+      <li{{ item.attributes.addClass(itemClasses) }}>
+        {% if item.below %}
+          {% if item.url.routeName in ['<none>', '<nolink>', 'route:<none>', 'route:<nolink>'] %}
+            <a aria-haspopup="true" class="url-none">{{ item.title }}</a>
+          {%- else -%}
+            <a aria-haspopup="true" href="{{ item.url }}">{{ item.title }}</a>
+          {%- endif -%}
+          <div class="nav__show"><span class="icon--arrowRight"></span></div>
+          {{ menus.menu_links(item.below, attributes, menu_level + 1, item.title) }}
+        {% else %}
+          {{ link(item.title, item.url, item.url.options.attributes) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
+```
+
 ## PHP
 
 ### Url
