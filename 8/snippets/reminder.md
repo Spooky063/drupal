@@ -91,6 +91,20 @@ cette solution pas très propre.
 {% endif %}
 ```
 
+```twig
+{# Concernant les menus #}
+{# !! Extension link_attributes must be installed #}
+<a{{ create_attribute({
+    'target': item.url.options.attributes.target, 
+    'rel': item.url.options.attributes.rel,
+    'class': item.url.options.attributes.class
+    }) }} href="{{ item.url }}">{{ item.title }}</a>
+
+=== OR ===
+
+{{ link(item.title, item.url, item.url.options.attributes) }}
+```
+
 ### Image
 ```twig
 {% if node.field_img.uri %}
