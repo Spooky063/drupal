@@ -154,7 +154,11 @@ mkdir -p web/sites/default/tmp
 ```bash
 drush cset system.date country.default FR -y
 drush cset system.date timezone.default Europe/Berlin -y
-drush pmu {big_pipe,comment,history,page_cache,quickedit,tour} -y
+drush pmu {big_pipe,history,page_cache,quickedit,tour} -y
+
+drush ev '\Drupal::service("entity_field.manager")->getFieldStorageDefinitions("node")["comment"]->delete();'
+drush pmu comment -y
+
 drush cex -y
 ```
 
