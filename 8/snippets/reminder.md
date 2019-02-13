@@ -146,6 +146,7 @@ cette solution pas très propre.
 
 ```twig
 {{ node.field_date.value | date("d/m/Y") }}
+{{ node.field_date.value | date("U") | format_date("short") }}
 ```
 
 ### Booléen
