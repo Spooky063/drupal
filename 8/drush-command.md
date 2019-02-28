@@ -70,6 +70,11 @@ drush cset system.performance js.preprocess 1
 drush cset system.performance js.preprocess 0
 ```
 
+Pour reconstruire la compression des assets du core Drupal :
+```
+drush ev '\Drupal::service("asset.css.collection_optimizer")->deleteAll(); \Drupal::service("asset.js.collection_optimizer")->deleteAll(); _drupal_flush_css_js();'
+```
+
 #### Journalisation et erreurs
 
 Il existe plusieurs niveaux pour la gestion des erreurs.
