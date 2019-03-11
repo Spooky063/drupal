@@ -206,7 +206,7 @@ cd web/
 ../vendor/drush/drush/drush locale:update -y
 ../vendor/drush/drush/drush php-eval 'node_access_rebuild();'
 ../vendor/drush/drush/drush entity-updates -y
-../vendor/drush/drush/drush cron --uri=mondomaine.com # regenerate XML if module simple_sitemap enabled
+../vendor/drush/drush/drush cron --uri=https://www.mondomaine.com # regenerate XML if module simple_sitemap enabled
 ../vendor/drush/drush/drush cr
 ../vendor/drush/drush/drush sset system.maintenance_mode 0
 ```
