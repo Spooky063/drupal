@@ -201,8 +201,8 @@ cd web/
 ../vendor/drush/drush/drush config-get language.entity.LANGUAGE_CODE uuid <uuid> -y  (ou uuid est celle de language.entity.LANGUAGE_CODE.yml de l'installation du Drupal)
 
 ../vendor/drush/drush/drush sset system.maintenance_mode 1
-../vendor/drush/drush/drush cim -y
 ../vendor/drush/drush/drush updb -y
+../vendor/drush/drush/drush cim -y
 ../vendor/drush/drush/drush locale:update -y
 ../vendor/drush/drush/drush php-eval 'node_access_rebuild();'
 ../vendor/drush/drush/drush entity-updates -y
