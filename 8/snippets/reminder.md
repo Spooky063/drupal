@@ -75,6 +75,8 @@ cette solution pas très propre.
 ```twig
 {% if node.field_link.uri %}
   <a class="btn btn-primary" href="{{ node.field_link.0.url }}" title="{{ node.field_link.title }}"><h2>{{ node.field_link.title }}</h2></a>
+  
+  <a class="btn btn-primary" href="{{ node.field_link[0]['#url'] }}" title="{{ node.field_link.title }}"><h2>{{ node.field_link.title }}</h2></a>
 {% endif %}
 ```
 
