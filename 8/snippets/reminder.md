@@ -59,6 +59,14 @@ cette solution pas très propre.
 {% endif %}
 ```
 
+```twig
+{% if node.body.value|length > 75 %}
+    <p>{% autoescape false %}{{ node.body.value | striptags | slice(0, 75) ~ '...' }}{% endautoescape %}</p>
+{% else %}
+    <p>{% autoescape false %}{{ node.body.value | striptags }}{% endautoescape %}</p>
+{% endif %}
+```
+
 ### Lien
 ```twig
 {% if node.field_link.uri %}
