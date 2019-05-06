@@ -1,0 +1,7 @@
+name: Stream
+type: module
+description: Create a new stream for current theme
+package: Core
+
+core: 8.x
+version: 8.x-1.0
