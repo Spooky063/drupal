@@ -309,25 +309,77 @@ cette solution pas très propre.
 
 ```php
 //Current route in absolute
-var url = \Drupal\Core\Url::fromRoute('<current>', [], ['absolute' => 'true'])->toString();
+$url = \Drupal\Core\Url::fromRoute('<current>', [], ['absolute' => 'true'])->toString();
 
 //Current route not absolute
-var url = \Drupal\Core\Url::fromRoute('<current>')->toString();
-var url = \Drupal::request()->getRequestUri();
+$url = \Drupal\Core\Url::fromRoute('<current>')->toString();
+$url = \Drupal::request()->getRequestUri();
 
 
 //Front page absolute
-var homepage = \Drupal\Core\Url::fromRoute('<front>', [], ['absolute' => 'true'])->toString();
-var homepage = \Drupal\Core\Url::fromUri('internal:/')->setAbsolute()->toString();
+$homepage = \Drupal\Core\Url::fromRoute('<front>', [], ['absolute' => 'true'])->toString();
+$homepage = \Drupal\Core\Url::fromUri('internal:/')->setAbsolute()->toString();
 
 //Front page
-var homepage = \Drupal\Core\Url::fromRoute('<front>')->toString();
-var homepage = \Drupal\Core\Url::fromUri('internal:/')->toString();
-var ishomepage = \Drupal::service('path.matcher')->isFrontPage();
+$homepage = \Drupal\Core\Url::fromRoute('<front>')->toString();
+$homepage = \Drupal\Core\Url::fromUri('internal:/')->toString();
+$ishomepage = \Drupal::service('path.matcher')->isFrontPage();
 
 //Entities
-var node = \Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => 526], ['absolute' => 'true'])->toString();
-var taxonomy = \Drupal\Core\Url::fromRoute('entity.taxonomy_term.canonical', ['taxonomy_term' => 526], ['absolute' => 'true'])->toString();
+$node = \Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => 526], ['absolute' => 'true'])->toString();
+$taxonomy = \Drupal\Core\Url::fromRoute('entity.taxonomy_term.canonical', ['taxonomy_term' => 526], ['absolute' => 'true'])->toString();
+```
+
+### Entity
+
+```php
+// Get String
+$node->get('fieldname')->get(0)->getString();
+$node->get('fieldname')->get(0)->get('value')->getValue();
+
+// Get Entité Reference Item List
+$fieldName = 'uid';
+
+/// Solution 1
+/** @var NodeStorage $entityManager */
+$entityFieldManager = \Drupal::service('entity_field.manager');
+$fieldDefinitions = $entityFieldManager->getFieldStorageDefinitions('node');
+
+$fieldDefinition = $fieldDefinitions[$fieldName] ?? null;
+if (null === $fieldDefinition) {
+  throw new RuntimeException('This field does not exist');
+}
+$type = $fieldDefinition->getSetting('target_type');
+$fieldValues = $node->get($fieldName);
+
+$values = [];
+$entityTypeManager = \Drupal::service('entity_type.manager');
+foreach ($fieldValues as $delta => $value) {
+  $values[$delta] = $entityTypeManager->getStorage($type)->load($value->get('target_id')->getValue());
+}
+if (1 === $fieldDefinition->getCardinality()) {
+  $values = reset($values);
+}
+
+/// Solution 2
+$node->get($fieldName)->referencedEntities();
+
+// Filter Entité Reference Item List by bundle
+array_filter($node->get('fieldname')->referencedEntities(), fn($v) => $v->bundle() === 'bundlename');
+
+// Set Entité Reference Item List
+$referenceEntity = Node::create(['type' => 'page']);
+$node->set($fieldName, $referenceEntity);
+
+// Add Entité Reference Item List
+$referenceEntity1 = Node::create(['type' => 'page']); // nid=10
+$referenceEntity2 = Node::create(['type' => 'page']); // nid=11
+$node->get($fieldName)->appendItem($referenceEntity1);
+$node->get($fieldName)->appendItem($referenceEntity2);
+
+// Remove Entité Reference Item List
+$id = (int)array_search((int)$referenceEntity1->id(), array_map(fn($v) => 10, $node->get('fieldname')->referencedEntities(), true);
+$node->get($fieldName)->removeItem($id);
 ```
 
 ### Public
