@@ -149,6 +149,21 @@ cette solution pas très propre.
 {% endif %}
 ```
 
+```twig
+# Pour un term par exemple
+{% set image = {
+    '#theme':      'image_style',
+    '#style_name': 'picto',
+    '#uri':        term.field_picto.entity.uri.value,
+    '#alt':        term.name.value,
+    '#title':      term.name.value,
+    '#width':      term.field_picto.width,
+    '#height':     term.field_picto.height
+  } %}
+
+{{ image }}
+```
+
 ### Date
 ```twig
 {{ node.getCreatedTime() | date("Y-m-d") }}
