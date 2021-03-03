@@ -192,6 +192,33 @@ cette solution pas très propre.
 {% endfor %}
 ```
 
+```twig
+{# taxonomy-term.html.twig #}
+{# ADD CLASS FROM FIELD `field_class` ON TAXONOMY DIV OR FIELD ITEM `name` (title of taxonomy term) #}
+{%
+  set classes = [
+    'taxonomy-term',
+    'vocabulary-' ~ term.bundle|clean_class,
+  ]
+%}
+
+{% set icon_class = [] %}
+{% for item in content.field_class['#items'] %}
+  {% set icon_class = item.value|split(' ') %}
+{% endfor %}
+
+<div{{ attributes.setAttribute('id', 'taxonomy-term-' ~ term.id).addClass(classes).addClass(icon_class) }}>
+  {{ title_prefix }}
+  {% if name and not page %}
+    <h2><a href="{{ url }}">{{ name }}</a></h2>
+  {% endif %}
+  {{ title_suffix }}
+  <div class="content">
+    {{ content.name|merge({'#attributes': {'class': icon_class}}) }}
+  </div>
+</div>
+```
+
 ### Entity Reference (Node, Taxonomy, Paragraph, ...)
 ```twig
 {{ content.field_paragraph }}
