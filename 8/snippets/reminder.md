@@ -215,6 +215,8 @@ cette solution pas très propre.
   {{ title_suffix }}
   <div class="content">
     {{ content.name|merge({'#attributes': {'class': icon_class}}) }}
+    
+    {{ content|without('name', 'field_class')}}
   </div>
 </div>
 ```
