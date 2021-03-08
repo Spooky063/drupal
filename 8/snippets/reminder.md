@@ -433,3 +433,28 @@ $node->get($fieldName)->removeItem($id);
 $public_path = Drupal\Core\StreamWrapper\PublicStream::basePath();
 $public_path = \Drupal::service('file_system')->realpath("public://");
 ```
+
+### Theme
+
+```php
+// Active current theme (Default theme or Admin theme)
+$activeTheme = \Drupal::theme()->getActiveTheme()->getName();
+
+$defaultTheme = \Drupal::service('theme_handler')->getDefault();
+$adminTheme = \Drupal::service('theme_handler')->getAdmin();
+
+if (\Drupal::service('router.admin_context')->isAdminRoute() && $activeTheme === $adminTheme) {
+  // ADMIN ROUTE ON ADMIN PAGE
+}
+```
+
+### Image
+
+```php
+$user = Drupal\user\Entity\User::load(1);
+$user_picture = $user->get('user_picture')->first();
+if ($user_picture !== null) {
+  $image_uri = Drupal\file\Entity\File::load($user_picture->get('target_id')->getValue())->getFileUri();
+  $url = Drupal\image\Entity\ImageStyle::load('thumbnail')->buildUrl($image_uri);
+}
+```
