@@ -3,7 +3,7 @@
 ## Informations
 
 Ne jamais utiliser le module `Custom Block` natif du coeur de Drupal pour la création de bloc.  
-Privilégier le module [Simple Block](https://www.drupal.org/project/simple_block) 
+Privilégier le module [Fixed block content](https://www.drupal.org/project/fixed_block_content) 
 qui permet d'utiliser les fichiers de configuration pour la synchronisation des environnements.
 
 Dans le cas ou il est déjà trop tard, il est possible d'utiliser une astuce avec un module pour les créer dynamiquement
