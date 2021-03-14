@@ -1,0 +1,64 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\node_alias\Entity\PathAlias;
+use Drupal\node_alias\Event\NodeEvent;
+use Drupal\node_alias\Event\NodeEvents;
+
+/**
+ * Implements hook_entity_insert().
+ */
+function node_alias_demo_entity_insert(EntityInterface $entity)
+{
+    if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'event') {
+        $pathAlias = PathAlias::create(
+            [
+                'source'      => Url::fromRoute('node.basic_page', ['node' => $entity->id()]),
+                'destination' => '%s/reservation'
+            ]
+        );
+
+        $event_dispatcher = Drupal::service('event_dispatcher');
+        $event_dispatcher->dispatch(NodeEvents::INSERT, new NodeEvent($entity, $pathAlias));
+    }
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function node_alias_demo_entity_update(EntityInterface $entity)
+{
+    if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'event') {
+        $pathAlias = PathAlias::create(
+            [
+                'source'      => Url::fromRoute('node.basic_page', ['node' => $entity->id()]),
+                'destination' => '%s/reservation'
+            ]
+        );
+
+        $event_dispatcher = Drupal::service('event_dispatcher');
+        $event_dispatcher->dispatch(NodeEvents::UPDATE, new NodeEvent($entity, $pathAlias));
+    }
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function node_alias_demo_entity_delete(EntityInterface $entity)
+{
+    if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'event') {
+        $pathAlias = PathAlias::create(
+            [
+                'source'      => Url::fromRoute('node.basic_page', ['node' => $entity->id()]),
+                'destination' => '%s/reservation'
+            ]
+        );
+
+        $event_dispatcher = Drupal::service('event_dispatcher');
+        $event_dispatcher->dispatch(NodeEvents::DELETE, new NodeEvent($entity, $pathAlias));
+    }
+}

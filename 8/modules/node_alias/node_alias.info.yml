@@ -1,0 +1,7 @@
+name: Node Alias
+type: module
+description: Make custom alias on node.
+core_version_requirement: ^8.8 || ^9
+package: Other
+dependencies:
+  - pathauto:pathauto

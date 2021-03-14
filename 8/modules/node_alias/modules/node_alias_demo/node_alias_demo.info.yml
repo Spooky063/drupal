@@ -1,0 +1,7 @@
+name: Node Alias Demo
+type: module
+description: Make a route test for example.
+core_version_requirement: ^8.8 || ^9
+package: Other
+dependencies:
+  - node_alias:node_alias
