@@ -14,7 +14,7 @@ use Drupal\node_alias\Event\NodeEvents;
  */
 function node_alias_demo_entity_insert(EntityInterface $entity)
 {
-    if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'event') {
+    if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'page') {
         $pathAlias = PathAlias::create(
             [
                 'source'      => Url::fromRoute('node.basic_page', ['node' => $entity->id()]),
@@ -32,7 +32,7 @@ function node_alias_demo_entity_insert(EntityInterface $entity)
  */
 function node_alias_demo_entity_update(EntityInterface $entity)
 {
-    if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'event') {
+    if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'page') {
         $pathAlias = PathAlias::create(
             [
                 'source'      => Url::fromRoute('node.basic_page', ['node' => $entity->id()]),
@@ -50,7 +50,7 @@ function node_alias_demo_entity_update(EntityInterface $entity)
  */
 function node_alias_demo_entity_delete(EntityInterface $entity)
 {
-    if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'event') {
+    if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'page') {
         $pathAlias = PathAlias::create(
             [
                 'source'      => Url::fromRoute('node.basic_page', ['node' => $entity->id()]),
