@@ -1,0 +1,5 @@
+entity.user.page:
+  route_name: user.basic_page
+  base_route: entity.user.canonical
+  title: Page
+  weight: 50

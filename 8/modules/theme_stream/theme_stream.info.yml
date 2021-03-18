@@ -1,0 +1,6 @@
+name: Theme Stream
+description: Create a new stream for current theme.
+package: Other
+
+type: module
+core_version_requirement: ^8.8.0 || ^9.0

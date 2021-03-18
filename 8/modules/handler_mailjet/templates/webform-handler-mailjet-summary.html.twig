@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a summary of a webform remote posts handler.
+ *
+ * Available variables:
+ * - settings: The current configuration for this remote post handler.
+ * - handler: The remote post handler.
+ *
+ * @ingroup themeable
+ */
+#}
+{% if settings.debug %}<strong class="color-error">{{ 'Debugging is enabled'|t }}</strong><br />{% endif %}
+<b>{{ 'Contact list:'|t }}</b> {{ settings.mailjet_contact_list_id }}<br />
+<b>{{ 'Email field:'|t }}</b> {{ settings.mailjet_email_field }}<br />

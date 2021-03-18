@@ -1,0 +1,10 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Implements hook_install().
+ */
+function entity_alias_install() {
+    module_set_weight('entity_alias', 10);
+}

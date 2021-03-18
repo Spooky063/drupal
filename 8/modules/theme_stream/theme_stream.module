@@ -1,0 +1,39 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function theme_stream_help($route_name, RouteMatchInterface $route_match)
+{
+    if ($route_name === 'help.page.theme_stream') {
+        $output = <<<HTML
+        <h3>About</h3>
+        <p>Create a new stream for current theme.</p>
+        <h3>Uses</h3>
+        <p>You can use this stream with the keyword `theme`.</p>
+        <p>For example, you can write on your twig template :</p>
+        <pre>
+          <code class="language-html">
+            &lt;!-- For public image --&gt;
+            # Twig
+            &lt;img src="{{ file_url('public://2021-03/300.png') }}" alt=""&gt;
+            # Render
+            &lt;img src="/sites/default/files/2021-03/300.png" alt=""&gt;
+
+            &lt;!-- The new stream theme --&gt;
+            # Twig
+            &lt;img src="{{ file_url('theme://images/add.png') }}" alt=""&gt;
+            # Render
+            &lt;img src="/core/themes/bartik/images/add.png" alt=""&gt;
+
+          </code>
+        </pre>
+        HTML;
+
+        return $output;
+    }
+}

@@ -1,0 +1,43 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function handler_mailjet_help($route_name, RouteMatchInterface $route_match) {
+  if ($route_name === 'help.page.handler_mailjet') {
+    $output = <<<HTML
+    <h3>About</h3>
+    <p>Handles form submits with Mailjet.</p>
+    <h3>Uses</h3>
+    <p>Defining API Credentials and add webform handler</p>
+    HTML;
+
+    return $output;
+  }
+
+  if ($route_name === 'mailjet.settings') {
+    $output = <<<HTML
+    <p>Before starting apply handler on webform, you must fill your credential information.</p>
+    <p>You can find your credentials
+    <a href="https://app.mailjet.com/account/api_keys" target="_blank" rel="noopener">on your dashboard</a>.</p>
+    HTML;
+
+    return $output;
+  }
+}
+
+function handler_mailjet_theme()
+{
+  return [
+    'webform_handler_mailjet_summary' => [
+      'variables' => [
+        'settings' => NULL,
+        'handler' => NULL
+      ],
+    ],
+  ];
+}

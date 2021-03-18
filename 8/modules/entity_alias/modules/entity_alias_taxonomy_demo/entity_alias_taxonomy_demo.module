@@ -1,0 +1,63 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Url;
+use Drupal\entity_alias\Entity\PathAlias;
+use Drupal\entity_alias\Event\EntityEvent;
+use Drupal\entity_alias\Event\EntityEvents;
+
+/**
+ * Implements hook_entity_insert().
+ */
+function entity_alias_taxonomy_demo_entity_insert(EntityInterface $entity)
+{
+    if ($entity->getEntityTypeId() === 'taxonomy_term' && $entity->bundle() === 'tags') {
+        $pathAlias = PathAlias::create(
+            [
+                'source'      => Url::fromRoute('taxonomy_term.basic_page', ['taxonomy_term' => $entity->id()]),
+                'destination' => '%s/page'
+            ]
+        );
+
+        $event_dispatcher = Drupal::service('event_dispatcher');
+        $event_dispatcher->dispatch(EntityEvents::INSERT, new EntityEvent($entity, $pathAlias));
+    }
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function entity_alias_taxonomy_demo_entity_update(EntityInterface $entity)
+{
+    if ($entity->getEntityTypeId() === 'taxonomy_term' && $entity->bundle() === 'tags') {
+        $pathAlias = PathAlias::create(
+            [
+                'source'      => Url::fromRoute('taxonomy_term.basic_page', ['taxonomy_term' => $entity->id()]),
+                'destination' => '%s/page'
+            ]
+        );
+
+        $event_dispatcher = Drupal::service('event_dispatcher');
+        $event_dispatcher->dispatch(EntityEvents::UPDATE, new EntityEvent($entity, $pathAlias));
+    }
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function entity_alias_taxonomy_demo_entity_delete(EntityInterface $entity)
+{
+    if ($entity->getEntityTypeId() === 'taxonomy_term' && $entity->bundle() === 'tags') {
+        $pathAlias = PathAlias::create(
+            [
+                'source'      => Url::fromRoute('taxonomy_term.basic_page', ['taxonomy_term' => $entity->id()]),
+                'destination' => '%s/page'
+            ]
+        );
+
+        $event_dispatcher = Drupal::service('event_dispatcher');
+        $event_dispatcher->dispatch(EntityEvents::DELETE, new EntityEvent($entity, $pathAlias));
+    }
+}

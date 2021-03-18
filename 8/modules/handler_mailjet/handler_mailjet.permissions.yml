@@ -1,0 +1,3 @@
+administer mailjet settings:
+  title: 'Administer Mailjet settings'
+  description: 'Administer the Mailjet credentials.'

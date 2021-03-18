@@ -1,0 +1,5 @@
+services:
+  stream_wrapper.theme:
+    class: Drupal\theme_stream\StreamWrapper\ThemeStream
+    tags:
+      - { name: stream_wrapper, scheme: theme }

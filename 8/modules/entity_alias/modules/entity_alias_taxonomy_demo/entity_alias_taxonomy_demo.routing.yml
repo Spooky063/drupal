@@ -1,0 +1,11 @@
+taxonomy_term.basic_page:
+  path: '/taxonomy/term/{taxonomy_term}/page'
+  defaults:
+    _controller: 'Drupal\entity_alias_taxonomy_demo\Controller\BasicPageController::index'
+    _title_callback: 'Drupal\entity_alias_taxonomy_demo\Controller\BasicPageController::getTitle'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      taxonomy_term:
+        type: entity:taxonomy_term

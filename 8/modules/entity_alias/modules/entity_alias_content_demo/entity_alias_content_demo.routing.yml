@@ -1,0 +1,11 @@
+node.basic_page:
+  path: '/node/{node}/page'
+  defaults:
+    _controller: 'Drupal\entity_alias_content_demo\Controller\BasicPageController::index'
+    _title_callback: 'Drupal\entity_alias_content_demo\Controller\BasicPageController::getTitle'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      node:
+        type: entity:node

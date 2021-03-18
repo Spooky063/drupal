@@ -1,0 +1,9 @@
+name: Entity Alias Content Demo
+description: Make a basic page route test example for content entity.
+package: Other
+
+type: module
+core_version_requirement: ^8.8.0 || ^9.0
+
+dependencies:
+  - entity_alias:entity_alias

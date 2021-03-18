@@ -1,0 +1,5 @@
+entity.taxonomy_term.page:
+  route_name: taxonomy_term.basic_page
+  base_route: entity.taxonomy_term.canonical
+  title: Page
+  weight: 50

@@ -1,0 +1,10 @@
+mailjet.settings:
+  path: 'admin/config/services/mailjet/settings'
+  defaults: 
+    _form: '\Drupal\handler_mailjet\Form\AdminConfig\MailjetHandlerAdminConfigCredentialsForm'
+    _title: 'Administration'
+  requirements:
+    _permission: 'administer mailjet settings'
+  options:
+    _admin_route: TRUE
+    

@@ -1,0 +1,5 @@
+mailjet_handler.admin_config_services:
+  title: 'Configure Mailjet'
+  description: 'Configuration Mailjet credentials.'
+  parent: system.admin_config_services
+  route_name: mailjet.settings

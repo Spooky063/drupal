@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function entity_alias_help($route_name, RouteMatchInterface $route_match)
+{
+    if ($route_name === 'help.page.entity_alias') {
+      $output = <<<HTML
+      <h3>About</h3>
+      <p>Make custom alias for custom page with entity.</p>
+      HTML;
+
+      return $output;
+    }
+}

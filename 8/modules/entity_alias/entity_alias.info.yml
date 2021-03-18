@@ -1,0 +1,9 @@
+name: Entity Alias
+description: Make custom alias for custom page with entity.
+package: Other
+
+type: module
+core_version_requirement: ^8.8.0 || ^9.0
+
+dependencies:
+  - pathauto:pathauto

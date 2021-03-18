@@ -1,0 +1,11 @@
+user.basic_page:
+  path: '/user/{user}/page'
+  defaults:
+    _controller: 'Drupal\entity_alias_user_demo\Controller\BasicPageController::index'
+    _title_callback: 'Drupal\entity_alias_user_demo\Controller\BasicPageController::getTitle'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      user:
+        type: entity:user

@@ -1,0 +1,8 @@
+services:
+  webform_mailjet.manager:
+    class: Drupal\handler_mailjet\WebformMailjetManager
+    arguments: ['@logger.channel.webform', '@mailjet.manager']
+
+  mailjet.manager:
+    class: Drupal\handler_mailjet\MailjetManager
+    arguments: ['@config.factory']

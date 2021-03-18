@@ -1,0 +1,11 @@
+name: Webform Mailjet Handler
+description: Handles form submits with Mailjet.
+package: Other
+
+type: module
+core_version_requirement: ^8.8.0 || ^9.0
+
+dependencies:
+  - webform:webform
+
+configure: mailjet.settings

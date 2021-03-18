@@ -1,0 +1,5 @@
+entity.node.page:
+  route_name: node.basic_page
+  base_route: entity.node.canonical
+  title: Page
+  weight: 50
