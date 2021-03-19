@@ -1,0 +1,11 @@
+services:
+  permission_view.route_subscriber:
+    class: Drupal\permission_view\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
+
+  permission_view.access_checker:
+    class: Drupal\permission_view\Access\PermissionViewAccessCheck
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: access_check, applies_to: _permission_view_access_check }

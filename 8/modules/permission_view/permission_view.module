@@ -1,0 +1,26 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function permission_view_help($route_name, RouteMatchInterface $route_match)
+{
+    if ($route_name === 'help.page.permission_view') {
+        $output = <<<HTML
+        <h3>About</h3>
+        <p>Manage permission for view canonical entity.</p>
+        HTML;
+
+        return $output;
+    }
+}
+
+function permission_view_entity_type_alter(array &$entity_types)
+{
+    /* @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+    $entity_types['taxonomy_term']->setAccessClass('Drupal\permission_view\Access\PermissionViewAccessControlHandler');
+}
