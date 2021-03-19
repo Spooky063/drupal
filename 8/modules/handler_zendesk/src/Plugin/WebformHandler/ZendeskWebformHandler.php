@@ -81,6 +81,7 @@ class ZendeskWebformHandler extends WebformHandlerBase
             '#type'          => 'select',
             '#title'         => $this->t('Name field'),
             '#options'       => $element_options,
+            '#required'      => true,
             '#parents'       => ['settings', 'name'],
             '#default_value' => $this->configuration['name'],
         ];
@@ -89,6 +90,7 @@ class ZendeskWebformHandler extends WebformHandlerBase
             '#type'          => 'select',
             '#title'         => $this->t('Email field'),
             '#options'       => $element_options,
+            '#required'      => true,
             '#parents'       => ['settings', 'email'],
             '#default_value' => $this->configuration['email'],
         ];
@@ -97,6 +99,7 @@ class ZendeskWebformHandler extends WebformHandlerBase
             '#type'          => 'select',
             '#title'         => $this->t('Message field'),
             '#options'       => $element_options,
+            '#required'      => true,
             '#parents'       => ['settings', 'message'],
             '#default_value' => $this->configuration['message'],
         ];
@@ -105,6 +108,7 @@ class ZendeskWebformHandler extends WebformHandlerBase
             '#type'          => 'select',
             '#title'         => $this->t('Subject field'),
             '#options'       => $element_options,
+            '#required'      => true,
             '#parents'       => ['settings', 'subject'],
             '#default_value' => $this->configuration['subject'],
         ];
