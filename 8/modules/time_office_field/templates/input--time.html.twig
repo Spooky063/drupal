@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Theme override for a time field.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the input element.
+ */
+#}
+{%
+    set classes = [
+      'time',
+    ]
+%}
+<input{{ attributes.addClass(classes) }}/>

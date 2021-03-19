@@ -1,0 +1,10 @@
+name: Time Office Field
+description: Defines a 'time' and 'time range' field type.
+package: Other
+
+type: module
+core_version_requirement: ^8.8.0 || ^9.0
+
+dependencies:
+  - drupal:field
+  - drupal:datetime

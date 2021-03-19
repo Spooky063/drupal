@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function time_office_field_help($route_name, RouteMatchInterface $route_match)
+{
+    if ($route_name === 'help.page.time_office_field') {
+        return <<<HTML
+        <h3>About</h3>
+        <p>Defines a 'time' and 'time range' field type.</p>
+        <h3>Uses</h3>
+        <p>Time field is basic ; each entry has time.</p>
+        <p>Time range field is specific ; each entry can not overlap the previous one.</p>
+        HTML;
+    }
+}
