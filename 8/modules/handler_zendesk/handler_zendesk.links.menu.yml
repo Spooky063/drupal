@@ -1,0 +1,5 @@
+zendesk_handler.admin_config_services:
+  title: 'Configure Zendesk'
+  description: 'Configuration Zendesk credentials.'
+  parent: system.admin_config_services
+  route_name: zendesk.settings

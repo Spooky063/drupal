@@ -1,0 +1,11 @@
+name: Webform Zendesk Handler
+description: Handles form submits with Zendesk.
+package: Other
+
+type: module
+core_version_requirement: ^8.8.0 || ^9.0
+
+dependencies:
+  - webform:webform
+
+configure: zendesk.settings

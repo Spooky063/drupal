@@ -1,0 +1,9 @@
+zendesk.settings:
+  path: 'admin/config/services/zendesk/settings'
+  defaults:
+    _form: '\Drupal\handler_zendesk\Form\AdminConfig\ZendeskHandlerAdminConfigCredentialsForm'
+    _title: 'Administration'
+  requirements:
+    _permission: 'administer zendesk settings'
+  options:
+    _admin_route: TRUE

@@ -1,0 +1,5 @@
+services:
+  zendesk.service:
+    class: Drupal\handler_zendesk\Zendesk\ZendeskWrapper
+    factory: Drupal\handler_zendesk\Zendesk\ZendeskWrapperFactory::create
+    arguments: ['@config.factory']

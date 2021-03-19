@@ -1,0 +1,11 @@
+{
+    "name": "drupal/handler_zendesk",
+    "description": "Handles form submits with Zendesk.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "zendesk/zendesk_api_client_php": "^2.2"
+    }
+}

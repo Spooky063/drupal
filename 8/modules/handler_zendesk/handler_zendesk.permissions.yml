@@ -1,0 +1,3 @@
+administer zendesk settings:
+  title: 'Administer Zendesk settings'
+  description: 'Administer the Zendesk credentials.'

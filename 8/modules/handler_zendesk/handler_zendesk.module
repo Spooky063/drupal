@@ -1,0 +1,34 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function handler_zendesk_help($route_name, RouteMatchInterface $route_match)
+{
+    if ($route_name === 'help.page.handler_zendesk') {
+        $output = <<<HTML
+    <h3>About</h3>
+    <p>Handles form submits with Zendesk.</p>
+    <h3>Uses</h3>
+    <p>Defining API Credentials and add webform handler</p>
+    HTML;
+
+        return $output;
+    }
+}
+
+function handler_zendesk_theme()
+{
+    return [
+        'webform_handler_zendesk_summary' => [
+            'variables' => [
+                'settings' => null,
+                'handler'  => null
+            ],
+        ],
+    ];
+}
