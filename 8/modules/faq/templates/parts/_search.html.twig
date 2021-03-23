@@ -1,0 +1,17 @@
+{% set title = title|default('Frequently Asked Questions and Answers Search') %}
+{% set search = search|default('') %}
+
+<section role="contentinfo" aria-labelledby="search">
+  <h2 id="search">{{ title }}</h2>
+  <div>
+    <form name="faq_search" method="GET">
+      <input type="search" name="search" id="search"
+        placeholder="{% trans %}FAQ Search{% endtrans %}"
+        title="{% trans %}Keywords for a question search{% endtrans %}"
+        aria-label="{% trans %}Keywords for a question search{% endtrans %}"
+        value="{{ search }}"
+        >
+      <button type="submit">{% trans %}Search{% endtrans %}</button>
+    </form>
+  </div>
+</section>

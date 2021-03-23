@@ -1,0 +1,4 @@
+services:
+  faq.service:
+    class: Drupal\faq\FaqService
+    arguments: ['@entity_type.manager']

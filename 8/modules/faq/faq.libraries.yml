@@ -1,0 +1,7 @@
+accordion:
+  version: VERSION
+  js:
+    assets/js/faq.js: {}
+  css:
+    component:
+      assets/css/faq.css: {}

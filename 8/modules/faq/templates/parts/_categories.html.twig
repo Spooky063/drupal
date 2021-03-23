@@ -1,0 +1,17 @@
+{% set title = title|default('Frequently Asked Question Categories') %}
+{% set categories = categories|default([]) %}
+
+{% if categories %}
+  <section role="contentinfo" aria-labelledby="categories">
+    <h2 id="categories">
+      {% block faq_category_title %}{{ title }}{% endblock %}
+    </h2>
+    <div>
+      {% for category in categories %}
+        <div>
+          <a href="{{ url('entity.taxonomy_term.canonical', { 'taxonomy_term': category.tid}) }}">{{ category.name }}</a>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

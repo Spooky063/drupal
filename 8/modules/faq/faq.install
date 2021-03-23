@@ -1,0 +1,26 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Implements hook_uninstall().
+ */
+function faq_uninstall()
+{
+    $vocabulary = Drupal\taxonomy\Entity\Vocabulary::load('faq');
+    if ($vocabulary !== null) {
+        $vocabulary->delete();
+    }
+
+    $storage = \Drupal::entityTypeManager()->getStorage('field_storage_config');
+    $fields = $storage->loadByProperties(['type' => 'faq']);
+    $storage->delete($fields);
+
+    $storage_handler = \Drupal::entityTypeManager()->getStorage('faq');
+    $entities = $storage_handler->loadMultiple();
+    $storage_handler->delete($entities);
+}
+
+function faq_install()
+{
+}

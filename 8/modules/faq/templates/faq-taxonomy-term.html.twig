@@ -1,0 +1,12 @@
+{% extends "@faq/faq-page.html.twig" %}
+
+{% block faq_search '' %}
+
+{% block faq_question_title %}
+  {% trans %}Top Frequently Asked Questions for {{ name }}{% endtrans %}
+{% endblock %}
+
+{% block faq_categories %}
+  {% set title = "Frequently Asked Question Subcategories for @name"|t({'@name': name}) %}
+  {% include '@faq/parts/_categories.html.twig' with {title: title, categories: categories} %}
+{% endblock %}

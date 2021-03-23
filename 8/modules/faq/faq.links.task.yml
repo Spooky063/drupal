@@ -1,0 +1,18 @@
+entity.faq.view:
+  title: View
+  route_name: entity.faq.canonical
+  base_route: entity.faq.canonical
+entity.faq.edit_form:
+  title: Edit
+  route_name: entity.faq.edit_form
+  base_route: entity.faq.canonical
+entity.faq.delete_form:
+  title: Delete
+  route_name: entity.faq.delete_form
+  base_route: entity.faq.canonical
+  weight: 10
+entity.faq.collection:
+  title: Faq
+  route_name: entity.faq.collection
+  base_route: system.admin_content
+  weight: 10

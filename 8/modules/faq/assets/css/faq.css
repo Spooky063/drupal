@@ -1,0 +1,110 @@
+:root {
+  --faq-radius-border: 6px;
+  --faq-hue: 260;
+  --faq-primary: hsl(var(--faq-hue), 85, 50);
+  --faq-background: hsl(var(--faq-hue), 90, 98);
+  --faq-text: hsl(var(--faq-hue), 20, 25);
+  --faq-border: hsl(var(--faq-hue), 20, 85);
+  --faq-toggle-color: hsl(var(--faq-hue), 85, 50);
+}
+
+::selection {
+  background: hsl(var(--faq-hue) + 140, 95, 70);
+  color: adjust-hue(var(--faq-text), 140);
+}
+
+.collapse-init summary + * {
+  transition: all 0.25s ease-in-out;
+  overflow: hidden;
+}
+
+.collapse-init :not(.panel-active) summary + * {
+  height: 0;
+  opacity: 0;
+  transform: scale(0.9);
+  transform-origin: bottom center;
+}
+
+.collapse-init summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.collapse-init summary::-webkit-details-marker {
+  display: none;
+}
+
+.collapse-init summary::after {
+  display: none;
+}
+
+.details-styling {
+  padding: 1em;
+}
+
+.details-styling .answer h4 {
+  margin-top: 0;
+}
+
+.container-faq {
+  box-shadow: 0.2em 1em 2em -1em var(--faq-border);
+  margin: 2.4em 0;
+}
+
+.container-faq details {
+  background: #fff;
+  border: 1px solid var(--faq-border);
+  border-bottom: 0;
+  border-radius: 0;
+  list-style: none;
+  margin: 0;
+  scroll-behavior: smooth;
+  overflow: hidden;
+}
+
+.container-faq details:first-child {
+  border-radius: var(--faq-radius-border) var(--faq-radius-border) 0 0;
+}
+
+.container-faq details:last-child {
+  border-bottom: 1px solid var(--faq-border);
+  border-radius: 0 0 var(--faq-radius-border) var(--faq-radius-border);
+}
+
+.container-faq summary {
+  display: flex;
+  transition: 0.2s;
+  font-weight: 700;
+  padding: 1em;
+}
+
+.container-faq summary h3 {
+  margin: 0 0 0 1em;
+}
+
+.container-faq summary:focus {
+  outline: 2px solid var(--faq-primary);
+}
+
+.collapse-init summary::before {
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  content: '';
+  float: left;
+  width: 0.5em;
+  height: 0.5em;
+  margin-top: 0.5em/2;
+  transform: translateY(50%) rotate(45deg);
+  transition: inherit;
+  color: var(--faq-toggle-color);
+}
+
+[open] summary::before {
+  margin-top: 0.5em;
+  transform: translateY(25%) rotate(225deg);
+}
+
+[open] .container-faq summary {
+  background: var(--faq-primary);
+  color: var(--faq-background);
+}

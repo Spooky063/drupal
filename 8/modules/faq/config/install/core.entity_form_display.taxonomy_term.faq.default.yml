@@ -1,0 +1,24 @@
+uuid: 73332f06-65d7-4535-bcbc-2cbf689880b6
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.faq
+id: taxonomy_term.faq.default
+targetEntityType: taxonomy_term
+bundle: faq
+mode: default
+content:
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  langcode: true
+  path: true
+  status: true

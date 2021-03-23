@@ -1,0 +1,88 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Render\Element;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\faq\FaqService;
+
+/**
+ * Implements hook_help().
+ */
+function faq_help($route_name, RouteMatchInterface $route_match)
+{
+    if ($route_name === 'help.page.faq') {
+        $output = <<<HTML
+        <h3>About</h3>
+        <p>Frequently asked questions and answers.</p>
+        HTML;
+
+        return $output;
+    }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function faq_theme()
+{
+    return [
+        'faq_page' => [
+            'variables' => [
+                'faqs' => null,
+                'categories' => null,
+                'search' => null,
+                'pager' => null,
+            ]
+        ],
+        'faq_taxonomy_term' => [
+            'render' => 'elements'
+            /*'variables' => [
+                'name' => null,
+            ]*/
+        ]
+    ];
+}
+
+/**
+ * Implements hook_theme_suggestions_taxonomy_term_alter().
+ */
+function faq_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $variables)
+{
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $term = $variables['elements']['#taxonomy_term'];
+    if ($term->bundle() === 'faq') {
+        $suggestions[] = 'faq_taxonomy_term';
+    }
+}
+
+function faq_preprocess_faq_taxonomy_term(&$variables)
+{
+    $variables['term'] = $variables['elements']['#taxonomy_term'];
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $term = $variables['term'];
+
+    $variables['name'] = $term->getName();
+
+    $variables['content'] = [];
+    foreach (Element::children($variables['elements']) as $key) {
+        $variables['content'][$key] = $variables['elements'][$key];
+    }
+
+    /** @var FaqService $faqService */
+    $faqService = \Drupal::service('faq.service');
+    $parent = $faqService->getParentTermByTerm($term);
+    if ($parent === null) {
+      $children = $faqService->getFaqVocabularyTaxonomyTermTree((int) $term->id());
+      $variables['categories'] = $children;
+    }
+
+    $faqs = [];
+    $faqEntities = $faqService->getFaqByTaxonomyTerm($term);;
+    foreach ($faqEntities as $key => $faqEntity) {
+      $faqs[$key] = $faqService->renderFaqElement($faqEntity);
+    }
+    $variables['faqs'] = $faqs;
+
+    $variables['#attached']['library'][] = 'faq/accordion';
+}

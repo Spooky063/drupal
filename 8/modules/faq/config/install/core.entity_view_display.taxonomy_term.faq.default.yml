@@ -1,0 +1,14 @@
+uuid: 00e8c4e7-8cda-43c5-be10-24e37c141ac8
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.faq
+id: taxonomy_term.faq.default
+targetEntityType: taxonomy_term
+bundle: faq
+mode: default
+content: {  }
+hidden:
+  description: true
+  langcode: true

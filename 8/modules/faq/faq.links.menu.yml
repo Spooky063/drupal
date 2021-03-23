@@ -1,0 +1,5 @@
+entity.faq.collection:
+  title: Faqs
+  route_name: entity.faq.collection
+  parent: system.admin_content
+  description: 'List and edit site faq.'

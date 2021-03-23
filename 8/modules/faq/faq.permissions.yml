@@ -1,0 +1,10 @@
+access faq overview:
+  title: 'Access the faq overview page'
+delete faq:
+  title: Delete faq
+create faq:
+  title: Create faq
+view faq:
+  title: View faq
+edit faq:
+  title: Edit faq

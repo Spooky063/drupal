@@ -1,0 +1,30 @@
+{% block faq_search %}
+  {% include '@faq/parts/_search.html.twig' with {search: search} %}
+{% endblock %}
+
+{% block faq_question %}
+  <section role="contentinfo" aria-labelledby="faqs">
+    <h2 id="faqs">
+      {% block faq_question_title %}
+        {% trans %}Top Frequently Asked Questions{% endtrans %}
+      {% endblock %}
+    </h2>
+    {% if faqs %}
+      <div class="container-faq collapse">
+        {% for faq in faqs %}
+          {% include '@faq/parts/_faq.html.twig' with {faq: faq} %}
+        {% endfor %}
+
+        {{ pager }}
+      </div>
+    {% else %}
+      <div>
+        {% trans %}No faq found !{% endtrans %}
+      </div>
+    {% endif %}
+  </section>
+{% endblock %}
+
+{% block faq_categories %}
+  {% include '@faq/parts/_categories.html.twig' with {categories: categories} %}
+{% endblock %}

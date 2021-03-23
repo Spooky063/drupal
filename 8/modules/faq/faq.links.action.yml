@@ -1,0 +1,5 @@
+faq.add_form:
+  route_name: entity.faq.add_form
+  title: 'Add faq'
+  appears_on:
+    - entity.faq.collection

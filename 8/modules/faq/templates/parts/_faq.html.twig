@@ -1,0 +1,29 @@
+<details>
+  <summary>
+    <h3>{{ faq.question }}</h3>
+  </summary>
+  <div class="details-wrapper">
+    <div class="details-styling">
+      <div class="answer">
+        <h4>{% trans %}Answer{% endtrans %}:</h4>
+        {{ faq.answer | raw }}
+      </div>
+      {% if faq.subcategory %}
+        <div class="subcategory">
+          <h4>{% trans %}Subcategory{% endtrans %}:</h4>
+          <a href="{{ url('entity.taxonomy_term.canonical', { 'taxonomy_term': faq.subcategory.tid}) }}">
+            {{ faq.subcategory.name }}
+          </a>
+        </div>
+      {% endif %}
+      {% if faq.category %}
+        <div class="category">
+          <h4>{% trans %}Category{% endtrans %}:</h4>
+          <a href="{{ url('entity.taxonomy_term.canonical', { 'taxonomy_term': faq.category.tid}) }}">
+            {{ faq.category.name }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</details>
