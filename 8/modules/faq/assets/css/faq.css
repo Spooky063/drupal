@@ -63,12 +63,14 @@
 }
 
 .container-faq details:first-child {
-  border-radius: var(--faq-radius-border) var(--faq-radius-border) 0 0;
+  border-top-left-radius : var(--faq-radius-border);
+  border-top-right-radius: var(--faq-radius-border);
 }
 
 .container-faq details:last-child {
   border-bottom: 1px solid var(--faq-border);
-  border-radius: 0 0 var(--faq-radius-border) var(--faq-radius-border);
+  border-bottom-left-radius : var(--faq-radius-border);
+  border-bottom-right-radius: var(--faq-radius-border);
 }
 
 .container-faq summary {

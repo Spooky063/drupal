@@ -22,6 +22,12 @@ use Drupal\user\EntityOwnerTrait;
  *   id = "faq",
  *   label = @Translation("Faq"),
  *   label_collection = @Translation("Faqs"),
+ *   label_singular = @Translation("faq item"),
+ *   label_plural = @Translation("faq items"),
+ *   label_count = @PluralTranslation(
+ *     singular = "@count faq item",
+ *     plural = "@count faq items"
+ *   ),
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\faq\FaqListBuilder",
@@ -34,7 +40,7 @@ use Drupal\user\EntityOwnerTrait;
  *     },
  *     "route_provider" = {
  *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
- *     }
+ *     },
  *   },
  *   base_table = "faq",
  *   data_table = "faq_field_data",
@@ -162,7 +168,7 @@ class Faq extends ContentEntityBase implements FaqInterface
             ->setTranslatable(true);
 
         $fields['top'] = BaseFieldDefinition::create('boolean')
-            ->setLabel((string) t('Top Frequently Asked Questions ?'))
+            ->setLabel((string) t('Top Frequently Asked Questions?'))
             ->setTranslatable(true)
             ->setDefaultValue(true)
             ->setDisplayOptions('form', [

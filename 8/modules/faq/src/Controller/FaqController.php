@@ -40,17 +40,22 @@ class FaqController extends ControllerBase implements ContainerInjectionInterfac
             $faqEntities = $this->faqService->getTopFaq();
         }
 
-        $faqCategories = $this->faqService->getFaqVocabularyTaxonomyTermTree();
-
         $faqs = [];
         foreach ($faqEntities as $key => $faqEntity) {
             $faqs[$key] = $this->faqService->renderFaqElement($faqEntity);
         }
 
+        $faqCategories = $this->faqService->getFaqVocabularyTaxonomyTermTree();
+
+        $faqsCategories = [];
+        foreach ($faqCategories as $key => $faqCategory) {
+            $faqsCategories[$key] = $this->faqService->renderFaqCategory($faqCategory);
+        }
+
         $build = [
             '#theme'      => 'faq_page',
             '#faqs'       => $faqs,
-            '#categories' => $faqCategories,
+            '#categories' => $faqsCategories,
             '#search'     => $search,
             '#pager'      => [
                 '#type' => 'pager',

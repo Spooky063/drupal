@@ -1,0 +1,132 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: faq\n"
+"POT-Creation-Date: 2021-03-24 16:28+0100\n"
+"PO-Revision-Date: 2021-03-24 16:28+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-KeywordsList: t;t:2;t:2,3\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: src/Entity/Faq.php:90 src/FaqListBuilder.php:52
+msgid "Question"
+msgstr "Question"
+
+#: src/Entity/Faq.php:106
+msgid "Answer"
+msgstr "Réponse"
+
+#: src/Entity/Faq.php:121 src/FaqListBuilder.php:54
+msgid "Category"
+msgstr "Catégorie"
+
+#: src/Entity/Faq.php:161
+msgid "Created"
+msgstr "Créée"
+
+#: src/Entity/Faq.php:162
+msgid "The time that the faq was created."
+msgstr "L'heure à laquelle la faq a été créée."
+
+#: src/Entity/Faq.php:166
+msgid "Changed"
+msgstr "Modifié"
+
+#: src/Entity/Faq.php:167
+msgid "The time that the faq was last edited."
+msgstr "L'heure à laquelle la faq a été modifié."
+
+#: src/Entity/Faq.php:171
+msgid "Top Frequently Asked Questions?"
+msgstr "Top Foire Aux Questions ?"
+
+#: src/FaqListBuilder.php:58
+msgid "Author"
+msgstr "Auteur"
+
+#: src/FaqListBuilder.php:61
+msgid "Status"
+msgstr "État"
+
+#: src/FaqListBuilder.php:63
+msgid "Updated"
+msgstr "Mis à jour"
+
+#: src/FaqListBuilder.php:69
+msgid "Language"
+msgstr "Langage"
+
+#: src/FaqListBuilder.php:104
+msgid "published"
+msgstr "publié"
+
+#: src/FaqListBuilder.php:104
+msgid "not published"
+msgstr "non publié"
+
+#: src/Form/FaqForm.php:19
+msgid "New faq %label has been created."
+msgstr "Une nouvelle faq %label a été créée."
+
+#: src/Form/FaqForm.php:22
+msgid "The faq %label has been updated."
+msgstr "La faq %label a été mis à jour."
+
+#: templates/faq-page.html.twig:9
+msgid "Top Frequently Asked Questions"
+msgstr "Foire Aux Questions"
+
+#: templates/faq-page.html.twig:22
+msgid "No question found!"
+msgstr "Aucune question trouvé !"
+
+#: templates/faq-taxonomy-term.html.twig:6
+msgid "Top Frequently Asked Questions for @name"
+msgstr "Top Foire Aux Questions pour @name"
+
+#: templates/faq-taxonomy-term.html.twig:10
+msgid "Frequently Asked Question Subcategories for @name"
+msgstr "Catégorie Foire Aux Questions pour @name"
+
+#: templates/faq-taxonomy-term.html.twig:13
+msgid "Back to Frequently Asked Question"
+msgstr "Retour à la Foire Aux Questions"
+
+#: templates/parts/_categories.html.twig:1
+msgid "Frequently Asked Question Categories"
+msgstr "Catégorie Foire Aux Questions"
+
+#: templates/parts/_faq.html.twig:13
+msgid "Subcategory"
+msgstr "Sous-catégorie"
+
+#: templates/parts/_search.html.twig:1
+msgid "Frequently Asked Questions and Answers Search"
+msgstr "Recherche Foire Aux Questions et réponses"
+
+#: templates/parts/_search.html.twig:9
+msgid "FAQ Search"
+msgstr "Recherche FAQ"
+
+#: templates/parts/_search.html.twig:10
+msgid "Keywords for a question search"
+msgstr "Mot clés pour la recherche de question"
+
+#: templates/parts/_search.html.twig:14
+msgid "Search"
+msgstr "Recherche"
+
+#: faq.info.yml:2
+msgid "Frequently asked questions and answers."
+msgstr "Foire Aux Questions et réponses."
+
+#: faq.routing.yml:4
+msgid "Frequently Asked Questions and Answers"
+msgstr "Foire Aux Questions et réponses"

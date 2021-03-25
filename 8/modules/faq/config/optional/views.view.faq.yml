@@ -9,7 +9,7 @@ dependencies:
     - taxonomy
     - user
 _core:
-  default_config_hash: h9XjO4S1LSyYG0Dg5aS7mDSKQlkn6eH6Pu9bwmb0eEc
+  default_config_hash: F0pfoi5APZVC5IuJekxSqupDL894J0GqnR1QO0_TFTc
 id: faq
 label: Faq
 module: views
@@ -35,7 +35,7 @@ display:
         type: views_query
         options:
           disable_sql_rewrite: false
-          distinct: false
+          distinct: true
           replica: false
           query_comment: ''
           query_tags: {  }

@@ -37,9 +37,6 @@ function faq_theme()
         ],
         'faq_taxonomy_term' => [
             'render' => 'elements'
-            /*'variables' => [
-                'name' => null,
-            ]*/
         ]
     ];
 }
@@ -74,7 +71,11 @@ function faq_preprocess_faq_taxonomy_term(&$variables)
     $parent = $faqService->getParentTermByTerm($term);
     if ($parent === null) {
       $children = $faqService->getFaqVocabularyTaxonomyTermTree((int) $term->id());
-      $variables['categories'] = $children;
+      $faqsCategories = [];
+      foreach ($children as $key => $child) {
+        $faqsCategories[$key] = $faqService->renderFaqCategory($child);
+      }
+      $variables['categories'] = $faqsCategories;
     }
 
     $faqs = [];

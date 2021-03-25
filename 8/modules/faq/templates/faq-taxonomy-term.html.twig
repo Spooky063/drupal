@@ -3,10 +3,19 @@
 {% block faq_search '' %}
 
 {% block faq_question_title %}
-  {% trans %}Top Frequently Asked Questions for {{ name }}{% endtrans %}
+  {{ 'Top Frequently Asked Questions for @name'|t({'@name': name}) }}
 {% endblock %}
 
 {% block faq_categories %}
-  {% set title = "Frequently Asked Question Subcategories for @name"|t({'@name': name}) %}
+  {% set title = 'Frequently Asked Question Subcategories for @name'|t({'@name': name}) %}
   {% include '@faq/parts/_categories.html.twig' with {title: title, categories: categories} %}
+
+  <section role="contentinfo" aria-label="{% trans %}Back to Frequently Asked Question{% endtrans %}">
+    <h2 class="visually-hidden">{% trans %}Back to Frequently Asked Question{% endtrans %}</h2>
+    <div class="align-right">
+      <a href="{{ url('faq.page') }}" title="{% trans %}Back to Frequently Asked Question{% endtrans %}">
+        {% trans %}Back to Frequently Asked Question{% endtrans %}
+      </a>
+    </div>
+  </section>
 {% endblock %}

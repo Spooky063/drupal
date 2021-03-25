@@ -1,4 +1,10 @@
 services:
   faq.service:
     class: Drupal\faq\FaqService
-    arguments: ['@entity_type.manager']
+    arguments: ['@entity_type.manager', '@language_manager']
+
+  faq.breadcrumb:
+    class: Drupal\faq\Breadcrumb\FaqBreadcrumbBuilder
+    arguments: ['@request_stack', '@router.no_access_checks', '@entity.repository', '@entity_type.manager', '@title_resolver']
+    tags:
+      - { name: breadcrumb_builder, priority: 1005 }
