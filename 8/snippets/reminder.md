@@ -166,22 +166,28 @@ cette solution pas très propre.
 
 ### Media
 ```twig
-  {% if node.field_img %}
+{% if node.field_img %}
     {% set image = {
-      '#theme':      'image_style',
-      '#style_name': 'slider',
-      '#uri':        node.field_img.entity.field_media_image.entity.fileuri,
-      '#alt':        node.field_img.entity.field_media_image.entity.alt,
-      '#title':      node.field_img.entity.field_media_image.entity.title,
-      '#width':      node.field_img.entity.field_media_image.entity.width,
-      '#height':     node.field_img.entity.field_media_image.entity.height
+        '#theme':      'image_style',
+        '#style_name': 'slider',
+        '#uri':        node.field_img.entity.field_media_image.entity.fileuri,
+        '#alt':        node.field_img.entity.field_media_image.entity.alt,
+        '#title':      node.field_img.entity.field_media_image.entity.title,
+        '#width':      node.field_img.entity.field_media_image.entity.width,
+        '#height':     node.field_img.entity.field_media_image.entity.height
     } %}
     {{ image }}
-  {% endif %}
+{% endif %}
 ```
 
 ```twig
-    <div style="background-image:url({{ file_url(node.field_img.entity.field_media_image.entity.fileuri) }})></div>
+{# If you are node #}
+<div style="background-image:url({{ file_url(node.field_img.entity.field_media_image.entity.fileuri) }})></div>
+```
+
+```twig
+{# If you are content #}
+<div style="background-image:url({{ file_url(content.field_img['#items'].entity.field_media_image.entity.fileuri) }})></div>
 ```
 
 ### Date
