@@ -164,6 +164,26 @@ cette solution pas très propre.
 {{ image }}
 ```
 
+### Media
+```twig
+  {% if node.field_img %}
+    {% set image = {
+      '#theme':      'image_style',
+      '#style_name': 'slider',
+      '#uri':        node.field_img.entity.field_media_image.entity.fileuri,
+      '#alt':        node.field_img.entity.field_media_image.entity.alt,
+      '#title':      node.field_img.entity.field_media_image.entity.title,
+      '#width':      node.field_img.entity.field_media_image.entity.width,
+      '#height':     node.field_img.entity.field_media_image.entity.height
+    } %}
+    {{ image }}
+  {% endif %}
+```
+
+```twig
+    <div style="background-image:url({{ file_url(node.field_img.entity.field_media_image.entity.fileuri) }})></div>
+```
+
 ### Date
 ```twig
 {{ node.getCreatedTime() | date("Y-m-d") }}
