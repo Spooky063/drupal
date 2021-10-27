@@ -115,6 +115,13 @@ cette solution pas très propre.
 {{ link(item.title, item.url, item.url.options.attributes) }}
 ```
 
+```twig
+{# <div class="btn"><a href="" ....>....</a></div> #}
+{{ content.field_link|merge({'#attributes': {'class': ['btn']}}) }}
+
+<a href="{{ content.field_link.0['#url'] }}" class="btn">{{ content.field_button.0['#title'] }}</a>
+```
+
 ### Image
 ```twig
 {% if node.field_img.uri %}
