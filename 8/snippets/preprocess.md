@@ -6,6 +6,7 @@
 function THEME_preprocess_block(array &$variables): void
 {
   $pluginId = $variables['plugin_id'];
+  
   if ($pluginId === 'system_main_block') {
     $variables['attributes']['class'][] = _setClassesFromUrlArguments();
   }
@@ -51,6 +52,7 @@ function THEME_preprocess_field(array &$variables): void
 function THEME_preprocess_node(array &$variables): void
 {
   $node = $variables['node'];
+  
   $variables['attributes']['class'][] = 'node--type--' . $node->bundle();
   $variables['attributes']['class'][] = 'node--view-mode--' . $variables['view_mode'];
 }
@@ -69,17 +71,20 @@ function _setClassesFromUrlArguments(string $prefix = ''): array
 {
   $classes = [];
   $pathArgs = _getUrlArguments();
+  
   foreach ($pathArgs as $arg) {
     if ((int)$arg === 0 && strlen($arg) > 2) {
       $classes[] = $prefix . $arg;
     }
   }
+  
   return $classes;
 }
 
 function _getUrlArguments(): array
 {
   $currentPath = substr(\Drupal::service('path.current')->getPath(), 1);
+  
   return explode('/', $currentPath);
 }
 ```
