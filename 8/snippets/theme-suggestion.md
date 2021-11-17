@@ -152,7 +152,7 @@ function mytheme_theme_suggestions_page_alter(array &$suggestions) {
  *
  * @inheritdoc
  */
-function ùytheme_theme_suggestions_paragraph_alter(array &$suggestions, array $variables): void
+function mytheme_theme_suggestions_paragraph_alter(array &$suggestions, array $variables): void
 {
   $entity_type = $variables['elements']['#entity_type'];
   /** @var EntityInterface $entity */
