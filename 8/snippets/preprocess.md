@@ -11,6 +11,43 @@ function THEME_preprocess_block(array &$variables): void
   }
 }
 
+function THEME_preprocess_field(array &$variables): void
+{
+  $element = $variables['element'];
+
+  if (in_array($element['#field_type'], ['entity_reference', 'entity_reference_revisions'])) {
+    foreach ($variables['items'] as &$item) {
+      $item['attributes']->addClass(substr($element['#field_name'], 6));
+    }
+  }
+  
+  if (isset($variables['attributes'])) {
+    $classes = isset($variables['attributes']['class']) ? $variables['attributes']['class'] : null;
+    unset($variables['attributes']['class']);
+
+    $prefix = '';
+    if (
+      in_array($element['#field_type'], ['entity_reference', 'entity_reference_revisions']) &&
+      $element['#is_multiple'] === true
+    ) {
+      $prefix = 'grouped--';
+    }
+
+    if (is_array($classes)) {
+      $variables['attributes']['class'][] = $prefix . substr($element['#field_name'], 6);
+    } else {
+      $variables['attributes']['class'][] = $classes;
+      $variables['attributes']['class'][] = $prefix . substr($element['#field_name'], 6);
+    }
+  }
+  
+  if (in_array($element['#field_name'], ['field_button', 'field_button_label'])) {
+    foreach ($variables['items'] as &$item) {
+      $item['content']['#options']['attributes']['class'][] = 'btn';
+    }
+  }
+}
+
 function THEME_preprocess_page(array &$variables): void
 {
   $variables['attributes']['class'][] = _setClassesFromUrlArguments('container--');
