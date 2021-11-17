@@ -131,4 +131,19 @@ function mytheme_theme_suggestions_entity_print_alter(array &$suggestions, array
     }
   }
 }
+
+/**
+ * Implements hook_theme_suggestions_page_alter() for page template.
+ *
+ * @inheritdoc
+ */
+function mytheme_theme_suggestions_page_alter(array &$suggestions) {
+  $routeName = \Drupal::routeMatch()->getRouteName();
+  if ('system.403' == $routeName) {
+    $suggestions[] = 'page__system__403';
+  }
+  if ('system.404' == $routeName) {
+    $suggestions[] = 'page__system__404';
+  }
+}
 ```
