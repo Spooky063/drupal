@@ -48,6 +48,13 @@ function THEME_preprocess_field(array &$variables): void
   }
 }
 
+function THEME_preprocess_node(array &$variables): void
+{
+  $node = $variables['node'];
+  $variables['attributes']['class'][] = 'node--type--' . $node->bundle();
+  $variables['attributes']['class'][] = 'node--view-mode--' . $variables['view_mode'];
+}
+
 function THEME_preprocess_page(array &$variables): void
 {
   $variables['attributes']['class'][] = _setClassesFromUrlArguments('container--');
@@ -75,6 +82,44 @@ function _getUrlArguments(): array
   $currentPath = substr(\Drupal::service('path.current')->getPath(), 1);
   return explode('/', $currentPath);
 }
+```
+
+Change the `field` template
+
+```twig
+{%
+  set title_classes = [
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+%}
+{%
+  set name = field_name|slice(6)
+  set prefix = "grouped--"
+%}
+
+{% if label_hidden %}
+  {% if multiple %}
+    <div class="{{ prefix }}{{ name }}__items">
+      {% for item in items %}
+        <div{{ item.attributes }}>{{ item.content }}</div>
+      {% endfor %}
+    </div>
+  {% else %}
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <div{{ attributes.addClass(name) }}>
+    <h2{{ title_attributes.addClass(title_classes) }}>{{ label }}</h2>
+    <div class="{{ prefix }}{{ name }}__items">
+    {% for item in items %}
+      <div{{ item.attributes }}>{{ item.content }}</div>
+    {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
 ```
 
 Be careful to add the attributes in the template
