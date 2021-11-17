@@ -1,13 +1,13 @@
 {% if primary %}
   <h2 class="visually-hidden">{% trans %}Primary tabs{% endtrans %}</h2>
-  <nav{{attributes.addClass('menu-tasks','primary')}}>
+  <nav{{ attributes.addClass('menu-tasks','primary') }}>
     <ul>{{ primary }}</ul>
   </nav>
 {% endif %}
 
 {% if secondary %}
   <h2 class="visually-hidden">{% trans %}Secondary tabs{% endtrans %}</h2>
-  <nav{{attributes.addClass('menu-tasks','secondary')}}>
+  <nav{{ attributes.addClass('menu-tasks','secondary') }}>
     <ul>{{ secondary }}</ul>
   </nav>
 {% endif %}
