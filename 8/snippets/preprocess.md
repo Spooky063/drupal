@@ -17,8 +17,11 @@ function THEME_preprocess_field(array &$variables): void
   $element = $variables['element'];
 
   if (in_array($element['#field_type'], ['entity_reference', 'entity_reference_revisions'])) {
+    $fieldClass = '';
+    $fieldClass = (substr($element['#field_name'], 0, 6) === 'field_') ? substr($element['#field_name'], 6) : $element['#field_name'];
+    
     foreach ($variables['items'] as &$item) {
-      $item['attributes']->addClass(substr($element['#field_name'], 6));
+      $item['attributes']->addClass($fieldClass);
     }
   }
   
@@ -34,11 +37,14 @@ function THEME_preprocess_field(array &$variables): void
       $prefix = 'grouped--';
     }
 
+    $fieldClass = '';
+    $fieldClass = (substr($element['#field_name'], 0, 6) === 'field_') ? $prefix . substr($element['#field_name'], 6) : $prefix . $element['#field_name'];
+
     if (is_array($classes)) {
-      $variables['attributes']['class'][] = $prefix . substr($element['#field_name'], 6);
+      $variables['attributes']['class'][] = $fieldClass;
     } else {
       $variables['attributes']['class'][] = $classes;
-      $variables['attributes']['class'][] = $prefix . substr($element['#field_name'], 6);
+      $variables['attributes']['class'][] = $fieldClass;
     }
   }
   
