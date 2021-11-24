@@ -1,24 +1,12 @@
 # Ajout de thème pour le rendu twig
 
 ```php
-<?php
-
-/**
- * @file mytheme.theme
- * Override theming functions.
- */
-
 use Drupal\block\Entity\Block;
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Entity\EntityInterface;
 
-/**
- * Adding suggestion template for block hook.
- *
- * @inheritdoc
- */
-function mytheme_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+function THEME_theme_suggestions_block_alter(array &$suggestions, array $variables) {
   $block = $variables['elements'];
   if(!empty($block['content']['#block_content']) && $block['content']['#block_content'] instanceof BlockContent) {
     $bundle = $block['content']['#block_content']->bundle();
@@ -48,12 +36,7 @@ function mytheme_theme_suggestions_block_alter(array &$suggestions, array $varia
   }
 }
 
-/**
- * Implements hook_theme_suggestions_hook_alter() for container template.
- *
- * @inheritdoc
- */
-function mytheme_theme_suggestions_container_alter(array &$suggestions, array $variables) {
+function THEME_theme_suggestions_container_alter(array &$suggestions, array $variables) {
   if (isset($variables['element']['#type']) && $variables['element']['#type'] == 'view') {
     $new = $variables['theme_hook_original'] . '__' . $variables['element']['#type'] . '_' . $variables['element']['#name'] . '_' . $variables['element']['#display_id'];
     if (!in_array($new, $suggestions)) {
@@ -62,12 +45,7 @@ function mytheme_theme_suggestions_container_alter(array &$suggestions, array $v
   }
 }
 
-/**
- * Implements hook_theme_suggestions_hook_alter() for entity_print template.
- *
- * @inheritdoc
- */
-function mytheme_theme_suggestions_entity_print_alter(array &$suggestions, array $variables) {
+function THEME_theme_suggestions_entity_print_alter(array &$suggestions, array $variables) {
   if(isset($_GET['type'])) {
     $new = $variables['theme_hook_original'] . '__' . $_GET['type'];
     if (!in_array($new, $suggestions)) {
@@ -76,12 +54,7 @@ function mytheme_theme_suggestions_entity_print_alter(array &$suggestions, array
   }
 }
 
-/**
- * Adding suggestion template for field hook.
- *
- * @inheritdoc
- */
-function mytheme_theme_suggestions_field_alter(array &$suggestions, array $variables) {
+function THEME_theme_suggestions_field_alter(array &$suggestions, array $variables) {
   if (isset($variables['element']['#field_type'])
     && isset($variables['element']['#bundle'])
     && isset($variables['element']['#view_mode'])
@@ -93,12 +66,7 @@ function mytheme_theme_suggestions_field_alter(array &$suggestions, array $varia
   }
 }
 
-/**
- * Implements hook_theme_suggestions_hook_alter() for fieldset template.
- *
- * @inheritdoc
- */
-function mytheme_theme_suggestions_fieldset_alter(array &$suggestions, array $variables) {
+function THEME_theme_suggestions_fieldset_alter(array &$suggestions, array $variables) {
   if(isset($variables['element']['#type'])) {
     $new = $variables['theme_hook_original'] . '__' . $variables['element']['#type'];
     if (!in_array($new, $suggestions)) {
@@ -107,23 +75,13 @@ function mytheme_theme_suggestions_fieldset_alter(array &$suggestions, array $va
   }
 }
 
-/**
- * Implements hook_theme_suggestions_hook_alter() for form template.
- *
- * @inheritdoc
- */
-function mytheme_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+function THEME_theme_suggestions_form_alter(array &$suggestions, array $variables) {
   if (!empty($variables['element']['#id'])) {
     $suggestions[] = $variables['theme_hook_original'] . '__' . str_replace('-', '_', $variables['element']['#id']);
   }
 }
 
-/**
- * Implements hook_theme_suggestions_hook_alter() for form_element template.
- *
- * @inheritdoc
- */
-function mytheme_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
+function THEME_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
   if(isset($variables['element']['#type'])) {
     $new = $variables['theme_hook_original'] . '__' . $variables['element']['#type'];
     if (!in_array($new, $suggestions)) {
@@ -132,12 +90,7 @@ function mytheme_theme_suggestions_form_element_alter(array &$suggestions, array
   }
 }
 
-/**
- * Implements hook_theme_suggestions_hook_alter() for page template.
- *
- * @inheritdoc
- */
-function mytheme_theme_suggestions_page_alter(array &$suggestions) {
+function THEME_theme_suggestions_page_alter(array &$suggestions) {
   $routeName = \Drupal::routeMatch()->getRouteName();
   if ('system.403' == $routeName) {
     $suggestions[] = $variables['theme_hook_original'] . '__system__403';
@@ -147,29 +100,19 @@ function mytheme_theme_suggestions_page_alter(array &$suggestions) {
   }
 }
 
-/**
- * Implements hook_theme_suggestions_hook_alter() for paragraph template.
- *
- * @inheritdoc
- */
-function mytheme_theme_suggestions_paragraph_alter(array &$suggestions, array $variables): void
+function THEME_theme_suggestions_paragraph_alter(array &$suggestions, array $variables): void
 {
   $entity_type = $variables['elements']['#entity_type'];
   /** @var EntityInterface $entity */
   $entity = $variables['elements']['#' . $entity_type];
-  
+
   $new = $variables['theme_hook_original'] . '__' . $entity->bundle();
   if (!in_array($new, $suggestions)) {
     array_splice($suggestions, count($suggestions) + 1, 0, $new);
   }
 }
 
-/**
- * Implements hook_theme_suggestions_hook_alter() for views_view template.
- *
- * @inheritdoc
- */
-function mytheme_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
+function THEME_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
   $new = $variables['theme_hook_original'] . '__' . $variables['view']->id() . '__' . $variables['view']->current_display;
   if (!in_array($new, $suggestions)) {
     array_splice($suggestions, 1, 0, $new);

@@ -2,23 +2,16 @@
 
 ## Vers une page spécifique
 
-Ajout d'une ancre avec un **formulaire Webform** en sortie.  
+Ajout d'une ancre avec un **formulaire Webform** en sortie.
 On modifiera le texte pour l'affichage de ce lien avec un formatage particulier.
 
 ```php
-<?php
-/**
- * @file
- */
- 
-[...]
-
 // Récupération d'un webform spécifique qui s'appelle contact_form
 $webform = \Drupal::entityTypeManager()->getStorage('webform')->load('contact_form');
 
 // Création de l'URL
 $url = $webform->toUrl('canonical', [
-    // prefill if option 'Allow elements to be populated using query string parameters' 
+    // prefill if option 'Allow elements to be populated using query string parameters'
     // is checked into contact_form webform parameters
     'query' => [
         'email' => 'email@domain.com'
@@ -44,20 +37,11 @@ $link = \Drupal\Core\Link::fromTextAndUrl(
 
 // On l'insère dans le template
 $variables['content'] = $link;
-
-[...]
 ```
 
 ## Vers une page spécifique en mode modal
 
 ```php
-<?php
-/**
- * @file
- */
- 
-[...]
-
 // Création de l'url
 $options = [
   'attributes' => [
@@ -79,6 +63,4 @@ $link = Drupal\Core\Link::fromTextAndUrl($this->t('Le titre de mon lien'), $url)
 
 // On l'insère dans le template
 $variables['content'] = $link;
-
-[...]
 ```

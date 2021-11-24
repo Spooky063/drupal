@@ -1,11 +1,6 @@
 # Redirection d'un formulaire vers la même page après soumission
 
 ```php
-<?php
-/**
- * @file
- */
-
 /**
  * Form submission handler.
  *
