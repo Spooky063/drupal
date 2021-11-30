@@ -52,6 +52,12 @@ commande :
 drush cr
 ```
 
+Pour vider uniquement les caches après la création d'un nouveau template, utilisez cette
+commande :
+```bash
+drush cc theme-registry
+```
+
 Pour activer la minification des ressources CSS, les commandes suivantes suffissent :
 ```bash
 # Agréger des fichiers CSS
