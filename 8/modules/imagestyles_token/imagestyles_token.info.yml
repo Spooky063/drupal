@@ -1,0 +1,9 @@
+name: Image Styles Token
+description: Add image styles tokens in the Token API.
+
+type: module
+core: 8.x
+core_version_requirement: ^8 || ^9
+
+dependencies:
+  - token:token
