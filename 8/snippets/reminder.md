@@ -58,8 +58,9 @@ cette solution pas très propre.
 ```twig
 {# Showing background image on block #}
 {% set attributes = attributes.addClass('section--background') %}
-{% if content.field_media_image is not empty %}
-  {% set imageFile = file_url(content['#block_content'].field_media_image.entity.field_media_image.entity.fileuri) %}
+{% set media = content['#block_content'].field_media_image.entity.field_media_image.entity.fileuri %}
+{% if media is not empty %}
+  {% set imageFile = file_url(media | image_style('page')) %}
   {% set attributes = attributes.setAttribute('style', '--background:url( ' ~ imageFile ~ ')') %}
 {% endif %}
 
