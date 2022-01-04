@@ -50,6 +50,9 @@ cette solution pas très propre.
 {# Render raw link field #}
 {{ content['#block_content'].field_link.0.url }}
 {{ content['#block_content'].field_link.0.title }}
+
+{# Render raw media field #}
+{{ file_url(content['#block_content'].field_media_image.entity.field_media_image.entity.fileuri) }}
 ```
 
 ### Texte
