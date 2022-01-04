@@ -53,6 +53,11 @@ cette solution pas très propre.
 
 {# Render raw media field #}
 {{ file_url(content['#block_content'].field_media_image.entity.field_media_image.entity.fileuri) }}
+
+{# To test if exist #}
+{% if content.field_media_image['#items']|length > 0 %} ... {% endif %}
+OR
+{% if content['#block_content'].body.value is not empty %} ... {% endif %}
 ```
 
 ```twig
