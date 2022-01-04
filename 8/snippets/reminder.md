@@ -38,6 +38,20 @@ cette solution pas très propre.
 {{ content.field_title | render | striptags | trim }}
 ```
 
+### Bloc
+```twig
+{# Render field by default #}
+{{ content.field_text }}
+
+{# Render raw text field #}
+{{ content['#block_content'].body.value }}
+{{ content['#block_content'].field_text.value }}
+
+{# Render raw link field #}
+{{ content['#block_content'].field_link.0.url }}
+{{ content['#block_content'].field_link.0.title }}
+```
+
 ### Texte
 ```twig
 {% if node.field_text.value %}
