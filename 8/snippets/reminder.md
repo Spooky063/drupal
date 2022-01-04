@@ -55,6 +55,34 @@ cette solution pas très propre.
 {{ file_url(content['#block_content'].field_media_image.entity.field_media_image.entity.fileuri) }}
 ```
 
+```twig
+{# Showing background image on block #}
+{% set attributes = attributes.addClass('section--background') %}
+{% if content.field_media_image is not empty %}
+  {% set imageFile = file_url(content['#block_content'].field_media_image.entity.field_media_image.entity.fileuri) %}
+  {% set attributes = attributes.setAttribute('style', '--background:url( ' ~ imageFile ~ ')') %}
+{% endif %}
+
+<section{{attributes}}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2 class="block-heading">{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</section>
+
+{# CSS part #}
+.section--background {
+  background-image: var(--background);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+{# End CSS part #}
+```
+
 ### Texte
 ```twig
 {% if node.field_text.value %}
