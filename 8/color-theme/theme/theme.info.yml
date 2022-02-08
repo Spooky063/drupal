@@ -1,0 +1,19 @@
+name: Theme
+description: "Custom theme..."
+type: theme
+core_version_requirement: ^8 || ^9
+package: Core
+version: VERSION
+screenshot: screenshot.png
+
+libraries:
+  - theme/global-styling
+  # don't set color.preview library, **module color** do it
+
+regions:
+  ...
+  
+features:
+  - logo
+  - name
+  - favicon
