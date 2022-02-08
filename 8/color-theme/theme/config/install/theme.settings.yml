@@ -1,0 +1,10 @@
+logo:
+  mimetype: image/svg+xml
+  path: "themes/custom/theme/logo.svg"
+  url: ""
+  use_default: false
+favicon:
+  mimetype: image/x-icon
+  path: "themes/custom/theme/favicon.ico"
+  url: ""
+  use_default: false
