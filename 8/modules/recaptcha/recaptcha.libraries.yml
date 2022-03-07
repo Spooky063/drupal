@@ -1,0 +1,7 @@
+recaptcha.invisible:
+  version: VERSION
+  js:
+    js/recaptcha.invisible.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

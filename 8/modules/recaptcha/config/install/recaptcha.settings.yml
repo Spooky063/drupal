@@ -1,0 +1,9 @@
+site_key: ''
+secret_key: ''
+widget:
+  theme: 'light'
+  type: 'image'
+  size: ''
+  badge: 'bottomright'
+  tabindex: 0
+  noscript: false
