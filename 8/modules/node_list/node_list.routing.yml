@@ -1,0 +1,17 @@
+node_list.article:
+  path: '/api/articles'
+  defaults:
+    _controller: '\Drupal\node_list\Controller\JsonPageController::index'
+    _title: 'JSON node'
+  methods:  [GET]
+  requirements:
+    _access: 'TRUE'
+
+node_list.render:
+  path: '/test/articles'
+  defaults:
+    _controller: '\Drupal\node_list\Controller\NodePageRenderController::index'
+    _title: 'Articles'
+  methods:  [GET]
+  requirements:
+    _access: 'TRUE'

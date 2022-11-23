@@ -1,0 +1,36 @@
+<?php
+
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\EntityInterface;
+
+function node_list_theme(): array
+{
+    return [
+        'node_list_render' => [
+            'variables' => [],
+            'template' => 'node_article',
+        ],
+    ];
+}
+
+function node_list_node_insert(EntityInterface $entity): void
+{
+    invalidateCache($entity);
+}
+
+function node_list_node_update(EntityInterface $entity): void
+{
+    invalidateCache($entity);
+}
+
+function node_list_node_delete(EntityInterface $entity): void
+{
+    invalidateCache($entity);
+}
+
+function invalidateCache(EntityInterface $entity): void
+{
+    if ($entity->bundle() === 'page') {
+        Cache::invalidateTags(['node_list:page', 'node_list:page:render']);
+    }
+}

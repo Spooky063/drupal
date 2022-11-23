@@ -1,0 +1,147 @@
+<div class="container" x-data="loadArticles()" x-init="$nextTick(async () => fetchData())">
+  <div class="content">
+    <div class="filters">
+      <div class="filter">
+        <label for="search">Search</label>
+        <input
+            id="search"
+            x-ref="searchField"
+            x-model="search"
+            placeholder="Search"
+            type="search"
+        />
+      </div>
+
+      <div class="filter">
+        <label for="category">Category</label>
+        <select id="category" x-model="selectedCategory">
+          <option value="">Select an option</option>
+          <template
+            x-for="(category, index) in categoryOptions"
+            :key="index"
+          >
+            <option
+              :key="category"
+              :value="category"
+              x-text="category"
+            ></option>
+          </template>
+        </select>
+      </div>
+
+      <div class="filter">
+        <fieldset>
+          <legend>
+            <p>Tags</p>
+          </legend>
+          <div class="checkbox all">
+            <input
+              @click="toggleAllTags()"
+              name="tags"
+              type="checkbox"
+              x-bind:checked="selectAllTags"
+              id="tags_all"
+              autocomplete="off"
+            />
+            <label for="tags_all">All</label>
+          </div>
+          <template x-for="(tag, index) in tagOptions">
+            <div class="checkbox">
+              <input
+                name="tags"
+                type="checkbox"
+                x-model="selectedTags"
+                :value="tag"
+                :id="'tags' + tag"
+              />
+              <label :for="'tags' + tag" x-text="tag"></label>
+            </div>
+          </template>
+        </fieldset>
+      </div>
+
+      <div class="filter">
+        <label for="sort">Sort by created</label>
+        <select id="sort" x-model="selectedOrder">
+          <template x-for="(sort, index) in sortByOrder" :key="index">
+            <option
+              :key="sort"
+              :value="sort"
+              x-text="sort"
+              x-bind:selected="sort === selectedOrder"
+            ></option>
+          </template>
+        </select>
+      </div>
+    </div>
+
+    <div x-show="isLoading" style="margin-top: 3rem;">
+      <p>Loading...</p>
+    </div>
+
+    <div x-show="!isLoading" class="card" id="content_page" style="margin-top: 3rem;scroll-margin: 3em;">
+      <template x-for="item in filteredItems" :key="item">
+        <div x-html="item.content"></div>
+      </template>
+
+       <div class="pagination" x-show="pageCount() > 1">
+        <button
+            x-on:click="viewPage(0)"
+            :disabled="pageNumber==0"
+            :class="{ 'disabled cursor-not-allowed' : pageNumber==0 }"
+          >&lt;&lt;
+        </button>
+
+        <button
+          x-on:click="prevPage"
+          :disabled="pageNumber==0"
+          :class="{ 'disabled cursor-not-allowed' : pageNumber==0 }"
+        >&lt;
+        </button>
+
+        <template x-for="(page,index) in pages()" :key="index">
+          <button
+            :class="{ 'current' : index === pageNumber }"
+            type="button"
+            x-on:click="viewPage(index)"
+          >
+            <span x-text="index+1"></span>
+          </button>
+        </template>
+
+        <button
+          x-on:click="nextPage"
+          :disabled="pageNumber >= pageCount() -1"
+          :class="{ 'disabled cursor-not-allowed' : pageNumber >= pageCount() -1 }"
+        >&gt;
+        </button>
+
+        <button
+          x-on:click="viewPage(Math.ceil(total/sizePerPage)-1)"
+          :disabled="pageNumber >= pageCount() -1"
+          :class="{ 'disabled cursor-not-allowed' : pageNumber >= pageCount() -1 }"
+        >&gt;&gt;
+        </button>
+       </div>
+
+       <div class="count">
+        <div x-show="pageCount() > 1">
+          Page <span x-text="pageNumber+1"> </span> of
+            <span x-text="pageCount()"></span> | Showing
+            <span x-text="startResults()"></span> to
+            <span x-text="endResults()"></span>
+        </div>
+
+        <div x-show="total > 0">
+            Total <span class="font-bold" x-text="total"></span> results
+        </div>
+      </div>
+
+      <div class="empty">
+        <div x-show="total===0">
+          <span>No results!!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+alpine:
+  version: "v2.4.1"
+  license:
+    name: MIT
+    url: https://github.com/alpinejs/alpine/blob/master/LICENSE.md
+    gpl-compatible: true
+  header: true
+  js:
+    https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.4.1/dist/alpine.min.js:
+      { type: external, minified: true, attributes: { type: module } }
+    https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.4.1/dist/alpine-ie11.min.js:
+      {
+        type: external,
+        minified: true,
+        attributes: { nomodule: true, defer: true },
+      }
+
+page:
+  version: VERSION
+  js:
+    src/js/page.js: { preprocess: false, minified: true }
+  dependencies:
+    - node_list/alpine

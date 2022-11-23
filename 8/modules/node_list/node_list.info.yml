@@ -1,0 +1,7 @@
+name: Node list
+description: List node and format with AlpineJS
+package: Content
+
+type: module
+core: 8.x
+core_version_requirement: ^8 || ^9
