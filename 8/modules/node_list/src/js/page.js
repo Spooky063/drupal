@@ -15,7 +15,7 @@ function loadArticles() {
         total: "",
 
         async fetchData() {
-            let response = await fetch('/api/articles')
+            let response = await fetch(Drupal.url('api/articles'))
             if (response.ok) {
                 let data = await response.json()
                 this.items = data.data

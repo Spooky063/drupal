@@ -9,12 +9,11 @@ use Drupal\Core\Cache\CacheableJsonResponse;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Render\BubbleableMetadata;
-use Drupal\Core\Render\RenderContext;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList;
 use Drupal\node\NodeInterface;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class JsonPageController extends ControllerBase
 {
@@ -46,6 +45,9 @@ class JsonPageController extends ControllerBase
                 'max-age'  => -1,
                 'contexts' => [
                     'url',
+                    'languages:language_interface',
+                    'user.roles',
+                    'user.permissions'
                 ],
             ],
         ];
@@ -68,7 +70,8 @@ class JsonPageController extends ControllerBase
 
     public function getData(): array
     {
-        $cached = \Drupal::cache('node_list')->get('node_list:' . self::$bundle);
+        $language = $this->languageManager()->getCurrentLanguage()->getId();
+        $cached = \Drupal::cache('node_list')->get('node_list:' . self::$bundle .  ':' . $language);
         if ($cached !== false) {
             /** @var string $jsonCached */
             $jsonCached = json_encode($cached);
@@ -81,6 +84,7 @@ class JsonPageController extends ControllerBase
             ->getQuery()
             ->condition('type', self::$bundle)
             ->condition('status', NodeInterface::PUBLISHED)
+            ->condition('langcode', $this->languageManager()->getCurrentLanguage()->getId())
             ->sort('created', 'DESC')
             ->execute();
 
@@ -91,7 +95,7 @@ class JsonPageController extends ControllerBase
         $formattedData = $this->format($nids);
 
         \Drupal::cache('node_list')->set(
-            'node_list:' . self::$bundle,
+            'node_list:' . self::$bundle .  ':' . $language,
             $formattedData,
             Cache::PERMANENT,
             ['node_list:' . self::$bundle]
