@@ -20,4 +20,5 @@ page:
   js:
     src/js/page.js: { preprocess: false, minified: true }
   dependencies:
+    - core/drupal
     - node_list/alpine

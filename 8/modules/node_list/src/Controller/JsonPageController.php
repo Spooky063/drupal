@@ -13,7 +13,6 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList;
 use Drupal\node\NodeInterface;
 use Psr\Container\ContainerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 class JsonPageController extends ControllerBase
 {
@@ -44,23 +43,27 @@ class JsonPageController extends ControllerBase
             '#cache' => [
                 'max-age'  => -1,
                 'contexts' => [
-                    'url',
-                    'languages:language_interface',
+                    'request_format',
+                    'url.path',
+                    'languages',
                     'user.roles',
-                    'user.permissions'
+                    'user.permissions',
                 ],
             ],
         ];
+
+        if (\count($data) > 0) {
+            $body['#cache']['tags'] = array_map(fn ($node) => 'node:' . $node['nid'], $data);
+            $body['#cache']['tags'][] = 'node_view';
+        }
 
         $response = new CacheableJsonResponse($body);
         $cacheMeta = new CacheableMetadata();
 
         if (\count($data) > 0) {
-            $body['#cache']['tags'] = array_map(fn ($node) => 'node:' . $node['nid'], $data);
-            $body['#cache']['tags'][] = 'node_view';
-
             $cacheMeta->addCacheTags($body['#cache']['tags']);
             $cacheMeta->addCacheTags(['node_list:' . self::$bundle . ':render']);
+            $cacheMeta->addCacheContexts($body['#cache']['contexts']);
         }
 
         $response->addCacheableDependency($cacheMeta);
@@ -70,8 +73,10 @@ class JsonPageController extends ControllerBase
 
     public function getData(): array
     {
+        $roles = implode(':', $this->currentUser()->getRoles());
         $language = $this->languageManager()->getCurrentLanguage()->getId();
-        $cached = \Drupal::cache('node_list')->get('node_list:' . self::$bundle .  ':' . $language);
+
+        $cached = \Drupal::cache('node_list')->get('node_list:' . self::$bundle . ':' . $language . ':' . $roles);
         if ($cached !== false) {
             /** @var string $jsonCached */
             $jsonCached = json_encode($cached);
@@ -95,7 +100,7 @@ class JsonPageController extends ControllerBase
         $formattedData = $this->format($nids);
 
         \Drupal::cache('node_list')->set(
-            'node_list:' . self::$bundle .  ':' . $language,
+            'node_list:' . self::$bundle . ':' . $language . ':' . $roles,
             $formattedData,
             Cache::PERMANENT,
             ['node_list:' . self::$bundle]
