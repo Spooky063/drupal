@@ -10,7 +10,6 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Render\RendererInterface;
-use Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList;
 use Drupal\node\NodeInterface;
 use Psr\Container\ContainerInterface;
 
@@ -148,7 +147,7 @@ class JsonPageController extends ControllerBase
         $definition = $node->get($field_name)->getFieldDefinition()->getFieldStorageDefinition();
 
         if ($definition->getType() === 'entity_reference') {
-            /** @var EntityReferenceRevisionsFieldItemList $field */
+            /** @var \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList $field */
             $field = $node->get($field_name);
             $entities = $field->referencedEntities();
             /* @var array<string> $value */
