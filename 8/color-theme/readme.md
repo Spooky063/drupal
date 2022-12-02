@@ -1,5 +1,7 @@
 # Add color scheme on theme Drupal
 
+> ⚠️ Deprecated in version 10
+
 ## Introduction
 
 For adding a color scheme on custom theme, you need to add some additional files 
