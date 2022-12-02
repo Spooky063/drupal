@@ -1,0 +1,9 @@
+.block {
+  border: 1px solid var(--clr-primary);
+  padding: 20px;
+}
+
+h2 {
+  margin-top: 0;
+}
+

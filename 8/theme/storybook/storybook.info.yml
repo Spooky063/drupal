@@ -1,0 +1,16 @@
+name: Storybook
+type: theme
+base theme: false
+description: 'try new theme with feature named storybook'
+package: Core
+
+version: VERSION
+core_version_requirement: ^8 || ^9
+
+libraries:
+  - storybook/base
+
+component-libraries:
+  storybook:
+    paths:
+      - components

@@ -1,0 +1,31 @@
+{
+  "name": "storybook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "storybook": "start-storybook",
+    "storybook-js": "npx babel components -w -d dist/components --ignore 'components/**/*.stories.js' --presets=@babel/preset-env,babel-preset-minify --plugins=babel-plugin-drupal-behaviors",
+    "storybook-css": "webpack --config ./webpack/webpack.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.5",
+    "@storybook/html": "^6.5.14",
+    "babel-loader": "^8.3.0",
+    "babel-plugin-drupal-behaviors": "^0.1.1",
+    "babel-preset-minify": "^0.5.2",
+    "drupal-attribute": "^1.0.2",
+    "fs": "*",
+    "mini-css-extract-plugin": "^1.0.0",
+    "twig": "^1.15.4",
+    "twig-drupal-filters": "^3.2.0",
+    "twig-loader": "^0.5.5",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-fix-style-only-entries": "^0.6.1"
+  }
+}
