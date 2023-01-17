@@ -1,0 +1,5 @@
+services:
+  hightlight:
+    class: Drupal\ckeditor_codeblock_highlight\Service\HighlightService
+    arguments:
+      - '@config.factory'

@@ -1,0 +1,23 @@
+highlightjs:
+  remote: https://github.com/highlightjs/highlight.js
+  version: "11.7.0"
+  license:
+    name: BSD 3-Clause "New" or "Revised" License
+    url: https://github.com/highlightjs/highlight.js/blob/main/LICENSE
+    gpl-compatible: true
+  header: true
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js:
+      { type: external, minified: true }
+
+front:
+  js:
+    js/ckeditor_codeblock_highlight.js: { preprocess: false, minified: false }
+  dependencies:
+    - ckeditor_codeblock_highlight/highlightjs
+
+admin:
+  js:
+    js/ckeditor_codeblock_highlight_preview.js: { preprocess: false, minified: false }
+  dependencies:
+    - ckeditor_codeblock_highlight/highlightjs

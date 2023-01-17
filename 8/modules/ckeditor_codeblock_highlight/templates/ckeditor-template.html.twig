@@ -1,0 +1,36 @@
+{% for style in styles %}
+  <link
+    rel="stylesheet"
+    class="codestyle"
+    data-name="{{ style }}"
+    {%- if style != value %} disabled {% endif -%}
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/{{style}}.min.css"
+  >
+{% endfor %}
+
+<div class="form-item--snippet">
+  <span class="form-item__label">{% trans %}Preview{% endtrans %}</span>
+
+  <div id="snippet">
+    <pre style="padding:0px; margin:0px;">
+      <code style="padding:0px; margin:0px;">
+        @font-face {
+          font-family: Chunkfive; src: url('Chunkfive.otf');
+        }
+
+        body, .usertext {
+          color: #F0F0F0; background: #600;
+          font-family: Chunkfive, sans;
+          --heading-1: 30px/32px Helvetica, sans-serif;
+        }
+
+        @import url(print.css);
+        @media print {
+          a[href^=http]::after {
+            content: attr(href)
+          }
+        }
+      </code>
+    </pre>
+  </div>
+</div>

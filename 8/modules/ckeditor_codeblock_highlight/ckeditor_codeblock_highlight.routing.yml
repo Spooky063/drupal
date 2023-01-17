@@ -1,0 +1,7 @@
+ckeditor_codeblock_highlight.settings:
+  path: '/admin/config/content/codeblock-highlight'
+  defaults:
+    _form: 'Drupal\ckeditor_codeblock_highlight\Form\HighlightConfigForm'
+    _title: 'Code Block settings'
+  requirements:
+    _permission: 'edit behavior codeblock highlight settings'

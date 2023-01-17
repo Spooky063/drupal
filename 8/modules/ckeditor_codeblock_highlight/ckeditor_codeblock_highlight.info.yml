@@ -1,0 +1,11 @@
+name: 'CKEditor 5 - Code Block Highlight'
+description: 'Add the hightlightjs library to color the code block plugin.'
+package: 'Wysiwyg'
+
+type: module
+core_version_requirement: '^9.5 || ^10'
+
+configure: ckeditor_codeblock_highlight.settings
+
+dependencies:
+  - drupal:ckeditor5

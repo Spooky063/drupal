@@ -1,0 +1,48 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\ckeditor_codeblock_highlight\Service\HighlightService;
+
+function ckeditor_codeblock_highlight_page_attachments(array &$variables): void
+{
+    if (!_is_admin_page()) {
+        $variables['#attached']['library'][] = 'ckeditor_codeblock_highlight/front';
+    }
+}
+
+function ckeditor_codeblock_highlight_library_info_alter(array &$libraries, string $extension): void
+{
+    if (!_is_admin_page() && $extension == 'ckeditor_codeblock_highlight') {
+        /** @var HighlightService $highlight */
+        $highlight = \Drupal::service('hightlight');
+        $highlight_theme = $highlight->getHighlightTheme();
+
+        $libraries['highlightjs']['css']['theme'] = [
+            "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/${highlight_theme}.min.css" => [
+                'type' => 'external',
+                'minified' =>  true,
+            ]
+        ];
+    }
+}
+
+function ckeditor_codeblock_highlight_theme(): array
+{
+    return [
+        'ckeditor_template' => [
+            'variables' => [
+                'value' => '',
+                'styles' => [],
+            ]
+        ]
+    ];
+}
+
+function _is_admin_page(): bool
+{
+    $activeTheme = \Drupal::theme()->getActiveTheme()->getName();
+    $adminTheme = \Drupal::config('system.theme')->get('admin');
+
+    return $activeTheme === $adminTheme;
+}

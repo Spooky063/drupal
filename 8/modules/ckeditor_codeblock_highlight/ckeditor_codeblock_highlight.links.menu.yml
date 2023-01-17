@@ -1,0 +1,6 @@
+ckeditor_codeblock_highlight.settings:
+  title: 'Code Block settings'
+  description: 'Configuration of code block highlight.'
+  parent: system.admin_config_content
+  route_name: ckeditor_codeblock_highlight.settings
+  weight: 200
