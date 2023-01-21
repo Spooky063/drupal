@@ -1,0 +1,5 @@
+entity.changelog.collection:
+  title: Changelogs
+  route_name: entity.changelog.collection
+  parent: system.admin_content
+  description: 'List and edit site changelog.'

@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Implements hook_uninstall().
+ */
+function changelog_uninstall()
+{
+    $storage = \Drupal::entityTypeManager()->getStorage('field_storage_config');
+    $fields = $storage->loadByProperties(['type' => 'changelog']);
+    $storage->delete($fields);
+
+    $storage_handler = \Drupal::entityTypeManager()->getStorage('changelog');
+    $entities = $storage_handler->loadMultiple();
+    $storage_handler->delete($entities);
+}
+
+function changelog_install()
+{
+}

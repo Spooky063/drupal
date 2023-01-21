@@ -1,0 +1,5 @@
+page:
+  version: VERSION
+  css:
+    component:
+      assets/css/changelog.css: {}

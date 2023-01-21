@@ -1,0 +1,33 @@
+<div class="changelog-container">
+  {% block changelog_content %}
+    {% if items %}
+      <div class="changelog-content">
+        {% for item in items %}
+          {% include '@changelog/parts/_item.html.twig' with {item: item} %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="changelog-content">
+        {% trans %}No changelog found!{% endtrans %}
+      </div>
+    {% endif %}
+  {% endblock %}
+
+  {% block changelog_aside %}
+    <aside class="changelog-summary" aria-labelledby="changelog-summary__title">
+      <h3 id="changelog-summary__title" class="changelog-summary__title">{% trans %}Summary{% endtrans %}</h3>
+
+      {% if items %}
+        <nav class="changelog-summary__nav">
+          <ul class="changelog-summary__list">
+            {% for item in items %}
+              <li>
+                <a href="#{{ item.releaseDate }}">{{ item.releaseDate }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      {% endif %}
+    </aside>
+  {% endblock %}
+</div>

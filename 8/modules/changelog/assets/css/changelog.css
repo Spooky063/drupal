@@ -1,0 +1,52 @@
+.changelog-container {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  column-gap: 80px;
+}
+
+.changelog-item__title:hover .changelog-item__link {
+  visibility: visible;
+  color: inherit;
+}
+
+a.changelog-item__link {
+  visibility: hidden;
+  padding: 0.5rem;
+  margin-inline-start: -2.5rem;
+  color: inherit;
+}
+
+.changelog-summary {
+  padding-block-start: 8px;
+}
+
+.changelog-summary__nav {
+  margin-block: 8px;
+}
+
+.changelog-summary__list {
+  list-style-type: none;
+}
+
+.changelog-summary__list li {
+  padding-inline-start: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  appearance: none;
+}
+
+.changelog-summary__list li:where(:hover, :focus-within) {
+  background-color: rgba(208, 215, 222, 0.32);
+}
+
+.changelog-summary__list a {
+  display: flex;
+  flex-grow: 1;
+  padding-block: 4px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.changelog-summary__list a:hover {
+  color: inherit;
+}

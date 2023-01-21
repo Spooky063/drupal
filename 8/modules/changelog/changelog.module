@@ -1,0 +1,43 @@
+<?php
+
+declare(strict_types=1);
+
+use \Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function changelog_help(
+  $route_name,
+  RouteMatchInterface $route_match
+)
+{
+  $output = '';
+
+  if ($route_name === 'help.page.changelog') {
+    $output = <<<HTML
+        <h3>About</h3>
+        <p>Changelog page.</p>
+        <p>
+            <em>Inspired by</em>
+            <ul>
+              <li>https://docs.gitlab.com/ee/development/changelog.html</li>
+              <li>https://keepachangelog.com/en/1.0.0/</li>
+            </ul>
+        </p>
+        HTML;
+  }
+
+  return $output;
+}
+
+function changelog_theme()
+{
+  return [
+    'changelog_page' => [
+      'variables' => [
+        'items' => null,
+      ]
+    ],
+  ];
+}

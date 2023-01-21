@@ -1,0 +1,5 @@
+changelog.add_form:
+  route_name: entity.changelog.add_form
+  title: 'Add changelog'
+  appears_on:
+    - entity.changelog.collection

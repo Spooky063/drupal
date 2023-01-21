@@ -1,0 +1,7 @@
+changelog.page:
+  path: '/changelog'
+  defaults:
+    _title: 'Changelog'
+    _controller: '\Drupal\changelog\Controller\ChangelogController'
+  requirements:
+    _permission: 'access content'
