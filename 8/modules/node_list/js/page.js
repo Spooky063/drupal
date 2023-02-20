@@ -1,4 +1,4 @@
-function loadArticles() {
+function loadArticles(endpoint, pagination = 100) {
     return {
         items: [],
         isLoading: true,
@@ -11,11 +11,11 @@ function loadArticles() {
         sortByKey: "created_at",
         sortByOrder: ["asc", "desc"],
         pageNumber: 0,
-        sizePerPage: 4,
+        sizePerPage: pagination,
         total: "",
 
         async fetchData() {
-            let response = await fetch(Drupal.url('api/articles'))
+            let response = await fetch(endpoint)
             if (response.ok) {
                 let data = await response.json()
                 this.items = data.data
@@ -38,7 +38,7 @@ function loadArticles() {
             }
 
             let filtered = this.items.filter((item) => {
-                return item.title.toLowerCase().includes(this.search.toLowerCase())
+                return item.content.toLowerCase().includes(this.search.toLowerCase())
             })
 
             if (this.selectedCategory !== "") {

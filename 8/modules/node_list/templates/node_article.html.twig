@@ -1,4 +1,4 @@
-<div class="container" x-data="loadArticles()" x-init="$nextTick(async () => fetchData())">
+<div class="container" x-data="loadArticles('{{endpoint}}', {{pagination}})" x-init="$nextTick(async () => fetchData())">
   <div class="content">
     <div class="filters">
       <div class="filter">
