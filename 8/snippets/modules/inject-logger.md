@@ -5,8 +5,8 @@ To inject a specific logger into a custom service your can:
 ```yml
 # my_module.services.yml
 logger.channel.mymodule:
-    parent: logger.channel_base
-    arguments: ['mymodule']
+  parent: logger.channel_base
+  arguments: ['mymodule']
 
 my_service:
   class: Drupal\my_module\MyService
