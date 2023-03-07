@@ -1,4 +1,4 @@
-To inject a new cache bin into a custom service your can:
+To inject a new cache bin into a custom service you must:
 
 1. Inject a new cache bin into your service
 
