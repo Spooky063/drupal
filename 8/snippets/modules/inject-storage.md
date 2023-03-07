@@ -17,9 +17,15 @@ my_service:
 2. Get your storage into your service
 
 ```php
+<?php
+
+declare(strict_types=1);
+
+namespace Drupal\my_module;
+
 use Drupal\node\NodeStorageInterface;
 
-class MyService {
+final class MyService {
 
   public function __construct(
     private NodeStorageInterface $storage,
