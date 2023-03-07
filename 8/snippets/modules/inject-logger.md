@@ -1,4 +1,4 @@
-To inject a specific logger into a custom service your can:
+To inject a specific logger into a custom service you must:
 
 1. Inject a specific logger into your service
 
