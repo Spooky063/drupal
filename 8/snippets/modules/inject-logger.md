@@ -16,9 +16,15 @@ my_service:
 2. Get your logger into your service
 
 ```php
+<?php
+
+declare(strict_types=1);
+
+namespace Drupal\my_module;
+
 use Psr\Log\LoggerInterface;
 
-class MyService {
+final class MyService {
 
   public function __construct(
     private LoggerInterface $logger,
