@@ -1,4 +1,4 @@
-To inject a specific storage into a custom service your can:
+To inject a specific storage into a custom service you must:
 
 1. Inject a specific storage into your service (here the node storage)
 
