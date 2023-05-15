@@ -346,6 +346,18 @@ OR
 {% set multiple = node.field_taxonomy_1|merge(node.field_taxonomy_2) %}
 ```
 
+```twig
+{# Render the content if the value is not empty #}
+{% if not paragraph.field_price.isempty %}
+  <div class="price">{{ paragraph.field_price.value|raw }}</div>
+{% endif %}
+
+{# Render the content if the value is empty #}
+{% if paragraph.field_price.isempty %}
+  <div class="price">$0</div>
+{% endif %}
+```
+
 ### Container
 ```twig
 <div{{ create_attribute({'class': ['region', 'region--header']}) }}>
