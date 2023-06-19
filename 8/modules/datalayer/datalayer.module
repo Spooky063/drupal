@@ -1,0 +1,38 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\datalayer\Action\ActionUserEditDataLayer;
+use Drupal\Datalayer\DataLayer;
+
+function datalayer_page_attachments(array &$attachments): void
+{
+  $values = DataLayer::getPushes();
+
+  if ($values) {
+    $valuesEncoded = json_encode(
+      $values,
+      JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE
+    );
+
+    $attachments['#attached']['html_head'][] = [
+      [
+        '#type' => 'html_tag',
+        '#tag' => 'script',
+        '#value' => 'window.dataLayer = window.dataLayer || []; window.dataLayer.push(' . $valuesEncoded . ');',
+      ],
+      'dataLayer',
+    ];
+  }
+}
+
+/**
+ * Can be optimize by a strategy pattern
+ */
+function datalayer_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void
+{
+  if ($form_id === 'user_form') {
+    $form['actions']['submit']['#submit'][] = [ActionUserEditDataLayer::class, 'addElement'];
+  }
+}
