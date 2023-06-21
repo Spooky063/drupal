@@ -155,4 +155,11 @@ And if you want to get the data, you can use the name of the session bag:
 ```php
   $session = \Drupal::request()->getSession();
   $datas = $session->getBag('mymodule')->clear();
+
+  // $datas will return:
+  // array:1 [▼
+  // "event" => array:1 [▼
+  //  0 => "This is an example."
+  // ]
+]
 ```
