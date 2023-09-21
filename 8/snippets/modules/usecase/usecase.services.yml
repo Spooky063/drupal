@@ -1,0 +1,10 @@
+services:
+
+  Drupal\usecase\Repository\Usecase: ~
+  Drupal\usecase\Repository\UsecaseDummy: ~
+
+  Drupal\usecase\Contract\UsecaseTestRepositoryInterface: '@Drupal\usecase\Repository\Usecase'
+
+  usecase.test.list:
+    class: Drupal\usecase\UseCase\ListUsecase
+    autowire: true

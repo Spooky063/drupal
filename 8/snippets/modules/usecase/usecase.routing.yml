@@ -1,0 +1,6 @@
+usecase.test:
+  path: '/usecase/test'
+  defaults:
+    _controller: '\Drupal\usecase\Controller\UseCaseController'
+  requirements:
+    _permission: 'access content'
