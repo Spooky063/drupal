@@ -1,0 +1,7 @@
+node.page.api:
+  path: '/api/page'
+  defaults:
+    _controller: '\Drupal\entity_serializer\Controller\Api\PageController'
+  methods:  [GET]
+  requirements:
+    _access: 'TRUE'

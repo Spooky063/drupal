@@ -1,0 +1,7 @@
+services:
+
+  normalizer.entity_serializer:
+    class: Drupal\entity_serializer\Normalizer\PageNodeEntityNormalizer
+    tags:
+      - { name: normalizer, priority: 22 }
+    arguments: ['@entity_type.manager', '@entity_type.repository', '@entity_field.manager']
