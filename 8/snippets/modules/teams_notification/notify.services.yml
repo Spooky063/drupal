@@ -1,0 +1,14 @@
+services:
+  logger.channel.notify:
+    parent: logger.channel_base
+    arguments: ['notify']
+
+  teams.client:
+    class: GuzzleHttp\Client
+    factory: teams.client.factory:create
+  teams.client.factory:
+    class: Drupal\notify\Teams\TeamsWebhookWrapperFactory
+
+  teams.service:
+    class: Drupal\notify\Teams\TeamsWebhookWrapper
+    arguments: ['@teams.client', '@logger.channel.notify']

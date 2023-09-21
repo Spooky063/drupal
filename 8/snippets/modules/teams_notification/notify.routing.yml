@@ -1,0 +1,7 @@
+notify.test:
+  path: '/notify/test'
+  defaults:
+    _title: 'Test the rendering of the Microsoft Teams Adaptive cards '
+    _controller: '\Drupal\notify\Controller\AdaptiveCardsController'
+  requirements:
+    _permission: 'access content'
