@@ -1,0 +1,8 @@
+name: Request validation to object
+description: Validate a request object and create an object with that.
+package: Other
+
+type: module
+core_version_requirement: ^9.0 || ^10.0
+
+version: '1.0.0'

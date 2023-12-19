@@ -1,0 +1,7 @@
+request_validation_to_object.create:
+  path: '/request/create-object'
+  defaults:
+    _title: 'Create and validate an object via request'
+    _controller: '\Drupal\request_validation_to_object\Controller\CreateObject'
+  requirements:
+    _permission: 'access content'

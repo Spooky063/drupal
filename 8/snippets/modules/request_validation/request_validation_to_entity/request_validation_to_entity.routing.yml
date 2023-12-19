@@ -1,0 +1,7 @@
+request_validation_to_entity.create:
+  path: '/request/create-entity'
+  defaults:
+    _title: 'Create and validate an entity via request'
+    _controller: '\Drupal\request_validation_to_entity\Controller\CreateEntity'
+  requirements:
+    _permission: 'access content'
