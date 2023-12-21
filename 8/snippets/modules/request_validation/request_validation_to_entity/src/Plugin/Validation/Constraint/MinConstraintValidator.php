@@ -10,19 +10,19 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 final class MinConstraintValidator extends ConstraintValidator
 {
-  public function validate($value, Constraint $constraint): void
-  {
-    if (!$constraint instanceof MinConstraint) {
-      throw new Exception('Error to assign correct constraint object.');
-    }
+    public function validate($value, Constraint $constraint): void
+    {
+        if (!$constraint instanceof MinConstraint) {
+            throw new Exception('Error to assign correct constraint object.');
+        }
 
-    foreach ($value as $item) {
-      if (strlen($item->value) <= $constraint->minValue) {
-        $this->context->addViolation(
-          $constraint->minMessage,
-          ['%value' => $item->value, '%min' => $constraint->minValue]
-        );
-      }
+        foreach ($value as $item) {
+            if (strlen($item->value) <= $constraint->minValue) {
+                $this->context->addViolation(
+                    $constraint->minMessage,
+                    ['%value' => $item->value, '%min' => $constraint->minValue]
+                );
+            }
+        }
     }
-  }
 }

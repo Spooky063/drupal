@@ -8,17 +8,17 @@ use Drupal\request_validation_to_object\Dto\PostDto;
 
 class PostService
 {
-  public PostDto $data;
+    public PostDto $data;
 
-  public function __construct(PostDto $data)
-  {
-    $this->data = $data;
-  }
+    public function __construct(PostDto $data)
+    {
+        $this->data = $data;
+    }
 
-  /**
-   * @todo Do something with the datas
-   */
-  public function saveData(): void
-  {
-  }
+    /**
+     * @todo Do something with the datas
+     */
+    public function saveData(): void
+    {
+    }
 }

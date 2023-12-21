@@ -1,0 +1,7 @@
+request_validation_with_jsonschema.create:
+  path: '/request/create-object-with-jsonschema'
+  defaults:
+    _title: 'Create and validate an object with JsonSchema via request'
+    _controller: '\Drupal\request_validation_with_jsonschema\Controller\CreateObjectWithJsonSchema'
+  requirements:
+    _permission: 'access content'

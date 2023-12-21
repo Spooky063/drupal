@@ -15,17 +15,17 @@ use Symfony\Component\Validator\Constraint;
  */
 final class MinConstraint extends Constraint
 {
-  public int $minValue;
+    public int $minValue;
 
-  public string $minMessage = '%value must be greater than %min characters';
+    public string $minMessage = '%value must be greater than %min characters';
 
-  public function getDefaultOption(): ?string
-  {
-    return 'minValue';
-  }
+    public function getDefaultOption(): ?string
+    {
+        return 'minValue';
+    }
 
-  public function getRequiredOptions(): array
-  {
-    return ['minValue'];
-  }
+    public function getRequiredOptions(): array
+    {
+        return ['minValue'];
+    }
 }

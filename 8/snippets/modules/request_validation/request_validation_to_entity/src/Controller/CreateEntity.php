@@ -15,45 +15,49 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class CreateEntity extends ControllerBase implements ContainerInjectionInterface
 {
-  protected SerializerInterface $serializer;
+    protected SerializerInterface $serializer;
 
-  public function __construct(SerializerInterface $serializer)
-  {
-    $this->serializer = $serializer;
-  }
-
-  public static function create(ContainerInterface $container): self
-  {
-    return new self(
-      $container->get('serializer'),
-    );
-  }
-
-  public function __invoke(Request $request): JsonResponse
-  {
-    /** @var Post $post */
-    $post = $this->serializer->deserialize($request->getContent(), Post::class, 'json');
-
-    $violations = $post->validate();
-
-    if (count($violations) > 0) {
-      $response = ['message' => 'validation_failed', 'errors' => []];
-
-      foreach ($violations as $violation) {
-        $message = $violation->getMessage();
-        if ($message instanceof TranslatableMarkup) {
-          $message = strip_tags($message->render());
-        }
-
-        $response['errors'][] = [
-          'property' => $violation->getPropertyPath(),
-          'message' => $message,
-        ];
-      }
-
-      return new JsonResponse($response);
+    public function __construct(SerializerInterface $serializer)
+    {
+        $this->serializer = $serializer;
     }
 
-    return new JsonResponse(['message' => 'ok']);
-  }
+    public static function create(ContainerInterface $container): self
+    {
+        return new self(
+            $container->get('serializer'),
+        );
+    }
+
+    public function __invoke(Request $request): JsonResponse
+    {
+        /**
+   * @var Post $post 
+*/
+        $post = $this->serializer->deserialize($request->getContent(), Post::class, 'json');
+
+        $violations = $post->validate();
+
+        if (count($violations) > 0) {
+            $response = ['message' => 'validation_failed', 'errors' => []];
+
+            foreach ($violations as $violation) {
+                $message = $violation->getMessage();
+                if ($message instanceof TranslatableMarkup) {
+                    $message = strip_tags($message->render());
+                }
+
+                $response['errors'][] = [
+                'property' => $violation->getPropertyPath(),
+                'message' => $message,
+                ];
+            }
+
+            return new JsonResponse($response);
+        }
+
+        $post->save();
+
+        return new JsonResponse(['message' => 'ok']);
+    }
 }

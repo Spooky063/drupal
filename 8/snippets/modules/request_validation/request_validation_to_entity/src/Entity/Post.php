@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\request_validation_to_entity\Entity;
 
 use Drupal\Core\Entity\EntityInterface;
@@ -21,31 +23,32 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
  *   }
  * )
  */
-class Post extends ContentEntityBase implements EntityInterface {
+class Post extends ContentEntityBase implements EntityInterface
+{
 
-  /**
-   * @return FieldDefinitionInterface[]
-   */
-  public static function baseFieldDefinitions(EntityTypeInterface $entity_type)
-  {
-    $fields = parent::baseFieldDefinitions($entity_type);
+    /**
+     * @return FieldDefinitionInterface[]
+     */
+    public static function baseFieldDefinitions(EntityTypeInterface $entity_type)
+    {
+        $fields = parent::baseFieldDefinitions($entity_type);
 
-    $fields['name'] = BaseFieldDefinition::create('string')
-      ->setLabel(new TranslatableMarkup('Name'))
-      ->setDescription(new TranslatableMarkup('The name of the post.'))
-      ->addConstraint('Min', ['minValue' => 5])
-      ->setRequired(TRUE);
+        $fields['name'] = BaseFieldDefinition::create('string')
+            ->setLabel((new TranslatableMarkup('Name'))->render())
+            ->setDescription((new TranslatableMarkup('The name of the post.'))->render())
+            ->addConstraint('Min', ['minValue' => 5])
+            ->setRequired(true);
 
-    $fields['slug'] = BaseFieldDefinition::create('string')
-      ->setLabel(new TranslatableMarkup('Slug'))
-      ->setDescription(new TranslatableMarkup('The slug of the post.'))
-      ->setRequired(TRUE);
+        $fields['slug'] = BaseFieldDefinition::create('string')
+            ->setLabel((new TranslatableMarkup('Slug'))->render())
+            ->setDescription((new TranslatableMarkup('The slug of the post.'))->render())
+            ->setRequired(true);
 
-    $fields['content'] = BaseFieldDefinition::create('text_long')
-      ->setLabel(new TranslatableMarkup('Content'))
-      ->setDescription(new TranslatableMarkup('The content of the post.'))
-      ->setRequired(TRUE);
+        $fields['content'] = BaseFieldDefinition::create('text_long')
+            ->setLabel((new TranslatableMarkup('Content'))->render())
+            ->setDescription((new TranslatableMarkup('The content of the post.'))->render())
+            ->setRequired(true);
 
-    return $fields;
-  }
+        return $fields;
+    }
 }

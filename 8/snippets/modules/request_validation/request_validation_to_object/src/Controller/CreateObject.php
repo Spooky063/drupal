@@ -15,43 +15,43 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CreateObject extends ControllerBase
 {
-  public function __invoke(Request $request): JsonResponse
-  {
-    $requestData = \json_decode((string) $request->getContent(), true);
+    public function __invoke(Request $request): JsonResponse
+    {
+        $requestData = \json_decode((string) $request->getContent(), true);
 
-    $form = [];
+        $form = [];
 
-    $form_state = new FormState();
-    $form_state->setMethod('POST');
-    $form_state->setValues($requestData);
+        $form_state = new FormState();
+        $form_state->setMethod('POST');
+        $form_state->setValues($requestData);
 
-    $validator = new PostFormValidator();
-    $validator->validateForm($form, $form_state);
+        $validator = new PostFormValidator();
+        $validator->validateForm($form, $form_state);
 
-    if ($form_state->hasAnyErrors()) {
-      $errors = $form_state->getErrors();
+        if ($form_state->hasAnyErrors()) {
+            $errors = $form_state->getErrors();
 
-      $response = ['message' => 'validation_failed', 'errors' => []];
+            $response = ['message' => 'validation_failed', 'errors' => []];
 
-      foreach ($errors as $property => $message) {
-          if ($message instanceof TranslatableMarkup) {
-            $message = strip_tags($message->render());
-          }
+            foreach ($errors as $property => $message) {
+                if ($message instanceof TranslatableMarkup) {
+                    $message = strip_tags($message->render());
+                }
 
-          $response['errors'][] = [
-              'property' => $property,
-              'message' => $message,
-          ];
-      }
+                $response['errors'][] = [
+                'property' => $property,
+                'message' => $message,
+                ];
+            }
 
-      return new JsonResponse($response);
+            return new JsonResponse($response);
+        }
+
+        $data = PostDto::create($form_state->getValues());
+
+        $service = new PostService($data);
+        $service->saveData();
+
+        return new JsonResponse(['message' => 'ok']);
     }
-
-    $data = PostDto::create($form_state->getValues());
-
-    $service = new PostService($data);
-    $service->saveData();
-
-    return new JsonResponse(['message' => 'ok']);
-  }
 }
