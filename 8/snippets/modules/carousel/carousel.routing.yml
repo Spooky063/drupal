@@ -1,0 +1,7 @@
+carousel.page:
+  path: '/carousel'
+  defaults:
+    _title: 'Carousel'
+    _controller: '\Drupal\carousel\Controller\CarouselController'
+  requirements:
+    _permission: 'access content'
