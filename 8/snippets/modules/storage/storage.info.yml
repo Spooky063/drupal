@@ -1,0 +1,6 @@
+name: Storage
+description: Storage
+package: Other
+
+type: module
+core_version_requirement: ^8.8.0 || ^9.0 || ^10.0

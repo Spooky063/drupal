@@ -1,0 +1,7 @@
+storage.page:
+  path: '/storage-article'
+  defaults:
+    _title: 'Get articles'
+    _controller: '\Drupal\storage\Controller\StorageController'
+  requirements:
+    _permission: 'access content'

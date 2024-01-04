@@ -1,0 +1,10 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\storage\ArticleStorage;
+
+function storage_entity_type_alter(array &$entity_types): void
+{
+  $entity_types['node']->setStorageClass(ArticleStorage::class);
+}
