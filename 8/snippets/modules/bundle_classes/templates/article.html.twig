@@ -1,0 +1,22 @@
+{% if nodes %}
+  {% for node in nodes %}
+    <h2>{{ node.getTitle() }}</h2>
+
+    {% if node.getImage() %}
+      <img src="{{ node.getImage('medium') }}" />
+    {% endif %}
+
+    {% if node.hasTags() %}
+      Tags:
+      {% for tag in node.getTags() %}
+        {{ tag.name.value }}
+        {%- if not loop.last %},{% endif %}
+      {% endfor %}
+    {% endif %}
+
+    <p>{{ node.getBody() | raw }}</p>
+  {% endfor %}
+
+{% else %}
+  <p>No articles found</p>
+{% endif %}

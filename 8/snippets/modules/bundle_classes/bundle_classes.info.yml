@@ -1,0 +1,6 @@
+name: Bundle Classes
+description: Bundle Classes
+package: Other
+
+type: module
+core_version_requirement: ^9.3 || ^10.0

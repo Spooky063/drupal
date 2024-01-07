@@ -1,0 +1,8 @@
+article:
+  path: '/articles'
+  defaults:
+    _controller: 'Drupal\bundle_classes\Controller\ArticleListController'
+    _title: 'Articles'
+  methods: ['GET']
+  requirements:
+    _access: 'TRUE'

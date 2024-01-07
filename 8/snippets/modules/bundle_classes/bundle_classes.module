@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\bundle_classes\Article;
+
+function bundle_classes_entity_bundle_info_alter(array &$bundles): void
+{
+    if (isset($bundles['node']['article'])) {
+        $bundles['node']['article']['class'] = Article::class;
+    }
+}
+
+function bundle_classes_theme(): array
+{
+    return [
+        'article' => [
+            'variables' => [
+                'nodes' => null,
+            ]
+        ]
+    ];
+}
