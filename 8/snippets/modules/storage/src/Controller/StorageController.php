@@ -16,9 +16,12 @@ class StorageController extends ControllerBase
          * @var ArticleStorage $articleStorage
         */
         $articleStorage = $this->entityTypeManager()->getStorage('node');
-        $entities = $articleStorage->getAllArticles();
+        $publishedEntities = $articleStorage->getPublishedArticles();
+        $countPublishedEntities = $articleStorage->countPublishedArticles();
+        $publishedEntitiesWithTags = $articleStorage->getPublishedArticlesWithSpecificTags(['article']);
+        $countEntities = $articleStorage->countArticles();
 
-        dump($entities);
+        dump($countEntities, $countPublishedEntities, $publishedEntities, $publishedEntitiesWithTags);
 
         return new Response('ok');
     }

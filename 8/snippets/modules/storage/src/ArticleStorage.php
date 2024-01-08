@@ -4,24 +4,42 @@ declare(strict_types=1);
 
 namespace Drupal\storage;
 
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
-use Drupal\node\NodeInterface;
-
-class ArticleStorage extends SqlContentEntityStorage
+class ArticleStorage extends AbstractStorage
 {
-    private string $bundle = 'article';
+    protected ?string $bundle = 'article';
 
-    /**
-     * @return EntityInterface[]
-     */
-    public function getAllArticles()
+    public function getPublishedArticles(): array
     {
-        return $this->loadByProperties(
-            [
-            'type' => $this->bundle,
-            'status' => NodeInterface::PUBLISHED,
-            ]
-        );
+        return $this->isPublished()
+            ->execute();
+    }
+
+    public function countPublishedArticles(): int
+    {
+        return $this->isPublished()
+            ->count()
+            ->execute();
+    }
+
+    public function getPublishedArticlesWithSpecificTags(array $tags, string $fieldTagName = 'field_tags'): array
+    {
+        return $this->findItemByTags($fieldTagName, $tags)
+            ->condition('status', true)
+            ->execute();
+    }
+
+    public function countArticles(): int
+    {
+        $result = $this->getAggregateQuery()
+            ->aggregate('nid', 'COUNT')
+            ->execute();
+
+        /** @var array $count */
+        $count = reset($result);
+        if (count($count) === 0) {
+          return 0;
+        }
+
+        return isset($count['nid_count']) ? $count['nid_count'] : 0;
     }
 }
