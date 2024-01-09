@@ -40,6 +40,6 @@ class ArticleStorage extends AbstractStorage
           return 0;
         }
 
-        return isset($count['nid_count']) ? $count['nid_count'] : 0;
+        return isset($count['nid_count']) ? (int) $count['nid_count'] : 0;
     }
 }
