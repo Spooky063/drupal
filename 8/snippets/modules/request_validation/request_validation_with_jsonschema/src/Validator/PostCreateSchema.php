@@ -21,6 +21,10 @@ class PostCreateSchema
           "maxLength": 255,
           "pattern": "^[A-Za-z]{1}[a-z\\s?!]*$"
         },
+        "status": {
+          "type": "integer",
+          "enum": [0, 1]
+        },
         "slug": {
           "type": "string",
           "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
@@ -31,6 +35,7 @@ class PostCreateSchema
       },
       "required": [
         "name",
+        "status",
         "slug",
         "content"
       ],
