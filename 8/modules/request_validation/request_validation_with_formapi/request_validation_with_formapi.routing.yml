@@ -1,0 +1,7 @@
+request_validation_with_formapi.create:
+  path: '/validation/with-formapi'
+  defaults:
+    _title: 'Create and validate an object with form api'
+    _controller: '\Drupal\request_validation_with_formapi\Controller\CreateObjectWithFormApi'
+  requirements:
+    _permission: 'access content'

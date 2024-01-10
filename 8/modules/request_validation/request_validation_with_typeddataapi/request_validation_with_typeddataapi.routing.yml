@@ -1,0 +1,7 @@
+request_validation_with_typeddataapi.create:
+  path: '/validation/with-typeddataapi'
+  defaults:
+    _title: 'Create and validate an object with Typed Data API via request'
+    _controller: '\Drupal\request_validation_with_typeddataapi\Controller\CreateObjectWithTypedDataApi'
+  requirements:
+    _permission: 'access content'
