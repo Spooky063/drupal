@@ -1,7 +1,0 @@
-request_validation_with_entityapi.create:
-  path: '/validation/with-entityapi'
-  defaults:
-    _title: 'Create and validate an object with entity api'
-    _controller: '\Drupal\request_validation_with_entityapi\Controller\CreateEntityWithEntityApi'
-  requirements:
-    _permission: 'access content'
