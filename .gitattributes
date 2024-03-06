@@ -1,0 +1,6 @@
+*.module linguist-language=Php
+*.install linguist-language=Php
+*.info linguist-language=Php
+*.inc linguist-language=Php
+*.theme linguist-language=Php
+*.test linguist-language=Php
