@@ -14,7 +14,7 @@
   "devDependencies": {
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.5",
-    "@storybook/html": "^6.5.14",
+    "@storybook/html": "^8.0.10",
     "babel-loader": "^8.3.0",
     "babel-plugin-drupal-behaviors": "^0.1.1",
     "babel-preset-minify": "^0.5.2",
