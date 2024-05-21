@@ -1,4 +1,4 @@
-# Redirection d'un formulaire vers la même page après soumission
+# Redirect a form to the same page after submission
 
 ```php
 /**

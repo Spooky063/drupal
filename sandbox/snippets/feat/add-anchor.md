@@ -1,15 +1,13 @@
-# Ajout d'une ancre
+# Add anchor
 
-## Vers une page spécifique
+## To a specific page
 
-Ajout d'une ancre avec un **formulaire Webform** en sortie.
-On modifiera le texte pour l'affichage de ce lien avec un formatage particulier.
+Add an anchor with a **Webform** as output.  
+We'll modify the text to display this link with special formatting.
 
 ```php
-// Récupération d'un webform spécifique qui s'appelle contact_form
 $webform = \Drupal::entityTypeManager()->getStorage('webform')->load('contact_form');
 
-// Création de l'URL
 $url = $webform->toUrl('canonical', [
     // prefill if option 'Allow elements to be populated using query string parameters'
     // is checked into contact_form webform parameters
@@ -25,7 +23,6 @@ $url = $webform->toUrl('canonical', [
     ],
 ]);
 
-// Création du lien
 $link = \Drupal\Core\Link::fromTextAndUrl(
     \Drupal\Core\Render\Markup::create(
         '<span class="btn-text">'.$title.'
@@ -35,14 +32,12 @@ $link = \Drupal\Core\Link::fromTextAndUrl(
     $url
 );
 
-// On l'insère dans le template
 $variables['content'] = $link;
 ```
 
-## Vers une page spécifique en mode modal
+## To a specific page on modal way
 
 ```php
-// Création de l'url
 $options = [
   'attributes' => [
         'data-dialog-type' => 'modal',
@@ -58,9 +53,7 @@ $options = [
 ];
 $url = Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => 2], $options);
 
-// Création du lien
 $link = Drupal\Core\Link::fromTextAndUrl($this->t('Le titre de mon lien'), $url);
 
-// On l'insère dans le template
 $variables['content'] = $link;
 ```

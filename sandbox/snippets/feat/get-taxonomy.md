@@ -1,7 +1,4 @@
-# Récupération d'une liste de terme d'un taxonomie
-
-Permet de retourner une liste de taxonomie d'un vocabulaire spécifique.
-On récupère les valeurs traduite selon la langue sur laquelle l'utilisateur se trouve.
+# Retrieve a list of terms from a taxonomy
 
 ```php
 // Get language code for translation

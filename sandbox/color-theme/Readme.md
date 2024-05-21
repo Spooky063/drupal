@@ -1,6 +1,7 @@
 # Add color scheme on theme Drupal
 
-> ⚠️ Deprecated in version 10
+> [!CAUTION]
+> Deprecated in version 10
 
 ## Introduction
 

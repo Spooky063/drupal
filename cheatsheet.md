@@ -1,4 +1,4 @@
-# Pense-tête
+# Cheatsheet
 
 ## Twig
 
@@ -30,15 +30,11 @@
 ```
 
 ```twig
-{# Pour enlever le html du debug Twig #}
-{# La variable content donne le rendu de l'élément donc le debug Twig est pris en compte. 
-Pour éviter cela, soit on passe par la variable node (node.field_title), soit on utilise
-cette solution pas très propre.
-#}
+{# To remove html from Twig debug feature #}
 {{ content.field_title | render | striptags | trim }}
 ```
 
-### Bloc
+### Block
 ```twig
 {# Render field by default #}
 {{ content.field_text }}
@@ -89,7 +85,7 @@ OR
 {# End CSS part #}
 ```
 
-### Texte
+### Text
 ```twig
 {% if node.field_text.value %}
   {{ node.field_text.value }}
@@ -118,7 +114,7 @@ OR
 {% endif %}
 ```
 
-### Lien
+### Link
 ```twig
 {% if node.field_link.uri %}
   {{ link(node.field_link.title, node.field_link.uri, {'class': ['btn', 'btn-primary']}) }}
@@ -258,7 +254,7 @@ OR
 {{ node.field_date.value | date("U") | format_date("short") }}
 ```
 
-### Booléen
+### Boolean
 ```twig
 {% if node.field_bool.value %}
   Field checked
