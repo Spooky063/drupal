@@ -1,6 +1,4 @@
-# Accès sur les répertoires/fichiers
-
-Il est important de respecter les bon accès. Pour cela, il suffit de suivre les commandes suivantes :
+# Fix access for repositories and files
 
 ```bash
 find sites/ -maxdepth 2 -type f -exec chmod 664 "{}" \;
