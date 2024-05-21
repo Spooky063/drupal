@@ -41,6 +41,7 @@ I got tired of always going back to my configuration files to find out which awe
 - [Symfony Messenger](https://www.drupal.org/project/symfony_messenger): Use Symfony Messenger into Drupal for asynchronous jobs
 - [Token](https://www.drupal.org/project/token): Put some placeholder variables
 - [Typed Entity](https://www.drupal.org/project/typed_entity) :hammer:
+- [Upgrade Status](https://www.drupal.org/project/upgrade_status): Help to upgrade Drupal core
 - [Username Enumeration Prevention](https://www.drupal.org/project/username_enumeration_prevention) :lock:
 - [Webform](https://www.drupal.org/project/webform): Best form builder ever
 
