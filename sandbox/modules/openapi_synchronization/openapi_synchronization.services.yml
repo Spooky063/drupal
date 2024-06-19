@@ -1,0 +1,29 @@
+services:
+  logger.channel.openapi_synchronization:
+    parent: logger.channel_base
+    arguments: ['openapi_synchronization']
+
+  openapi.param_converter:
+    class: Drupal\openapi_synchronization\Routing\OpenAPIParamConverter
+    arguments:
+      - '@entity_type.manager'
+    tags:
+      - { name: paramconverter }
+
+  openapi.access_checker:
+    class: Drupal\openapi_synchronization\Access\OpenAPIAccessCheck
+    tags:
+      - { name: access_check, applies_to: _openapi_access_check }
+
+  openapi.filemanager:
+    class: Drupal\openapi_synchronization\OpenAPISpecificationFileManager
+    arguments:
+      - '@current_user'
+      - '@file_system'
+      - '@entity_type.manager'
+      - '@logger.channel.openapi_synchronization'
+
+  openapi.productmanager:
+    class: Drupal\openapi_synchronization\OpenAPISpecificationProductManager
+    arguments:
+      - '@logger.channel.openapi_synchronization'

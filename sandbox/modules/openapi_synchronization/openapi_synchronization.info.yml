@@ -1,0 +1,11 @@
+name: OpenAPI Synchronization
+description: Update the openAPI specification file into Drupal content
+package: Web Services
+
+type: module
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10
+
+dependencies:
+  - drupal:basic_auth
+  - drupal:field

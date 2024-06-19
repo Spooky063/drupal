@@ -1,0 +1,14 @@
+openapi.update:
+  path: '/openapi-specification/{productName}'
+  defaults:
+    _controller: '\Drupal\openapi_synchronization\Controller\OpenAPISpecification::update'
+    _title: 'Update OpenAPI specification file'
+  methods: [POST]
+  options:
+    _auth: ['basic_auth']
+    parameters:
+      productName:
+        type: 'openapi.param_converter'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _openapi_access_check: 'TRUE'
