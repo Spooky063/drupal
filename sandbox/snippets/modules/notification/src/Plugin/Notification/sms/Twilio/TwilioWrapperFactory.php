@@ -15,7 +15,6 @@ class TwilioWrapperFactory
      */
     public static function create(array $credentials): TwilioWrapper
     {
-        dump($credentials);
         try {
             $client = new Client($credentials['twilio_account_sid'], $credentials['twilio_auth_token']);
         } catch (ConfigurationException $configurationException) {
