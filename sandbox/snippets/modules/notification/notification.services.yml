@@ -1,0 +1,15 @@
+#parameters:
+#  # You can move your credentials into your services.yml file with this syntax.
+#  notification.twilio.config:
+#    twilio_account_sid: ''
+#    twilio_auth_token: ''
+
+services:
+  plugin.manager.notification:
+    class: Drupal\notification\NotificationPluginManager
+    parent: default_plugin_manager
+
+  twilio.service:
+    class: Drupal\notification\Plugin\Notification\sms\Twilio\TwilioWrapper
+    factory: Drupal\notification\Plugin\Notification\sms\Twilio\TwilioWrapperFactory::create
+    arguments: [ '%notification.twilio.config%' ]

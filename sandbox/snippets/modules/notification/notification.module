@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+function notification_preprocess_page(): void
+{
+    $plugin_manager = \Drupal::service('plugin.manager.notification');
+    /** @var \Drupal\notification\Plugin\Notification\EmailNotification $notification */
+    $notification = $plugin_manager->createInstance('email_notification');
+    $notification->sendNotification(['no-replay@example.com'], 'This is a message.');
+}
+
+/**
+ * @param array<string, mixed> $message
+ * @param array<string, mixed> $params
+ */
+function notification_mail(string $key, array &$message, array $params): void
+{
+    if ($key === 'email_notitication') {
+        $message['subject'] = $params['subject'] ?? null;
+        $message['body'][] = $params['body'] ?? null;
+    }
+}

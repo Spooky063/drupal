@@ -1,0 +1,10 @@
+{
+    "name": "spooky063/notification",
+    "description": "Create wrapper notification.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "stable",
+    "require": {
+        "twilio/sdk": "^5.0"
+    }
+}

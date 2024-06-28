@@ -1,0 +1,5 @@
+name: 'Notification'
+type: module
+description: 'Create wrapper notification.'
+package: 'Other'
+core_version_requirement: ^10
