@@ -1,0 +1,10 @@
+name: Dynamic Relative Date
+description: Creation of a date display in relative format that updates automatically.
+package: Other
+
+type: module
+core_version_requirement: ^10
+
+dependencies:
+  - drupal:node
+  - drupal:datetime

@@ -1,0 +1,6 @@
+relative_dates:
+  version: 1.x
+  js:
+    js/relative_dates.js: {}
+  dependencies:
+    - core/drupal
