@@ -1,2 +1,9 @@
 parameters:
   entity_type: 'node'
+
+services:
+  # Example to create a service for custom storage class if needed
+  article_storage:
+    class: Drupal\storage\ArticleStorage
+    factory: entity_type.manager:getStorage
+    arguments: ['node']
