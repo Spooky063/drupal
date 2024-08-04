@@ -38,6 +38,7 @@ I got tired of always going back to my configuration files to find out which awe
 - [Security Kit](https://www.drupal.org/project/seckit) :lock:
 - [Shield](https://www.drupal.org/project/shield): If you need an htpasswd on your website, it's a way
 - [Simple XML sitemap](https://www.drupal.org/project/simple_sitemap): Create a sitemap page
+- [Stage File Proxy](https://www.drupal.org/project/stage_file_proxy): Use production file into development website
 - [Symfony Messenger](https://www.drupal.org/project/symfony_messenger): Use Symfony Messenger into Drupal for asynchronous jobs
 - [Token](https://www.drupal.org/project/token): Put some placeholder variables
 - [Typed Entity](https://www.drupal.org/project/typed_entity) :hammer:
