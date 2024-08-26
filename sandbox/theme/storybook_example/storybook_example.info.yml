@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/5n00p4eg/Drupal-json-schemas/master/schema/drupal/info.yml.json
+'$schema': https://raw.githubusercontent.com/5n00p4eg/Drupal-json-schemas/master/schema/drupal/info.yml.json
+
+name: Storybook example theme
+type: theme
+base theme: false
+description: A storybook example theme with vite.
+package: Other
+version: 1.0.0
+core_version_requirement: ^9 || ^10
+
+features:
+  - logo
+  - name
+
+libraries:
+  - storybook_example/global-css
+  - storybook_example/global-js
+
+dependencies:
+  - drupal:components (^3.0)
+
+# Need to install drupal/components module.
+components:
+  namespaces:
+    storybook_example: src/components

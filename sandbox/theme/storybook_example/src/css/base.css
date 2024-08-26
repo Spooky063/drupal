@@ -1,0 +1,6 @@
+html, body {
+  background: var(--bg-clr-primary-400);
+  color: #2E3438;
+
+  font-family: 'FiraMono', sans-serif;
+}

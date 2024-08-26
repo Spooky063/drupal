@@ -1,0 +1,7 @@
+:root {
+  --clr-primary-400: light-dark(#00A6FB, #052a3d);
+
+  --bg-clr-primary-400: light-dark(#FFFFFF, #1e1e1e);
+
+  --ft-clr-primary-400: light-dark(#1e1e1e, #d6d6d6);
+}
