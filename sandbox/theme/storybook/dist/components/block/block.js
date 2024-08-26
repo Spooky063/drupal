@@ -1,1 +1,0 @@
-Drupal.behaviors.name448={attach:function attach(){console.log("Block JS works!")}};

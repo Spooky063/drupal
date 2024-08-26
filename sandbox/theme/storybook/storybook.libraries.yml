@@ -1,7 +1,0 @@
-base:
-  version: VERSION
-  css:
-    base:
-      css/reset.css: { weight: -10 }
-    layout:
-      css/layout.css: { weight: -10 }

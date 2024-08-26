@@ -1,9 +1,0 @@
-:root {
-  --clr-primary: #3a79a0;
-  --clr-100: #fff;
-  --clr-900: #1b1b1b;
-}
-
-* {
-  color: var(--clr-900);
-}
