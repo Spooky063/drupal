@@ -1,5 +1,4 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/5n00p4eg/Drupal-json-schemas/master/schema/drupal/info.yml.json
-'$schema': https://raw.githubusercontent.com/5n00p4eg/Drupal-json-schemas/master/schema/drupal/info.yml.json
 
 name: Storybook example theme
 type: theme
