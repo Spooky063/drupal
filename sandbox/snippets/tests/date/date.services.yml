@@ -1,0 +1,7 @@
+services:
+  date.date_value:
+    class: Drupal\date\ValueObect\DateValue
+
+  date.basic_page_node_action:
+    class: Drupal\date\Action\GetBasicPageNode
+    arguments: ['@entity_type.manager', '@date.date_value']

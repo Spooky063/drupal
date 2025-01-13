@@ -1,0 +1,7 @@
+date.example:
+  path: '/example'
+  defaults:
+    _controller: '\Drupal\date\Controller\Example::index'
+    _title: 'Example'
+  requirements:
+    _permission: 'access content'
