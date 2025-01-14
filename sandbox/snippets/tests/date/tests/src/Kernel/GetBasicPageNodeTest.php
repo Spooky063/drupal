@@ -12,9 +12,10 @@ use Drupal\Tests\node\Traits\NodeCreationTrait;
 
 /**
  * @group date
+ * @coversDefaultClass \Drupal\date\Action\GetBasicPageNode
  */
-class GetBasicPageNodeTest extends KernelTestBase {
-
+class GetBasicPageNodeTest extends KernelTestBase
+{
   use NodeCreationTrait;
 
   /** @var NodeInterface[] */
@@ -34,16 +35,16 @@ class GetBasicPageNodeTest extends KernelTestBase {
     $this->installEntitySchema('user');
     $this->installSchema('node', ['node_access']);
 
-    $this->assertTrue(\Drupal::moduleHandler()->moduleExists('node'), 'Le module node est actif.');
-    $this->assertTrue(\Drupal::moduleHandler()->moduleExists('user'), 'Le module user est actif.');
+    $this->assertTrue(\Drupal::moduleHandler()->moduleExists('node'));
+    $this->assertTrue(\Drupal::moduleHandler()->moduleExists('user'));
 
     $this->nodes['1'] = $this->createNode(['type' => 'page', 'title' => 'Page 1', 'created' => (new \DateTime('2025-01-01'))->format('U')]);
-    $this->assertNotNull($this->nodes['1'], 'Le nœud a été créé.');
-    $this->assertEquals('Page 1', $this->nodes['1']->label(), 'Le titre du nœud est correct.');
+    $this->assertNotNull($this->nodes['1']);
+    $this->assertEquals('Page 1', $this->nodes['1']->label());
 
     $this->nodes['2'] = $this->createNode(['type' => 'page', 'title' => 'Page 2', 'created' => (new \DateTime('2026-01-01'))->format('U')]);
-    $this->assertNotNull($this->nodes['2'], 'Le nœud a été créé.');
-    $this->assertEquals('Page 2', $this->nodes['2']->label(), 'Le titre du nœud est correct.');
+    $this->assertNotNull($this->nodes['2']);
+    $this->assertEquals('Page 2', $this->nodes['2']->label());
   }
 
   public function testWithDateFrom2025(): void

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\date\Action;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\date\Entity\BasicPageNode;
 use Drupal\date\ValueObect\DateValueInterface;
 
 final readonly class GetBasicPageNode
@@ -22,7 +23,7 @@ final readonly class GetBasicPageNode
   }
 
   /**
-   * @return \Drupal\node\NodeInterface[]
+   * @return BasicPageNode[]
    */
   public function execute(): array
   {
@@ -42,7 +43,7 @@ final readonly class GetBasicPageNode
     }
 
     $node_storage = $this->entityTypeManager->getStorage('node');
-    /** @var \Drupal\node\NodeInterface[] $nodes */
+    /** @var BasicPageNode[] $nodes */
     $nodes = $node_storage->loadMultiple($nids);
 
     return array_values($nodes);

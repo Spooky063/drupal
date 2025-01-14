@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class Example extends ControllerBase implements ContainerInjectionInterface
 {
-
   private GetBasicPageNode $action;
 
   public function __construct(
@@ -32,14 +31,13 @@ final class Example extends ControllerBase implements ContainerInjectionInterfac
   {
     $nodes = $this->action->execute();
 
-    $presenter = [];
-    foreach ($nodes as $node) {
-      $presenter[] = [
+    $presenter = array_map(function($node) {
+      return [
         'id' => $node->id(),
         'title' => $node->label(),
         'created' => date('Y-m-d H:i:s', (int) $node->getCreatedTime()),
       ];
-    }
+    }, $nodes);
 
     return new JsonResponse($presenter);
   }
