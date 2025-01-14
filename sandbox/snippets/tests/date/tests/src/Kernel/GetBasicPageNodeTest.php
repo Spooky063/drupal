@@ -72,11 +72,11 @@ class GetBasicPageNodeTest extends KernelTestBase
     $this->assertEquals($this->nodes['1']->label(), $result[1]->label());
   }
 
-/**
- * @dataProvider dateScenarios
- */
-public function testWithDateScenarios(int $date, array $expected_labels): void
-{
+  /**
+   * @dataProvider dateScenarios
+   */
+  public function testWithDateScenarios(int $date, array $expected_labels): void
+  {
     $dateProvider = new DateValue($date);
     $entityTypeManager = $this->container->get('entity_type.manager');
 
@@ -87,8 +87,7 @@ public function testWithDateScenarios(int $date, array $expected_labels): void
     foreach ($expected_labels as $index => $label) {
         $this->assertEquals($label, $result[$index]->label(), "Le résultat $index est incorrect.");
     }
-}
-
+  }
 
   public function dateScenarios(): \Generator
   {

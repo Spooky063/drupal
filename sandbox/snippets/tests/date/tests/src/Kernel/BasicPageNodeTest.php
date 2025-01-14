@@ -58,6 +58,7 @@ class BasicPageNodeTest extends NodeAccessTestBase
   {
     $this->assertInstanceOf(NodeInterface::class, $this->node);
     $this->assertInstanceOf(BasicPageNode::class, $this->node);
+
     $this->assertEquals('page', $this->node->bundle());
     $this->assertEquals('Page 1', $this->node->label());
     $this->assertEquals('Page 1 body', $this->node->getBody());
