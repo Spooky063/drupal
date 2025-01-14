@@ -7,6 +7,7 @@ namespace Drupal\date\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\date\Action\GetBasicPageNode;
+use Drupal\date\Presenter\BasicPageNodeArrayPresenter;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -31,14 +32,8 @@ final class Example extends ControllerBase implements ContainerInjectionInterfac
   {
     $nodes = $this->action->execute();
 
-    $presenter = array_map(function($node) {
-      return [
-        'id' => $node->id(),
-        'title' => $node->label(),
-        'created' => date('Y-m-d H:i:s', (int) $node->getCreatedTime()),
-      ];
-    }, $nodes);
+    $presenter = new BasicPageNodeArrayPresenter($nodes);
 
-    return new JsonResponse($presenter);
+    return new JsonResponse($presenter->present());
   }
 }

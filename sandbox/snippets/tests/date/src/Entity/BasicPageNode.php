@@ -6,7 +6,7 @@ namespace Drupal\date\Entity;
 
 use Drupal\node\Entity\Node;
 
-final class BasicPageNode extends Node
+final class BasicPageNode extends Node implements BasicPageNodeInterface
 {
   public function getBody(): string
   {
