@@ -1,0 +1,9 @@
+services:
+  event_data:
+    class: '\Drupal\events\EventSubscriber\DataSubscriber'
+    tags:
+      - { name: 'event_subscriber' }
+
+  events.data_service:
+    class: Drupal\events\DataService
+    arguments: ['@event_dispatcher']

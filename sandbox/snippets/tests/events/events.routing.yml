@@ -1,0 +1,7 @@
+event_subscriber.data:
+  path: 'example/event_subscriber'
+  defaults:
+    _controller: 'Drupal\events\Controller\DataController::index'
+  methods: ['GET']
+  requirements:
+    _permission: 'access content'
