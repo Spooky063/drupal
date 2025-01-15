@@ -1,0 +1,9 @@
+form.newsletter.settings:
+  path: '/admin/config/newsletter/settings'
+  defaults:
+    _form: '\Drupal\form\Form\Admin\NewsletterForm'
+    _title: 'Configure newsletter'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE

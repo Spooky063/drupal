@@ -1,0 +1,6 @@
+form.newsletter.settings:
+  title: 'Newsletter settings'
+  description: 'Configure newsletter'
+  parent: system.admin_config_system
+  route_name: form.newsletter.settings
+  weight: 200

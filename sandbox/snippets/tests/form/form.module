@@ -1,0 +1,43 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Component\Utility\Html;
+
+/**
+ * @inheritdoc
+ * @phpstan-ignore-next-line
+ */
+function form_mail(string $key, array &$message, array $params): void
+{
+    switch ($key) {
+        case 'newsletter':
+            $message['from'] = Drupal::config('system.site')->get('mail');
+            $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+            $message['subject'] = t('Newsletter');
+            $message['body'][] = Html::escape($params['message']);
+            $message['options'] = [];
+            if (isset($params['options']) && !empty($params['options'])) {
+                foreach ($params['options'] as $key => $value) {
+                    $message['options'][$key] = $value;
+                }
+            }
+            break;
+    }
+}
+
+function form_send_newsletter_email(string $to): void
+{
+    $mailManager = \Drupal::service('plugin.manager.mail');
+    $module = 'form';
+    $key = 'newsletter';
+    $langcode = \Drupal::currentUser()->getPreferredLangcode();
+    $params = [];
+    $params['message'] = '<p>This is the newsletter message.</p>';
+
+    try {
+        $mailManager->mail($module, $key, $to, $langcode, $params, null, true);
+    } catch (\Exception $e) {
+        \Drupal::logger('form')->error('Error sending newsletter email: %e', ['%e' => $e]);
+    }
+}
