@@ -1,12 +1,16 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\date\Entity\BasicPageNode;
 
+/**
+ * @inheritdoc
+ * @phpstan-ignore-next-line
+ */
 function date_entity_bundle_info_alter(array &$bundles): void
 {
-  if (isset($bundles['node']['page'])) {
-    $bundles['node']['page']['class'] = BasicPageNode::class;
-  }
+    if (isset($bundles['node']['page'])) {
+        $bundles['node']['page']['class'] = BasicPageNode::class;
+    }
 }

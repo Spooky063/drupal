@@ -6,5 +6,5 @@ namespace Drupal\date\ValueObect;
 
 interface DateValueInterface
 {
-  public function getTimestamp(): int;
+    public function getTimestamp(): int;
 }

@@ -13,27 +13,24 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class Example extends ControllerBase implements ContainerInjectionInterface
 {
-  private GetBasicPageNode $action;
+    public function __construct(
+      private readonly GetBasicPageNode $action
+    ) {
+    }
 
-  public function __construct(
-    GetBasicPageNode $action,
-  ) {
-    $this->action = $action;
-  }
+    public static function create(ContainerInterface $container): self
+    {
+        return new self(
+            $container->get('date.basic_page_node_action'),
+        );
+    }
 
-  public static function create(ContainerInterface $container): self
-  {
-    return new static(
-      $container->get('date.basic_page_node_action'),
-    );
-  }
+    public function index(): JsonResponse
+    {
+        $nodes = $this->action->execute();
 
-  public function index(): JsonResponse
-  {
-    $nodes = $this->action->execute();
+        $presenter = new BasicPageNodeArrayPresenter($nodes);
 
-    $presenter = new BasicPageNodeArrayPresenter($nodes);
-
-    return new JsonResponse($presenter->present());
-  }
+        return new JsonResponse($presenter->present());
+    }
 }
