@@ -1,0 +1,6 @@
+form.batch:
+  title: 'Batch panel'
+  description: 'Test batch processing'
+  parent: system.admin_config_system
+  route_name: form.batch
+  weight: 200

@@ -1,0 +1,4 @@
+services:
+  batch.processor:
+    class: Drupal\batch\BatchProcessor
+    arguments: ['@messenger']

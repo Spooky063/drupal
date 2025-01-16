@@ -1,0 +1,9 @@
+form.batch:
+  path: '/admin/config/batch'
+  defaults:
+    _form: '\Drupal\batch\Form\Admin\BatchForm'
+    _title: 'Test batch processing'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
