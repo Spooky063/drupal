@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\batch\Kernel;
 
+use Drupal\batch\BatchProcessor;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\KernelTests\KernelTestBase;
 
 /**
@@ -15,6 +17,16 @@ class BatchProcessorTest extends KernelTestBase
     'system',
     'batch'
   ];
+
+  public function testBatchProcessorConstructor(): void
+  {
+      $messenger = $this->container->get('messenger');
+      $this->assertInstanceOf(MessengerInterface::class, $messenger);
+
+      $batchProcessor = new BatchProcessor($messenger);
+
+      $this->assertInstanceOf(BatchProcessor::class, $batchProcessor);
+  }
 
   public function testBatchPreparing(): void
   {

@@ -47,6 +47,17 @@ class GetBasicPageNodeTest extends KernelTestBase
     $this->assertEquals('Page 2', $this->nodes['2']->label());
   }
 
+  public function testWithDateFrom2024(): void
+  {
+    $dateProvider = new DateValue(strtotime('2024-01-01 00:00:00'));
+    $entityTypeManager = $this->container->get('entity_type.manager');
+
+    $action = new GetBasicPageNode($entityTypeManager, $dateProvider);
+    $result = $action->execute();
+
+    $this->assertCount(0, $result);
+  }
+
   public function testWithDateFrom2025(): void
   {
     $dateProvider = new DateValue(strtotime('2025-01-01 00:00:00'));

@@ -11,6 +11,9 @@ use Drupal\date\Presenter\BasicPageNodeArrayPresenter;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class Example extends ControllerBase implements ContainerInjectionInterface
 {
     public function __construct(

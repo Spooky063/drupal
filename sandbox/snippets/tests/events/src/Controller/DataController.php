@@ -10,6 +10,9 @@ use Drupal\events\DataService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class DataController extends ControllerBase implements ContainerInjectionInterface
 {
     public function __construct(

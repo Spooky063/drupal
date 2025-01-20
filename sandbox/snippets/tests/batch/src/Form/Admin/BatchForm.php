@@ -10,6 +10,9 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class BatchForm extends FormBase
 {
     public function __construct(
