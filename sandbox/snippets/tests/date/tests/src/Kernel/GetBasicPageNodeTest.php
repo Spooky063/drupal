@@ -100,16 +100,16 @@ class GetBasicPageNodeTest extends KernelTestBase
     }
   }
 
-  public function dateScenarios(): \Generator
+  public static function dateScenarios(): \Generator
   {
     yield '2025-01-01' => [
       'date' => strtotime('2025-01-01 00:00:00'),
-      'expected' => ['Page 1'],
+      'expected_labels' => ['Page 1'],
     ];
 
     yield '2026-01-01' => [
       'date' => strtotime('2026-01-01 00:00:00'),
-      'expected' => ['Page 2', 'Page 1'],
+      'expected_labels' => ['Page 2', 'Page 1'],
     ];
   }
 }

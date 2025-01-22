@@ -17,10 +17,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 final class Example extends ControllerBase implements ContainerInjectionInterface
 {
     public function __construct(
-      private readonly GetBasicPageNode $action
+        private readonly GetBasicPageNode $action
     ) {
     }
 
+    #[\Override]
     public static function create(ContainerInterface $container): self
     {
         return new self(

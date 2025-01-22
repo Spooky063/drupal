@@ -16,10 +16,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class BatchForm extends FormBase
 {
     public function __construct(
-        private BatchProcessor $batchProcessor,
+        private readonly BatchProcessor $batchProcessor,
     ) {
     }
 
+    #[\Override]
     public static function create(
         ContainerInterface $container,
     ): self {
@@ -28,6 +29,7 @@ final class BatchForm extends FormBase
         );
     }
 
+    #[\Override]
     public function getFormId(): string
     {
         return 'batch_form';
@@ -36,26 +38,28 @@ final class BatchForm extends FormBase
     /**
      * @return array<array-key, mixed>
      */
+    #[\Override]
     public function buildForm(
         array $form,
         FormStateInterface $form_state
     ): array {
         $form['help'] = [
-        '#markup' => $this->t('Submit this form to run batch operation.'),
+            '#markup' => $this->t('Submit this form to run batch operation.'),
         ];
 
         $form['actions'] = [
-        '#type' => 'actions',
+            '#type' => 'actions',
         ];
 
         $form['actions']['submit'] = [
-        '#type' => 'submit',
-        '#value' => $this->t('Run batch'),
+            '#type' => 'submit',
+            '#value' => $this->t('Run batch'),
         ];
 
         return $form;
     }
 
+    #[\Override]
     public function submitForm(
         array &$form,
         FormStateInterface $form_state

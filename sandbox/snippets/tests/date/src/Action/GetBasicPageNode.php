@@ -11,24 +11,24 @@ use Drupal\date\ValueObect\DateValueInterface;
 final readonly class GetBasicPageNode
 {
     public function __construct(
-      protected EntityTypeManagerInterface $entityTypeManager,
-      protected DateValueInterface $dateValue
+        private EntityTypeManagerInterface $entityTypeManager,
+        private DateValueInterface $dateValue
     ) {
     }
 
     /**
-     * @return BasicPageNodeInterface[]
+     * @return array<BasicPageNodeInterface>
      */
     public function execute(): array
     {
         $timestamp = $this->dateValue->getTimestamp();
 
         $query = $this->entityTypeManager->getStorage('node')
-        ->getQuery()
-        ->condition('type', 'page')
-        ->condition('created', $timestamp, '<=')
-        ->sort('created', 'DESC')
-        ->accessCheck()
+            ->getQuery()
+            ->condition('type', 'page')
+            ->condition('created', $timestamp, '<=')
+            ->sort('created', 'DESC')
+            ->accessCheck()
         ;
 
         $nids = $query->execute();
@@ -38,7 +38,7 @@ final readonly class GetBasicPageNode
         }
 
         $node_storage = $this->entityTypeManager->getStorage('node');
-        /** @var BasicPageNodeInterface[] $nodes */
+        /** @var array<BasicPageNodeInterface> $nodes */
         $nodes = $node_storage->loadMultiple($nids);
 
         return array_values($nodes);

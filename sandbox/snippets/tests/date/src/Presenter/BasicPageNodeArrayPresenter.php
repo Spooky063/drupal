@@ -9,7 +9,7 @@ use Drupal\date\Entity\BasicPageNodeInterface;
 final readonly class BasicPageNodeArrayPresenter
 {
     /**
-     * @param BasicPageNodeInterface[] $nodes
+     * @param array<BasicPageNodeInterface> $nodes
      */
     public function __construct(private array $nodes)
     {
@@ -20,10 +20,10 @@ final readonly class BasicPageNodeArrayPresenter
      */
     public function present(): array
     {
-        return array_map(static fn($node): array => [
-        'id' => (int) $node->id(),
-        'title' => (string) $node->label(),
-        'created' => date('Y-m-d H:i:s', (int) $node->getCreatedTime()),
+        return array_map(static fn ($node): array => [
+            'id' => (int) $node->id(),
+            'title' => (string) $node->label(),
+            'created' => date('Y-m-d H:i:s', (int) $node->getCreatedTime()),
         ], $this->nodes);
     }
 }

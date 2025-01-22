@@ -8,7 +8,7 @@ use Drupal\Core\Batch\BatchBuilder;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
-final class BatchProcessor
+final readonly class BatchProcessor
 {
     public function __construct(
         private MessengerInterface $messenger
@@ -19,15 +19,15 @@ final class BatchProcessor
     {
         $batch_builder = new BatchBuilder();
         $batch_builder
-        ->setTitle(t('Batch Title'))
-        ->setFinishCallback([$this, 'finishedCallback'])
-        ->setInitMessage(new TranslatableMarkup('The initialization message (optional)'))
-        ->setErrorMessage(new TranslatableMarkup('An error occurred during processing.'))
+            ->setTitle(t('Batch Title'))
+            ->setFinishCallback($this->finishedCallback(...))
+            ->setInitMessage(new TranslatableMarkup('The initialization message (optional)'))
+            ->setErrorMessage(new TranslatableMarkup('An error occurred during processing.'))
         ;
 
         foreach ($items as $id => $item) {
             $args = [$id, $item];
-            $batch_builder->addOperation([$this, 'processItem'], $args);
+            $batch_builder->addOperation($this->processItem(...), $args);
         }
 
         batch_set($batch_builder->toArray());
@@ -39,6 +39,7 @@ final class BatchProcessor
             $context['sandbox']['progress'] = 0;
             $context['sandbox']['max'] = 1000;
         }
+
         if (!isset($context['results']['updated'])) {
             $context['results']['updated'] = 0;
             $context['results']['skipped'] = 0;
@@ -49,15 +50,19 @@ final class BatchProcessor
 
         $context['results']['progress'] += count($items);
 
-        $context['message'] = new TranslatableMarkup('Processing batch #@batch_id batch size @batch_size for total @count items.', [
-        '@batch_id' => number_format($id),
-        '@batch_size' => number_format(count($items)),
-        '@count' => number_format($context['sandbox']['max']),
-        ]);
+        $context['message'] = new TranslatableMarkup(
+            'Processing batch #@batch_id batch size @batch_size for total @count items.',
+            [
+                '@batch_id' => number_format($id),
+                '@batch_size' => number_format(count($items)),
+                '@count' => number_format($context['sandbox']['max']),
+            ]
+        );
 
         // Do something with the items.
         foreach ($items as $item) {
             usleep(200_000);
+            echo $item;
             $context['results']['updated']++;
         }
     }
@@ -69,7 +74,7 @@ final class BatchProcessor
                 new TranslatableMarkup(
                     'The batch finished successfully. Processed items: @count',
                     [
-                    '@count' => count($results),
+                        '@count' => count($results),
                     ]
                 )
             );
@@ -78,7 +83,7 @@ final class BatchProcessor
                 new TranslatableMarkup(
                     'The batch failed. Processed items: @count',
                     [
-                    '@count' => count($results),
+                        '@count' => count($results),
                     ]
                 )
             );

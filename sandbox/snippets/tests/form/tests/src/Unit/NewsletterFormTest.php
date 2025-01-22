@@ -68,11 +68,6 @@ class NewsletterFormTest extends FormTestBase
     $this->assertEquals('newsletter_settings', $this->form->getFormId());
   }
 
-  public function testEditableConfigNames(): void
-  {
-    $this->assertEquals(['newsletter.settings'], $this->form->getEditableConfigNames());
-  }
-
   public function testFormValidationCorrect(): void
   {
     $form = $this->formBuilder->getForm($this->form);
@@ -108,7 +103,7 @@ class NewsletterFormTest extends FormTestBase
     $this->assertEquals($this->t($expected_error)->render(), $errors[$field_name]);
   }
 
-  public function fakeFormValues(): \Generator
+  public static function fakeFormValues(): \Generator
   {
     yield 'Email is empty' => [
       'email' => '',

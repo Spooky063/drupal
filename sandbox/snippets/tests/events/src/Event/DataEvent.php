@@ -11,13 +11,13 @@ use Symfony\Contracts\EventDispatcher\Event;
  */
 final class DataEvent extends Event
 {
-    public const EVENT_NAME = 'event_name';
+    public const string EVENT_NAME = 'event_name';
 
     /**
      * @param T $data
      */
     public function __construct(
-        private $data,
+        private readonly mixed $data,
     ) {
     }
 

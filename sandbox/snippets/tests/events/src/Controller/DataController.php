@@ -20,6 +20,7 @@ final class DataController extends ControllerBase implements ContainerInjectionI
     ) {
     }
 
+    #[\Override]
     public static function create(
         ContainerInterface $container,
     ): self {

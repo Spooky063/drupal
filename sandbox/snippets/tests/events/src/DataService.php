@@ -7,20 +7,21 @@ namespace Drupal\events;
 use Drupal\events\Event\DataEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-final class DataService
+final readonly class DataService
 {
     public function __construct(
-        private readonly EventDispatcherInterface $eventDispatcher,
+        private EventDispatcherInterface $eventDispatcher,
     ) {
     }
 
+    /**
+     * @return array<array-key, string>
+     */
     public function execute(): array
     {
         $event = new DataEvent(['Hello world']);
         $this->eventDispatcher->dispatch($event, DataEvent::EVENT_NAME);
 
-        /** @var array<array-key, string> $data */
-        $data = $event->getData();
-        return $data;
+        return $event->getData();
     }
 }
