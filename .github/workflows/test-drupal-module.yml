@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/owner/image
+      image: ghcr.io/spooky063/standalone-drupal:1.0.0-php8.4-drupal11.x-dev
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
