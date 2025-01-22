@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - sandbox/snippets/tests/**
+      - 'sandbox/snippets/tests/**'
 
 env:
   REGISTRY: ghcr.io

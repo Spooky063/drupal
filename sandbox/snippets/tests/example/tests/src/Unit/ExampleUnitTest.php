@@ -13,6 +13,6 @@ final class ExampleUnitTest extends UnitTestCase
 {
     public function testUnitFake(): void
     {
-        $this->assertTrue(TRUE);
+        $this->assertTrue(FALSE);
     }
 }
