@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - master
     paths:
       - 'sandbox/snippets/tests/**'
 
@@ -37,7 +37,7 @@ jobs:
           docker run --rm \
           -e SIMPLETEST_DB=sqlite://localhost/sites/default/files/.test.sqlite \
           -e SIMPLETEST_BASE_URL=http://localhost \
-          -v sandbox/snippets/tests/phpunit.xml.dist:/srv/app/phpunit.xml.dist:ro \
-          -v sandbox/snippets/tests:/srv/app/web/modules/custom:ro \
+          -v ./sandbox/snippets/tests/phpunit.xml.dist:/srv/app/phpunit.xml.dist:ro \
+          -v ./sandbox/snippets/tests:/srv/app/web/modules/custom:ro \
           ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.TAG }} \
           phpunit --testdox --testsuite unit,kernel --coverage-text
