@@ -30,8 +30,8 @@ jobs:
       ports:
         - 80
       volumes:
-        - /sandbox/snippets/tests/phpunit.xml.dist:/srv/app/phpunit.xml.dist
-        - /sandbox/snippets/tests:/srv/app/web/modules/custom
+        - ${{ github.workspace }}/sandbox/snippets/tests/phpunit.xml.dist:/srv/app/phpunit.xml.dist
+        - ${{ github.workspace }}/sandbox/snippets/tests:/srv/app/web/modules/custom
 
     steps:
       - name: Check if modules exists
