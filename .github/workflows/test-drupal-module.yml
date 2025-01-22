@@ -14,46 +14,64 @@ env:
   TAG: 1.0.0-php8.4-drupal11.x-dev
 
 jobs:
-  list-files:
-    name: List files
-    runs-on: ubuntu-latest
+  # list-files:
+  #   name: List files
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
 
-      - name: List files at the root
-        run: ls -la ${{ github.workspace }}
+  #     - name: List files at the root
+  #       run: ls -la ${{ github.workspace }}
 
-      - name: List all files recursively
-        run: find ${{ github.workspace }} -type f
+  #     - name: List all files recursively
+  #       run: find ${{ github.workspace }} -type f
 
   test:
     name: Test Drupal custom module
     runs-on: ubuntu-latest
 
-    container:
-      image: ghcr.io/spooky063/standalone-drupal:1.0.0-php8.4-drupal11.x-dev
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
-      env:
-        SIMPLETEST_DB: sqlite://localhost/sites/default/files/.test.sqlite
-        SIMPLETEST_BASE_URL: http://localhost
-        XDEBUG_MODE: coverage
-      ports:
-        - 80
-      volumes:
-        #- ${{ github.workspace }}/sandbox/snippets/tests/phpunit.xml.dist:/srv/app/phpunit.xml.dist
-        - ${{ github.workspace }}/sandbox/snippets/tests:/srv/app/web/modules/custom
+    permissions:
+      contents: read
+      packages: write
+
+    # container:
+    #   image: ghcr.io/spooky063/standalone-drupal:1.0.0-php8.4-drupal11.x-dev
+    #   credentials:
+    #     username: ${{ github.actor }}
+    #     password: ${{ secrets.github_token }}
+    #   env:
+    #     SIMPLETEST_DB: sqlite://localhost/sites/default/files/.test.sqlite
+    #     SIMPLETEST_BASE_URL: http://localhost
+    #     XDEBUG_MODE: coverage
+    #   ports:
+    #     - 80
+    #   volumes:
+    #     #- ${{ github.workspace }}/sandbox/snippets/tests/phpunit.xml.dist:/srv/app/phpunit.xml.dist
+    #     - ${{ github.workspace }}/sandbox/snippets/tests:/srv/app/web/modules/custom
 
     steps:
-      - name: Check repository
-        run: |
-          ls -lah /srv/app
-          ls -lah /srv/app/web
-          ls -lah /srv/app/web/modules
-          ls -lah /srv/app/web/modules/custom
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull Docker Image
+        run: docker pull ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.TAG }}
 
       - name: Execute tests
-        run: phpunit --testdox --testsuite unit,kernel --coverage-text
+        run: |
+          docker run --rm \
+          -e SIMPLETEST_DB=sqlite://localhost/sites/default/files/.test.sqlite \
+          -e SIMPLETEST_BASE_URL=http://localhost \
+          -e XDEBUG_MODE=coverage \
+          -v ${{ github.workspace }}/sandbox/snippets/tests/phpunit.xml.dist:/srv/app/phpunit.xml.dist \
+          -v ${{ github.workspace }}/sandbox/snippets/tests:/srv/app/web/modules/custom \
+          ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.TAG }} \
+          phpunit --testdox --testsuite unit,kernel --coverage-text
