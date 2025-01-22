@@ -6,7 +6,7 @@ on:
     branches:
       - master
     paths:
-      - 'sandbox/snippets/tests/**'
+      - sandbox/snippets/tests/**
 
 env:
   REGISTRY: ghcr.io
@@ -30,9 +30,12 @@ jobs:
       ports:
         - 80
       volumes:
-        - sandbox/snippets/tests/phpunit.xml.dist:/srv/app/phpunit.xml.dist
-        - sandbox/snippets/tests:/srv/app/web/modules/custom
+        - ./sandbox/snippets/tests/phpunit.xml.dist:/srv/app/phpunit.xml.dist
+        - ./sandbox/snippets/tests:/srv/app/web/modules/custom
 
     steps:
+      - name: Check if modules exists
+        run: ls -lah /srv/app/web/modules/custom
+
       - name: Execute tests
         run: phpunit --testdox --testsuite unit,kernel --coverage-text
