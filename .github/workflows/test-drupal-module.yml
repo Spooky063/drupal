@@ -34,8 +34,12 @@ jobs:
         - ${{ github.workspace }}/sandbox/snippets/tests:/srv/app/web/modules/custom
 
     steps:
-      - name: Check if modules exists
-        run: ls -lah /srv/app/web/modules/custom
+      - name: Check repository
+        run: |
+          ls -lah /srv/app
+          ls -lah /srv/app/web
+          ls -lah /srv/app/web/modules
+          ls -lah /srv/app/web/modules/custom
 
       - name: Execute tests
         run: phpunit --testdox --testsuite unit,kernel --coverage-text
