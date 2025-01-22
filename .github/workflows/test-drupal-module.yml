@@ -14,6 +14,20 @@ env:
   TAG: 1.0.0-php8.4-drupal11.x-dev
 
 jobs:
+  list-files:
+    name: List files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: List files at the root
+        run: ls -la ${{ github.workspace }}
+
+      - name: List all files recursively
+        run: find ${{ github.workspace }} -type f
+
   test:
     name: Test Drupal custom module
     runs-on: ubuntu-latest
