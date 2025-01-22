@@ -1,6 +1,7 @@
 name: Test Drupal module
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
