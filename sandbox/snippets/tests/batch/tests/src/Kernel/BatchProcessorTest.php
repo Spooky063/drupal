@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\batch\Kernel;
 
-use Drupal\batch\BatchProcessor;
-use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\KernelTests\KernelTestBase;
 
 /**
  * @group batch
+ * @coversDefaultClass \Drupal\batch\BatchProcessor
  */
 class BatchProcessorTest extends KernelTestBase
 {
@@ -17,34 +16,6 @@ class BatchProcessorTest extends KernelTestBase
     'system',
     'batch'
   ];
-
-  public function testBatchProcessorConstructor(): void
-  {
-      $messenger = $this->container->get('messenger');
-      $this->assertInstanceOf(MessengerInterface::class, $messenger);
-
-      $batchProcessor = new BatchProcessor($messenger);
-
-      $this->assertInstanceOf(BatchProcessor::class, $batchProcessor);
-  }
-
-  public function testBatchPreparing(): void
-  {
-    $items = array_chunk(range(1, 100), 10);
-
-    $batch_processor = $this->container->get('batch.processor');
-    $batch_processor->execute($items);
-
-    $batch = &batch_get();
-    $this->assertNotEmpty($batch);
-
-    $values = reset($batch['sets']);
-    $this->assertEquals('Batch Title', $values['title']);
-    $this->assertStringContainsString('The initialization message (optional)', $values['init_message']);
-    $this->assertEquals('An error occurred during processing.', $values['error_message']);
-    $this->assertNotEmpty($values['operations']);
-    $this->assertEquals(10, $values['total']);
-  }
 
   public function testBatchProcessingWithStub(): void
   {

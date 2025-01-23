@@ -15,11 +15,14 @@ final readonly class BatchProcessor
     ) {
     }
 
-    public function execute(array $items): void
+    /**
+     * @return array<array-key, mixed>
+     */
+    public function prepareBatch(array $items): array
     {
         $batch_builder = new BatchBuilder();
         $batch_builder
-            ->setTitle(t('Batch Title'))
+            ->setTitle(new TranslatableMarkup('Batch Title'))
             ->setFinishCallback($this->finishedCallback(...))
             ->setInitMessage(new TranslatableMarkup('The initialization message (optional)'))
             ->setErrorMessage(new TranslatableMarkup('An error occurred during processing.'))
@@ -30,7 +33,13 @@ final readonly class BatchProcessor
             $batch_builder->addOperation($this->processItem(...), $args);
         }
 
-        batch_set($batch_builder->toArray());
+        return $batch_builder->toArray();
+    }
+
+    public function execute(array $items): void
+    {
+        $batch = $this->prepareBatch($items);
+        batch_set($batch);
     }
 
     public function processItem(int $id, array $items, array &$context): void
@@ -62,7 +71,6 @@ final readonly class BatchProcessor
         // Do something with the items.
         foreach ($items as $item) {
             usleep(200_000);
-            echo $item;
             $context['results']['updated']++;
         }
     }
