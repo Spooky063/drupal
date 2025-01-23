@@ -1,4 +1,0 @@
-name: Example
-type: module
-description: My custom example module
-core_version_requirement: ^9.2 || ^10 || ^11
