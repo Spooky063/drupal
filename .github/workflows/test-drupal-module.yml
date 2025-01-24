@@ -48,11 +48,14 @@ jobs:
           phpunit --testdox --testsuite unit,kernel --coverage-text --log-junit junit.xml --coverage-clover=coverage.xml
 
       - name: Upload test results to Codecov.io
+        if: ${{ !cancelled() }}
         uses: codecov/test-results-action@v1
         with:
+          file: ./junit.xml
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload code coverage data to Codecov.io
         uses: codecov/codecov-action@v4
         with:
+          file: ./coverage.xml
           token: ${{ secrets.CODECOV_TOKEN }}
