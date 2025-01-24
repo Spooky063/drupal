@@ -1,0 +1,5 @@
+name: Queue
+type: module
+description: 'Queue module'
+core_version_requirement: ^10.0 || ^11.0
+package: Custom
