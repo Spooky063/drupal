@@ -50,7 +50,6 @@ class ArticleQueueWorker extends QueueWorkerBase implements ContainerFactoryPlug
                 $state->set('queue_requeue_exception', 1);
                 throw new ArticleQueueException('Invalid data');
             }
-            return;
         }
 
         $this->logger->info($this->t('Processed simple queue item @title', ['@title' => $data->getTitle()]));
