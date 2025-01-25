@@ -45,17 +45,17 @@ jobs:
           -v ${{ github.workspace }}/sandbox/snippets/tests/phpunit.xml.dist:/srv/app/phpunit.xml.dist \
           -v ${{ github.workspace }}/sandbox/snippets/tests:/srv/app/web/modules/custom \
           ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.TAG }} \
-          phpunit --testdox --testsuite unit,kernel --coverage-text --log-junit junit.xml --coverage-clover=coverage.xml
+          phpunit --testdox --testsuite unit,kernel --coverage-text --log-junit /srv/app/web/modules/custom/junit.xml --coverage-clover=/srv/app/web/modules/custom/coverage.xml
 
       - name: Upload test results to Codecov.io
         if: ${{ !cancelled() }}
         uses: codecov/test-results-action@v1
         with:
-          file: ./junit.xml
+          file: sandbox/snippets/tests/junit.xml
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload code coverage data to Codecov.io
         uses: codecov/codecov-action@v4
         with:
-          file: ./coverage.xml
+          file: sandbox/snippets/tests/coverage.xml
           token: ${{ secrets.CODECOV_TOKEN }}
