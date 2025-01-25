@@ -33,6 +33,6 @@
       <directory>./web/modules/custom/*/*/tests</directory>
       <directory>./web/modules/custom/*/*/src/Tests</directory>
       <directory suffix=".api.php">./web/modules/custom/**</directory>
-    </exclude
+    </exclude>
   </source>
 </phpunit>
