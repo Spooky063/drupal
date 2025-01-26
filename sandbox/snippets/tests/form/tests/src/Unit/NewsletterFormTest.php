@@ -86,7 +86,7 @@ class NewsletterFormTest extends FormTestBase
   /**
    * @dataProvider fakeFormValues
    */
-  public function testFormValidationIncorrect(string $email, string $color, string $field_name, string $expected_error): void
+  public function testFormValidationIncorrect(mixed $email, mixed $color, string $field_name, string $expected_error): void
   {
     $form = $this->formBuilder->getForm($this->form);
 
@@ -145,6 +145,13 @@ class NewsletterFormTest extends FormTestBase
       'color' => '#ff',
       'field_name' => 'color',
       'expected_error' => 'The color must be in hexadecimal format, starting with #.',
+    ];
+
+    yield 'Color is not a string' => [
+      'email' => 'test@example.com',
+      'color' => 333,
+      'field_name' => 'color',
+      'expected_error' => 'The color is not valid.',
     ];
   }
 }
