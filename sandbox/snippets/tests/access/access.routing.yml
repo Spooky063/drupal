@@ -1,0 +1,6 @@
+access.see_page:
+  path: '/example/see-page'
+  defaults:
+    _controller: '\Drupal\access\Controller\SeePageController'
+  requirements:
+    _see_page_access_check: 'TRUE'

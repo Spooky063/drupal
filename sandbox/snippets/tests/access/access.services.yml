@@ -1,0 +1,5 @@
+services:
+  access.see_page_access_checker:
+    class: Drupal\access\Access\SeePageAccess
+    tags:
+      - { name: access_check, applies_to: _see_page_access_check }

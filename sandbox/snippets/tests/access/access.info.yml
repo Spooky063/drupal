@@ -1,0 +1,8 @@
+name: Access
+type: module
+description: 'Access module'
+core_version_requirement: ^10.0 || ^11.0
+package: Custom
+
+dependencies:
+  - drupal:user
