@@ -8,7 +8,7 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Routing\Access\AccessInterface;
 use Drupal\Core\Session\AccountInterface;
 
-final class SeePageAccess implements AccessInterface
+class SeePageAccess implements AccessInterface
 {
     public function access(AccountInterface $account): AccessResult
     {

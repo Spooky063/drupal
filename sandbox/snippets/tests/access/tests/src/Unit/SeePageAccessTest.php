@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\access\Unit;
 
-use Drupal\Core\Access\AccessResult;
-use Drupal\Core\Session\AccountInterface;
+use Drupal\access\Access\SeePageAccess;
+use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -14,20 +14,19 @@ use Drupal\Tests\UnitTestCase;
  */
 class SeePageAccessTest extends UnitTestCase
 {
-  private $accessHandler;
-
   protected function setUp(): void
   {
     parent::setUp();
 
-    $this->accessHandler = new class() {
-      public function access(AccountInterface $user)
-      {
-        return $user->hasPermission('see page')
-          ? AccessResult::allowed()
-          : AccessResult::forbidden();
-      }
-    };
+    $access = $this->createMock('Drupal\access\Access\SeePageAccess');
+
+    $cacheContextManager = $this->createMock('Drupal\Core\Cache\Context\CacheContextsManager');
+    $cacheContextManager->method('assertValidTokens')->willReturn(true);
+
+    $container = new ContainerBuilder();
+    $container->set('access.see_page_access_checker', $access);
+    $container->set('cache_contexts_manager', $cacheContextManager);
+    \Drupal::setContainer($container);
   }
 
   public function testPermissionSeePageAllowed(): void
@@ -35,7 +34,8 @@ class SeePageAccessTest extends UnitTestCase
     $user = $this->createMock('Drupal\Core\Session\AccountInterface');
     $user->method('hasPermission')->with('see page')->willReturn(TRUE);
 
-    $result = $this->accessHandler->access($user);
+    $access = new SeePageAccess();
+    $result = $access->access($user);
     $this->assertInstanceOf('Drupal\Core\Access\AccessResultAllowed', $result);
   }
 
@@ -44,7 +44,8 @@ class SeePageAccessTest extends UnitTestCase
     $user = $this->createMock('Drupal\Core\Session\AccountInterface');
     $user->method('hasPermission')->with('see page')->willReturn(FALSE);
 
-    $result = $this->accessHandler->access($user);
+    $access = new SeePageAccess();
+    $result = $access->access($user);
     $this->assertInstanceOf('Drupal\Core\Access\AccessResultForbidden', $result);
   }
 }
