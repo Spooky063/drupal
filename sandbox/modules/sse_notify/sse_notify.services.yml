@@ -1,0 +1,19 @@
+services:
+  sse_notify.node_event_service:
+    class: Drupal\sse_notify\NodeEventService
+    arguments:
+      - '@mercure.hub.default'
+      - '@current_user'
+
+  mercure_cookie_event_subscriber:
+    class: '\Drupal\sse_notify\EventSubscriber\MercureCookieEventSubscriber'
+    arguments:
+      - '@request_stack'
+      - '@current_user'
+      - '@mercure.authorization'
+    tags:
+      - { name: 'event_subscriber' }
+
+  mercure.authorization:
+    class: Symfony\Component\Mercure\Authorization
+    autowire: true

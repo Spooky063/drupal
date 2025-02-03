@@ -1,0 +1,7 @@
+event:
+  version: VERSION
+  css:
+    component:
+      css/event.css: {}
+  js:
+    js/event.js: { preprocess: false, minified: true, attributes: { type: module } }

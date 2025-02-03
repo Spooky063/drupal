@@ -1,0 +1,10 @@
+{
+    "name": "drupal/sse_notify",
+    "type": "drupal-custom-module",
+    "description": "Using SSE to notify the client when an action is performed.",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": "^8.4",
+        "dunglas/mercure-bundle": "^0.3.0"
+    }
+}

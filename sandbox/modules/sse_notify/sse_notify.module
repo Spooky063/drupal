@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\node\NodeInterface;
+
+/**
+ * @inheritdoc
+ * @phpstan-ignore-next-line
+ */
+function sse_notify_preprocess_html(array &$variables): void
+{
+    $variables['#attached']['library'][] = 'sse_notify/event';
+    $variables['#attached']['drupalSettings']['sse_notify']['hub'] = 'http://drupal10.localhost:8001/.well-known/mercure';
+    $variables['#attached']['drupalSettings']['sse_notify']['topics'][] = '/notification/node';
+}
+
+function sse_notify_node_update(NodeInterface $node): void
+{
+    Drupal::service('sse_notify.node_event_service')->nodeUpdate($node);
+}
