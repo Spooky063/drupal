@@ -40,6 +40,7 @@ I got tired of always going back to my configuration files to find out which awe
 - [Simple XML sitemap](https://www.drupal.org/project/simple_sitemap): Create a sitemap page
 - [Stage File Proxy](https://www.drupal.org/project/stage_file_proxy): Use production file into development website
 - [Symfony Messenger](https://www.drupal.org/project/symfony_messenger): Use Symfony Messenger into Drupal for asynchronous jobs
+- [TFA](https://www.drupal.org/project/tfa): Add a Two Factor Authentification method to secure account access
 - [Token](https://www.drupal.org/project/token): Put some placeholder variables
 - [Typed Entity](https://www.drupal.org/project/typed_entity) :hammer:
 - [Upgrade Status](https://www.drupal.org/project/upgrade_status): Help to upgrade Drupal core
@@ -57,6 +58,7 @@ I got tired of always going back to my configuration files to find out which awe
 - [Drupal at your Fingertips](https://selwynpolit.github.io/d9book/)
 - [Symfony Messenger in Drupal](https://www.previousnext.com.au/blog/symfony-messenger/post-8-symfony-messenger-in-drupal-core)
 - [Using command pattern in Drupal](https://tech.sparkfabrik.com/en/blog/command_pattern_drupal/)
+- [Integrate Auth0 SSO](https://www.specbee.com/blogs/how-to-integrate-auth0-single-sign-on-sso-in-drupal)
 
 ## PDF
 - [TDD in Drupal](https://lisbon2018.drupaldays.org/sites/default/files/2018-07/tdd-test-driven-drupal.pdf)
