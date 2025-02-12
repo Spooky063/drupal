@@ -4,7 +4,12 @@ The idea is to use SSE to notify the client when a node is updated.
 
 ## Prerequisites
 
-The module requires the package [dunglas/mercure-bundle](https://github.com/dunglas/MercureBundle) to work.
+The module requires the package [symfony/mercure-bundle](https://github.com/dunglas/MercureBundle) to work.
+To do this, we need to install the `mercure` Drupal module.
+
+```bash
+composer require drupal/mercure
+```
 
 ### Mercure
 
@@ -50,7 +55,7 @@ Be sure to change the `public_url` with your Mercure server URI with the prefix 
 ### PHP
 
 You have to set the `MERCURE_SUBSCRIBER_SECRET` environment variable with the secret you have set in the Mercure container (MERCURE_SUBSCRIBER_JWT_KEY).
-You need to check if the package [dunglas/mercure-bundle](https://github.com/dunglas/MercureBundle) is installed.
+You need to check if the package [syymfony/mercure-bundle](https://github.com/symfony/mercure-bundle) is installed.
 
 ## Installation
 

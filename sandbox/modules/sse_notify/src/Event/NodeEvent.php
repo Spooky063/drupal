@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\sse_notify\Event;
 
-use EliasHaeussler\SSE\Event\Event;
-
-final class NodeEvent implements Event
+final class NodeEvent
 {
     public function __construct(
         private readonly array $data,

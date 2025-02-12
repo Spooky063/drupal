@@ -3,8 +3,14 @@
     "type": "drupal-custom-module",
     "description": "Using SSE to notify the client when an action is performed.",
     "license": "GPL-2.0-or-later",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
     "require": {
         "php": "^8.4",
-        "dunglas/mercure-bundle": "^0.3.0"
+        "drupal/mercure": "^1.0.5"
     }
 }

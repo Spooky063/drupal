@@ -6,3 +6,4 @@ package: Custom
 
 dependencies:
   - drupal:node
+  - drupal:mercure

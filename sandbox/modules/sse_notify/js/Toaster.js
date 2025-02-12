@@ -45,7 +45,7 @@ export default class Toaster {
         notification.querySelector('.placeholder a').href = 'node/' + e.detail.id
         notification.querySelector('.placeholder a').textContent = e.detail.data.title
         notification.querySelector('.node_type').textContent = e.detail.data.type
-        notification.querySelector('.node_updater_user').textContent = e.detail.data.user
+        notification.querySelector('.node_updater_user').textContent = e.detail.data.username
         this.#container.appendChild(notification)
         break
     }
